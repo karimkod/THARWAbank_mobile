@@ -10,24 +10,25 @@
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/appCompatImageView"
-        android:layout_width="306dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="224dp"
+        android:layout_width="239dp"
+        android:layout_height="141dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/logo_withoutcircle"
-        app:layout_constraintBottom_toTopOf="@+id/appCompatButton"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.7" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="302dp"
         android:layout_height="184dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="36dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         app:cardCornerRadius="20dp"
@@ -72,7 +73,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Oublier votre mot de passe ?" />
+                    android:text="Mot de passe oublié?" />
 
                 <android.support.v7.widget.AppCompatButton
 
@@ -80,7 +81,7 @@
                     android:layout_height="18dp"
                     android:background="@null"
                     android:text="cliquez ici"
-                    android:textColor="#00f"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -92,49 +93,43 @@
         android:id="@+id/appCompatButton"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="112dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="12dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="Se connecter"
         android:textColor="#000"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-
-    <TextView
-        android:id="@+id/textView5"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="OU BIEN"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatButton" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/appCompatButton2"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="300dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/colorPrimaryLight"
-        android:text="S'inscrire"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Créer un nouveau compte"
+            android:textColor="@android:color/white" />
+
+        <android.support.v7.widget.AppCompatButton
+
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:background="@null"
+            android:text="cliquez ici"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp" />
+    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>
