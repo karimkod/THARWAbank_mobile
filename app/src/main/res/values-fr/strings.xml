@@ -1,11 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Tharwa</string>
     <string name="auth_200_ch0">veuillez consulter votre mail,pour récupérer le code d\'authentification</string>
-    <string name="auth_200_ch1">Veuillez consulter votre sms,pour récupérer le code d\'authentification </string>
-    <string name="auth_400">Input invalid </string>
+    <string name="auth_200_ch1">Vouillez consulter votre sms,pour récupérer le code d\'authentification </string>
+    <string name="auth_400"> </string>
     <string name="auth_401">Non autorisé, authentification à échoué </string>
     <string name="auth_403">Interdi,l\'accès à la resource n\'est pas pemis </string>
     <string name="auth_404">Cette @ mail n\'existe pas, veuillez entrer une autre valide</string>
     <string name="auth_500">Erreur serveur</string>
-    <string name="auth_code_404">veuillez rentrer un code valide ou demander un autre</string>
 </resources>
