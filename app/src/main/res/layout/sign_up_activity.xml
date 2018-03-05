@@ -32,7 +32,7 @@
 
             <fragment
                 android:id="@+id/headlines_fragment"
-                android:name="com.tharwa.solid.tharwa.TakePictureFragment"
+                android:name="com.tharwa.solid.tharwa.View.TakePictureFragment"
                 android:layout_width="237dp"
                 android:layout_height="192dp"
                 android:layout_marginEnd="8dp"

@@ -4,12 +4,10 @@ import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.tharwa.solid.tharwa.R
-import com.tharwa.solid.tharwa.TakePictureFragment
-import kotlinx.android.synthetic.main.login_activity.*
 import kotlinx.android.synthetic.main.sign_up_activity.*
 
 
-class SignUpActivity : AppCompatActivity(),TakePictureFragment.OnFragmentInteractionListener
+class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentInteractionListener
 {
 
 
