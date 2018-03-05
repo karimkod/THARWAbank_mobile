@@ -3,6 +3,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.google.gson.JsonParser
 import com.tharwa.solid.tharwa.Model.User
 import com.tharwa.solid.tharwa.Model.UserCode
 import com.tharwa.solid.tharwa.R
@@ -10,6 +11,7 @@ import com.tharwa.solid.tharwa.Remote.UserApiService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import retrofit2.HttpException
 import retrofit2.Response
 
 
@@ -35,8 +37,21 @@ class AuthActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { user -> Log.v("voici le code", "" + user.code() ) },
-                        { error -> Log.e("ERROR", error.message) }
+                        { user -> //Log.v("voici le code", "" + user.code() )
+                            if (user.isSuccessful)
+                            {
+                                //Toast.makeText(this@AuthActivity,"success",Toast.LENGTH_LONG)
+                                Log.v("voici le code", "" + "success" )
+                            }
+                            else
+                            {
+                                Log.e("voici le code", "" + "error" )
+                            }
+
+                        },
+                        {  error-> Log.e("error",errorHandling(error))
+                                //Afficher messgae vérifier votre connection
+                        }
                 )
     }
     private fun loginCode(usercd: UserCode) {
@@ -46,8 +61,9 @@ class AuthActivity : AppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { usercd -> Log.v("Authentifies user", "" + usercd ) },
-                        { error //-> Log.e("ERROR", error.message )
-                            ->Log.e("ERROR + la cause est ", error.cause.toString()+"code" + error.stackTrace )
+                        { error->Log.e("ERROR", error.message )
+                            //-> Log.e("ERROR", error.message )
+                            //->Log.e("ERROR + la cause est ", error.cause.toString()+"code" + error.stackTrace )
 
                         }
                 )
@@ -60,6 +76,23 @@ class AuthActivity : AppCompatActivity() {
     override fun onDestroy() {
         disposable?.dispose()
         super.onDestroy()
+    }
+    fun errorHandling (error:Throwable) :String
+    {
+        var message = "An error occurred"
+        if (error is HttpException) {
+            // Kotlin will smart cast at this point
+            val message = error.response().toString()
+
+
+            /*val errorJsonString = error.response().errorBody()?.string()
+            message = JsonParser().parse(errorJsonString)
+                    .asJsonObject["message"].asString*/
+
+        } else {
+            message = error.message ?: message
+        }
+        return message
     }
 }
 /*when( startupResponseResponse.code())
