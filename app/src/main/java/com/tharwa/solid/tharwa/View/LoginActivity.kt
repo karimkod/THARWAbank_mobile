@@ -1,5 +1,6 @@
 package com.tharwa.solid.tharwa.View
 
+import android.app.FragmentManager
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -17,6 +18,15 @@ class LoginActivity : AppCompatActivity() {
             intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         })
+
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+       var dialogFrag = CodeReceptionMethodDialog()
+        dialogFrag.show(fragmentManager,"ReceptionCode")
 
 
     }
