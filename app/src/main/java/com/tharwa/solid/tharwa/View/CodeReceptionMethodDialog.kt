@@ -11,14 +11,36 @@ import android.os.Bundle
  */
 class CodeReceptionMethodDialog : DialogFragment()
 {
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog
+    {
+
+        var choice:Int = 0
+
+        if (activity is DialogChoiceInteraction)
+        {
         val builder = AlertDialog.Builder(activity)
         builder.setTitle("Veuillez choisir une méthode de recéptino du code")
-        val choices:Array<CharSequence> = arrayOf("SMS","Email")
-        builder.setSingleChoiceItems(choices,1, null)
-        builder.setPositiveButton("Terminé",null)
+        val choices:Array<CharSequence> = arrayOf("Email","SMS")
+        builder.setSingleChoiceItems(choices,0, DialogInterface.OnClickListener { dialog, which ->
+            choice = which
+        })
+        builder.setPositiveButton("Terminé",DialogInterface.OnClickListener { dialog, which ->
 
-        return builder.create()
+            (activity as DialogChoiceInteraction).onTermineClicked(choice)
+
+        })
+
+            return builder.create()
+
+        }else
+            return super.getDialog()
 
     }
+
+    interface DialogChoiceInteraction
+    {
+        fun onTermineClicked(choice:Int):Unit
+    }
+
+
 }
