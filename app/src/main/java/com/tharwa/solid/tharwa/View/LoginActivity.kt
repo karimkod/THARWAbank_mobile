@@ -1,20 +1,18 @@
 package com.tharwa.solid.tharwa.View
-
-import android.app.FragmentManager
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
+import android.widget.Toast
 import com.tharwa.solid.tharwa.Model.User
 import com.tharwa.solid.tharwa.R
+import com.tharwa.solid.tharwa.R.string.*
 import com.tharwa.solid.tharwa.Remote.UserApiService
+import com.tharwa.solid.tharwa.enumration.CodeStatus
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.login_activity.*
-import kotlinx.android.synthetic.main.login_activity.view.*
-
 
 
 class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoiceInteraction
@@ -22,9 +20,12 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
     var mail:String?=null
     var passwd:String?=null
     val TAG = "LoginActivity"
-   var user :User?=null
+    var user :User?=null
+    var choice:Int?=null
+
     override fun onTermineClicked(choice: Int)
     {
+        this.choice=choice
         user= User(mail.toString(),passwd.toString(),choice)
         login(user as User)
     }
@@ -51,33 +52,51 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
                 }
         )
     }
-    fun validateInput(mail:String,password:String)
-    {
-        //
 
-    }
-    private fun login(user: User) {
+    public fun login(user: User) {
         disposable = Service.login(user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { user -> //Log.v("voici le code", "" + user.code() )
+                        { user ->
                             if (user.isSuccessful)
                             {
-                                Log.v("voici le code", "" + "success" )
-                                val intent =Intent(this@LoginActivity,CodeIntroductionActivity::class.java)
-                                intent.putExtra("mail",mail)
-                                intent.putExtra("password",passwd)
-                                startActivity(intent)
+                                if (user.code().equals(CodeStatus.succ200.status))
+                                {
+                                    //if (user.message().equals("Consultez vos emails SVP")||user.message().equals("Consultez vos SMS SVP"))
+                                   // {
+                                        if (choice==0)
+                                           // Toast.makeText(this@LoginActivity,resources.getString(auth_200_ch0),Toast.LENGTH_LONG).show()
+                                        { Log.v(TAG,"voici the body"+user.raw().body().toString())
+                                            Log.v(TAG,"voici the body sans raw()"+user.body().toString())
+                                            Log.v(TAG,"voici le message + user message"+user.message())
+
+                                        }
+                                        else
+                                            Toast.makeText(this@LoginActivity,resources.getString(auth_200_ch1),Toast.LENGTH_LONG).show()
+
+                                        val intent =Intent(this@LoginActivity,CodeIntroductionActivity::class.java)
+                                        intent.putExtra("mail",mail)
+                                        intent.putExtra("password",passwd)
+                                        startActivity(intent)
+                                    //}
+                                    // In the contrary case !!!! what should we do ma7foud
+                                }
                             }
                             else
                             {
-                                Log.e("voici le code", "" + "error" )
+                                when (user.code())
+                                {
+                                    //in this case karim with invalide input cahnge the color of the input
+                                    CodeStatus.err_400.status-> Log.e(TAG,resources.getString(auth_400))
+                                    CodeStatus.err_401.status->Log.e(TAG,resources.getString(auth_401))
+                                    CodeStatus.err_500.status->Log.e(TAG,resources.getString(auth_500))
+                                }
                             }
-
                         },
                         {  error-> Log.e("error",error.message)
-                            //Afficher messgae vérifier votre connection
+                            // Display the error as it is cause it's related to system not reponse
+                            Toast.makeText(this@LoginActivity,error.message,Toast.LENGTH_LONG).show()
                         }
                 )
     }
@@ -85,7 +104,7 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
         disposable?.dispose()
         super.onDestroy()
     }
-
+    //To show the dialog to choose between SMS & Mail
     fun showChoiceDialog()
     {
         CodeReceptionMethodDialog().show(fragmentManager,"receptionMethod")
