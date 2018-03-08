@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
         )
     }
 
-    public fun login(user: User) {
+     fun login(user: User) {
         disposable = Service.login(user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

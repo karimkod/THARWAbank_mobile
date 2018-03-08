@@ -28,8 +28,8 @@
         android:layout_marginEnd="41dp"
         android:layout_marginStart="41dp"
 
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="3dp"
         app:layout_constraintBottom_toTopOf="@+id/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
+
                 >
 
                 <android.support.design.widget.TextInputEditText
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 app:passwordToggleEnabled="true">
 
                 <android.support.design.widget.TextInputEditText

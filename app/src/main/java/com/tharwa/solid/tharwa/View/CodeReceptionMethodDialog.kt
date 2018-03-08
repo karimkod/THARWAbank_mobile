@@ -19,7 +19,7 @@ class CodeReceptionMethodDialog : DialogFragment()
         if (activity is DialogChoiceInteraction)
         {
         val builder = AlertDialog.Builder(activity)
-        builder.setTitle("Veuillez choisir une méthode de recéptino du code")
+        builder.setTitle("Veuillez choisir une méthode de recéption du code")
         val choices:Array<CharSequence> = arrayOf("Email","SMS")
         builder.setSingleChoiceItems(choices,0, DialogInterface.OnClickListener { dialog, which ->
             choice = which
