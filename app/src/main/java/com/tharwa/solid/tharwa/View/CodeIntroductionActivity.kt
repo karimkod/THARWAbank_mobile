@@ -31,7 +31,7 @@ class CodeIntroductionActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { usercd -> Log.v("user", "" + usercd ) },
+                        { code -> Log.v("user", "" + code ) },
                         { error->
                             Log.e("ERROR", error.message )
                             //-> Log.e("ERROR", error.message )
