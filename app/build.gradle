@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -45,5 +47,11 @@ dependencies {
 
     //Gson
     compile 'com.google.code.gson:gson:2.4'
+
+    //added for the unit test
+
+
+
+
 
 }
