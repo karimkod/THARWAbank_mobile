@@ -25,7 +25,7 @@
         android:layout_width="340dp"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
-        android:text="Nous vous avons envoyez le code de vérificatoin, veuillez l'introduire ci-dessous"
+        android:text="@string/introduirecode"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,10 +47,10 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Code"
-            android:maxLength="4"
+            android:hint="@string/code"
             android:inputType="number"
             android:maxEms="4"
+            android:maxLength="4"
             android:minEms="4" />
 
     </android.support.design.widget.TextInputLayout>
@@ -64,13 +64,43 @@
         android:layout_marginBottom="8dp"
 
         android:layout_marginTop="40dp"
-        android:text="Renvoyer le code"
+        android:text="@string/valider"
         android:textColor="#000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/code"
         app:layout_constraintVertical_bias="0.135" />
+
+
+    <LinearLayout
+        android:id="@+id/black_overlay_code"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000"
+        android:elevation="5dp"
+        android:visibility="invisible"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:elevation="6dp"
+        android:id="@+id/progressbar_code"
+        style="Widget.ProgressBar.Large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:background="#fff"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorAccent"
+        android:max="100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        android:visibility="invisible"
+        />
 
 
 </android.support.constraint.ConstraintLayout>
