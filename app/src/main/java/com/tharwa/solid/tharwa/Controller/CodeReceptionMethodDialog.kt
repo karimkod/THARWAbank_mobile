@@ -1,4 +1,4 @@
-package com.tharwa.solid.tharwa.View
+package com.tharwa.solid.tharwa.Controller
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -21,26 +21,29 @@ class CodeReceptionMethodDialog : DialogFragment()
         val builder = AlertDialog.Builder(activity)
         builder.setTitle("Veuillez choisir une méthode de recéption du code")
         val choices:Array<CharSequence> = arrayOf("Email","SMS")
-        builder.setSingleChoiceItems(choices,0, DialogInterface.OnClickListener { dialog, which ->
+        builder.setSingleChoiceItems(choices,0, DialogInterface.OnClickListener { _, which ->
             choice = which
         })
-        builder.setPositiveButton("Terminé",DialogInterface.OnClickListener { dialog, which ->
+
+        builder.setNeutralButton("Terminé",DialogInterface.OnClickListener { _, _ ->
 
             (activity as DialogChoiceInteraction).onTermineClicked(choice)
 
         })
-
             return builder.create()
 
         }else
             return super.getDialog()
 
+
+
     }
 
     interface DialogChoiceInteraction
     {
-        fun onTermineClicked(choice:Int):Unit
+        fun onTermineClicked(choice:Int)
     }
+
 
 
 }

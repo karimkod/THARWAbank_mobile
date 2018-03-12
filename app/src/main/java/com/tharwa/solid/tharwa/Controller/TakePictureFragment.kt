@@ -1,4 +1,4 @@
-package com.tharwa.solid.tharwa.View
+package com.tharwa.solid.tharwa.Controller
 
 import android.content.Context
 import android.net.Uri

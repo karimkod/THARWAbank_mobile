@@ -1,4 +1,5 @@
 package com.tharwa.solid.tharwa.Remote
+import com.tharwa.solid.tharwa.Model.TokenResponse
 import com.tharwa.solid.tharwa.Model.User
 import com.tharwa.solid.tharwa.Model.UserCode
 import io.reactivex.Observable
@@ -20,13 +21,15 @@ interface UserApiService {
 
     @Headers("Accept:application/json")
     @POST("login/code")
-    fun loginCode(@Body usercd: UserCode): Observable<Response<UserCode>>
+    fun loginCode(@Body usercd: UserCode): Observable<Response<TokenResponse>>
+
+
 
 
     companion object {
         //val bsUrl = "https://api.github.com/"
        // val bsUrl="http://localhost:3000/"
-        val bsUrl="http://phplaravel-155520-447541.cloudwaysapps.com/"
+        val bsUrl="https://serene-retreat-29274.herokuapp.com/"
         fun create(): UserApiService {
 
             val retrofit = Retrofit.Builder()

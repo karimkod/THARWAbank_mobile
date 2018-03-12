@@ -20,6 +20,15 @@ data class UserCode
         @SerializedName("nonce") val nonce: String
 )
 
+data class TokenResponse
+(
+    @SerializedName("user_id") val useId: String,
+    @SerializedName("user_type") val userType: String,
+    @SerializedName("access_token") val token: String,
+    @SerializedName("expires_in") val expiresIn: String
+
+)
+
 data class responseUser
 (
  @SerializedName("message") val message: String

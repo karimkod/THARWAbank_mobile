@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.LandingPage">
+        <activity android:name=".Controller.LandingPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,16 +19,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".View.LoginActivity"
+            android:name=".Controller.LoginActivity"
             android:windowSoftInputMode="adjustUnspecified"></activity>
         <activity
-            android:name=".View.SignUpActivity"
-            android:parentActivityName=".View.LoginActivity">
+            android:name=".Controller.SignUpActivity"
+            android:parentActivityName=".Controller.LoginActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".View.LoginActivity" />
+                android:value=".Controller.LoginActivity" />
         </activity>
-        <activity android:name=".View.CodeIntroductionActivity">
+        <activity android:name=".Controller.CodeIntroductionActivity">
 
         </activity>
     </application>

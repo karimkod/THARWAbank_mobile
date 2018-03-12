@@ -1,12 +1,8 @@
 package com.tharwa.solid.tharwa
 
 import com.tharwa.solid.tharwa.Model.User
-import com.tharwa.solid.tharwa.View.LoginActivity
-import kotlinx.android.synthetic.main.login_activity.*
-import kotlinx.android.synthetic.main.sign_up_activity.*
-import org.junit.Assert
+import com.tharwa.solid.tharwa.Controller.LoginActivity
 import org.junit.Test
-import retrofit2.Response
 
 /**
  * Created by LE on 05/03/2018.
