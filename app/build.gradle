@@ -22,7 +22,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
 }
+
+
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -48,7 +55,20 @@ dependencies {
     //Gson
     compile 'com.google.code.gson:gson:2.4'
 
-    //added for the unit test
 
+    // test dependencies
+    testImplementation 'junit:junit:4.12'
+    testImplementation "org.mockito:mockito-core:2.+"
+    testImplementation 'android.arch.core:core-testing:1.0.0-rc1'
 
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    // Required for instrumented tests
+    androidTestCompile 'com.android.support:support-annotations:24.0.0'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+
+    //Spec
+   /* testCompile 'org.jetbrains.spek:spek-api:1.1.0-beta3'
+    testCompile 'org.jetbrains.spek:spek-junit-platform-engine:1.1.0-beta3'
+    testCompile 'org.junit.platform:junit-platform-runner:1.0.0-M3'*/
 }

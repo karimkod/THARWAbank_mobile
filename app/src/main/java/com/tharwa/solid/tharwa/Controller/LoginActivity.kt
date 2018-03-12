@@ -26,17 +26,21 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
     var mail: String? = null
     var passwd: String? = null
     val TAG = "LoginActivity"
-    var user: User? = null
-    var choice: Int? = null
 
-    override fun onTermineClicked(choice: Int) {
-        this.choice = choice
-        user = User(mail.toString(), passwd.toString(), choice)
+    var user :User?=null
+    var choice:Int?=null
+    var code:Int?=null
+
+    //the methode which get the choice from the dialog
+    override fun onTermineClicked(choice: Int)
+    {
+        this.choice=choice
+        user= User(mail.toString(),passwd.toString(),choice)
         login(user as User)
     }
-
-
+    //Disposable will hold the response after
     var disposable: Disposable? = null
+    //Garantee it gonna not be created untill needed
     private val Service by lazy {
         UserApiService.create()
     }
@@ -67,7 +71,8 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
 
     }
 
-    fun login(user: User) {
+    //function that recieve the response of send mail, password,choice to get the code
+     fun login(user: User) {
 
         showProgressDialog()
         disposable = Service.login(user)
@@ -77,6 +82,10 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
                         { user ->
                             hideProgressDialog()
                             if (user.isSuccessful) {
+
+                                this.code=user.code()
+
+
                                 if (user.code().equals(CodeStatus.succ200.status)) {
 
                                     val intent = Intent(this@LoginActivity, CodeIntroductionActivity::class.java)
@@ -86,6 +95,9 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
 
                                 }
                             } else {
+
+                                this.code=user.code()
+
                                 var title: String
                                 var message: String
                                 when (user.code()) {
@@ -150,8 +162,10 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
     }
 
 
-    fun onConnectClicked() {
-        mail = email.editText?.text.toString()
+    //to veryfy if the entered data is valid
+    fun onConnectClicked()
+    {
+        mail=email.editText?.text.toString()
         if (!InputValidator.checkInput(email, this, InputType.EMAIL)) return
         passwd = motdepasse.editText?.text.toString()
         if (!InputValidator.checkInput(motdepasse)) return

@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://C:\Users\thinkpad\Desktop\Etudes\S2\Projet\Tharwa\Mobile.iml" filepath="C:\Users\thinkpad\Desktop\Etudes\S2\Projet\Tharwa\Mobile.iml" />
       <module fileurl="file://$PROJECT_DIR$/Tharwa.iml" filepath="$PROJECT_DIR$/Tharwa.iml" />
+      <module fileurl="file://C:\Users\LE\Desktop\Prj_Mobile\Mobile\Tharwa.iml" filepath="C:\Users\LE\Desktop\Prj_Mobile\Mobile\Tharwa.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

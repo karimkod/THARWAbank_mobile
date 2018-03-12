@@ -24,13 +24,15 @@ import kotlinx.android.synthetic.main.login_activity.*
 
 class CodeIntroductionActivity : AppCompatActivity()
     {
-
+    //used to hold the service
     var disposable: Disposable? = null
+     //lazy to garantee that it gonna not be used until we need it
     private val Service by lazy {
         UserApiService.create()
     }
 
-    val TAG = "CodeAuthentification"
+    var token:String?=null
+    val TAG = "CodeAuthentification" //fix the TAG for Lofcat
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +41,7 @@ class CodeIntroductionActivity : AppCompatActivity()
         valider.setOnClickListener({validerClicked()})
     }
 
-
+    //Sed the request once the user click on "valider"
     fun validerClicked()
     {
         val mail:String?=intent.getStringExtra("mail")
@@ -51,7 +53,7 @@ class CodeIntroductionActivity : AppCompatActivity()
         loginCode(usercode)
     }
 
-
+// this is the function that get the response once the user send the code
    private fun loginCode(usercd: UserCode):Unit {
 
        showProgressDialog()
@@ -72,10 +74,12 @@ class CodeIntroductionActivity : AppCompatActivity()
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                                 intent.putExtra("token",usercd.body()?.token)
                                 startActivity(intent)
+                                this.token=usercd.body()?.token
 
                             }
                             else
                             {
+                                // display messages acording to the recieved code
                                 when(usercd.code())
                                 {
                                     CodeStatus.err_400.status->
@@ -95,6 +99,7 @@ class CodeIntroductionActivity : AppCompatActivity()
 
                         },
                         { error->
+
                             hideProgressDialog()
                             Toast.makeText(this@CodeIntroductionActivity,error.message,Toast.LENGTH_LONG).show()
                         }
