@@ -12,27 +12,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.LandingPage">
 
-        </activity>
-        <activity
-            android:name=".View.LoginActivity"
-            android:windowSoftInputMode="adjustUnspecified" />
-        <activity
-            android:name=".View.SignUpActivity"
-            android:parentActivityName=".View.LoginActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".View.LoginActivity" />
-        </activity>
-        <activity android:name=".View.CodeIntroductionActivity"></activity>
-        <activity android:name=".View.HomeClientActivity">
+        <activity android:name=".Controller.LandingPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+        <activity
+            android:name=".Controller.LoginActivity"
+            android:windowSoftInputMode="adjustUnspecified"></activity>
+        <activity
+            android:name=".Controller.SignUpActivity"
+            android:parentActivityName=".Controller.LoginActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Controller.LoginActivity" />
+        </activity>
+        <activity android:name=".Controller.CodeIntroductionActivity"></activity>
+        <activity android:name=".View.HomeClientActivity"></activity>
+
 
     </application>
 

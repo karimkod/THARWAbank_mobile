@@ -5,33 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context="com.tharwa.solid.tharwa.View.LoginActivity"
+    tools:context="com.tharwa.solid.tharwa.Controller.LoginActivity"
     tools:layout_editor_absoluteY="25dp">
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/appCompatImageView"
         android:layout_width="239dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="57dp"
+        android:layout_height="127dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="50dp"
         android:src="@drawable/logo_withoutcircle"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="15dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="41dp"
         android:layout_marginStart="41dp"
 
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="3dp"
         app:layout_constraintBottom_toTopOf="@+id/login"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appCompatImageView">
 
@@ -45,16 +46,20 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
+                app:errorEnabled="true"
                 >
 
                 <android.support.design.widget.TextInputEditText
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="E-mail" />
+                    android:hint="E-mail"
+                    android:inputType="textEmailAddress"
+                    android:nextFocusForward="@id/motdepasse"
+                    android:imeOptions="actionNext"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -64,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
+                app:errorEnabled="true"
                 app:passwordToggleEnabled="true">
 
                 <android.support.design.widget.TextInputEditText
@@ -80,8 +85,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -121,13 +126,17 @@
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="59dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+
         android:layout_marginStart="26dp"
-        android:layout_marginLeft="26dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/progressbar"
+        app:layout_constraintEnd_toEndOf="@+id/login"
         app:layout_constraintStart_toStartOf="@+id/login"
-        app:layout_constraintTop_toBottomOf="@+id/login">
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="26dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -144,7 +153,37 @@
             android:text="cliquez ici"
             android:textColor="@color/colorAccent"
             android:textSize="12sp" />
+
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/black_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000"
+        android:elevation="5dp"
+        android:visibility="invisible"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:elevation="6dp"
+        android:id="@+id/progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:background="#fff"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorAccent"
+        android:max="100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        android:visibility="invisible"/>
+
 
 
 </android.support.constraint.ConstraintLayout>

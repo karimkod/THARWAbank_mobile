@@ -8,19 +8,28 @@ import com.google.gson.annotations.SerializedName
 
 data class User
 (
-    @SerializedName("email") val email: String,
-    @SerializedName("password") val password: String,
-    @SerializedName("channel") val channel: Int
-   // @SerializedName("nonce") val nonce: String
+    @SerializedName("email") var email: String,
+    @SerializedName("password") var password: String,
+    @SerializedName("channel") var channel: Int
+   // @SerializedName("nonce") var nonce: String
 )
 data class UserCode
 (
-        @SerializedName("email") val email: String,
-        @SerializedName("password") val password: String,
-        @SerializedName("nonce") val nonce: String
+        @SerializedName("email") var email: String,
+        @SerializedName("password") var password: String,
+        @SerializedName("nonce") var nonce: String
+)
+
+data class TokenResponse
+(
+    @SerializedName("user_id") val useId: String,
+    @SerializedName("user_type") val userType: String,
+    @SerializedName("access_token") val token: String,
+    @SerializedName("expires_in") val expiresIn: String
+
 )
 
 data class responseUser
 (
- @SerializedName("message") val message: String
+ @SerializedName("message") var message: String
 )

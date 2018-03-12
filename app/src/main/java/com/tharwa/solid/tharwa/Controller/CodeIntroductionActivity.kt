@@ -1,7 +1,9 @@
-package com.tharwa.solid.tharwa.View
+package com.tharwa.solid.tharwa.Controller
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.tharwa.solid.tharwa.Model.UserCode
 import com.tharwa.solid.tharwa.R
@@ -12,42 +14,53 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.code_introduction_activity.*
 import com.tharwa.solid.tharwa.R.string.*
+import com.tharwa.solid.tharwa.enumration.InputType
 
-class CodeIntroductionActivity : AppCompatActivity() {
+class CodeIntroductionActivity : AppCompatActivity()
+    {
 
     var disposable: Disposable? = null
     private val Service by lazy {
         UserApiService.create()
     }
-
+    var token:String?=null
     val TAG = "CodeAuthentification"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.code_introduction_activity)
         Toast.makeText(this@CodeIntroductionActivity,intent.getStringExtra("mail"),Toast.LENGTH_LONG).show()
+        valider.setOnClickListener({validerClicked()})
+    }
+
+
+    fun validerClicked()
+    {
         val mail:String?=intent.getStringExtra("mail")
         val passwd:String?=intent.getStringExtra("password")
-        val nonce =code.editText?.text.toString()
-        val usercode = UserCode(mail.toString(),passwd.toString(),nonce)
-        valider.setOnClickListener({
-            loginCode(usercode)
-        })
-
-
+        val nonce = code.editText?.text.toString()
+        if(!InputValidator.checkInput(code,type = InputType.CODE))
+            return
+        val usercode = UserCode(mail.toString(), passwd.toString(), nonce)
+        loginCode(usercode)
     }
+
+
    private fun loginCode(usercd: UserCode):Unit {
 
         disposable = Service.loginCode(usercd)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
+
                         { usercd ->
                             if (usercd.isSuccessful)
                             {
                                 // get the token
                                 //open the Acceuil activity
-                                Toast.makeText(this@CodeIntroductionActivity,usercd.message(),Toast.LENGTH_LONG).show()
+                                //Toast.makeText(this@CodeIntroductionActivity,usercd.message(),Toast.LENGTH_LONG).show()
+                                Log.d(TAG,usercd.body()?.token)
+                                this.token=usercd.body()?.token
                             }
                             else
                             {

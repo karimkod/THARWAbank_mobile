@@ -1,4 +1,4 @@
-package com.tharwa.solid.tharwa.View
+package com.tharwa.solid.tharwa.Controller
 
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
