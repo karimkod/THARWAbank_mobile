@@ -18,13 +18,15 @@ import com.tharwa.solid.tharwa.enumration.InputType
 
 class CodeIntroductionActivity : AppCompatActivity()
     {
-
+    //used to hold the service
     var disposable: Disposable? = null
+     //lazy to garantee that it gonna not be used until we need it
     private val Service by lazy {
         UserApiService.create()
     }
+
     var token:String?=null
-    val TAG = "CodeAuthentification"
+    val TAG = "CodeAuthentification" //fix the TAG for Lofcat
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +35,7 @@ class CodeIntroductionActivity : AppCompatActivity()
         valider.setOnClickListener({validerClicked()})
     }
 
-
+    //Sed the request once the user click on "valider"
     fun validerClicked()
     {
         val mail:String?=intent.getStringExtra("mail")
@@ -45,7 +47,7 @@ class CodeIntroductionActivity : AppCompatActivity()
         loginCode(usercode)
     }
 
-
+// this is the function that get the response once the user send the code
    private fun loginCode(usercd: UserCode):Unit {
 
         disposable = Service.loginCode(usercd)
@@ -54,16 +56,14 @@ class CodeIntroductionActivity : AppCompatActivity()
                 .subscribe(
 
                         { usercd ->
-                            if (usercd.isSuccessful)
+                            if (usercd.isSuccessful) //checked if the response id succeed
                             {
-                                // get the token
-                                //open the Acceuil activity
-                                //Toast.makeText(this@CodeIntroductionActivity,usercd.message(),Toast.LENGTH_LONG).show()
-                                Log.d(TAG,usercd.body()?.token)
+                                Log.d(TAG,usercd.body()?.token) //check if the token is well recived
                                 this.token=usercd.body()?.token
                             }
                             else
                             {
+                                // display messages acording to the recieved code
                                 when(usercd.code())
                                 {
                                     CodeStatus.err_400.status->
@@ -80,6 +80,7 @@ class CodeIntroductionActivity : AppCompatActivity()
 
                         },
                         { error->
+                            //show the error
                             Toast.makeText(this@CodeIntroductionActivity,error.message,Toast.LENGTH_LONG).show()
                         }
                 )

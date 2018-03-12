@@ -28,15 +28,16 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
     var choice:Int?=null
     var code:Int?=null
 
+    //the methode which get the choice from the dialog
     override fun onTermineClicked(choice: Int)
     {
         this.choice=choice
         user= User(mail.toString(),passwd.toString(),choice)
         login(user as User)
     }
-
-
+    //Disposable will hold the response after
     var disposable: Disposable? = null
+    //Garantee it gonna not be created untill needed
     private val Service by lazy {
         UserApiService.create()
     }
@@ -66,7 +67,7 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
         login.setOnClickListener( {onConnectClicked()})
 
     }
-
+    //function that recieve the response of send mail, password,choice to get the code
      fun login(user: User) {
 
          showProgressDialog()
@@ -148,7 +149,7 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 
-
+    //to veryfy if the entered data is valid
     fun onConnectClicked()
     {
         mail=email.editText?.text.toString()
