@@ -16,4 +16,7 @@
     <string name="auth_code_400">veuillez rentrer un code valide ou demander un autre</string>
     <string name="Verif_int">Vérfier votre connexion internent et relancer l\'application</string>
     <string name="new_code">Ce code est expérer essayer avec le nouveau code donner</string>
+
+
+
 </resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@mipmap/ic_supervisor_account_black"
+        android:title="Mes comptes" />
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@mipmap/ic_account_balance_wallet_black"
+        android:title="Virement" />
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@mipmap/ic_euro_symbol_black"
+        android:title="Taux de change" />
+</menu>

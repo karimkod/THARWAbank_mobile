@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="Accueil"
+            android:icon="@mipmap/ic_home_black"/>
+        <item
+            android:id="@+id/nav_counts"
+            android:title="Mes Comptes"
+            android:icon="@mipmap/ic_supervisor_account_black"/>
+        <item
+            android:id="@+id/nav_tauxChange"
+            android:title="Taux de change"
+            android:icon="@mipmap/ic_euro_symbol_black"/>
+        <item
+            android:id="@+id/nav_new_virement"
+            android:title= "Nouveau Virement"
+            android:icon="@mipmap/ic_add"/>
+
+        <item
+            android:id="@+id/nav_deconnexion"
+            android:title= "Deconnexion"
+            android:icon="@mipmap/ic_exit_to_app_black"/>
+
+
+    </group>
+
+    <item android:title="Mon Historique">
+        <menu>
+            <item
+                android:id="@+id/nav_Virements"
+                android:title="Virements"
+                android:icon="@mipmap/ic_virement"/>
+            <item
+                android:id="@+id/nav_commissions"
+                android:title="Commissions"
+                android:icon="@mipmap/ic_commission"/>
+        </menu>
+    </item>
+
+</menu> 

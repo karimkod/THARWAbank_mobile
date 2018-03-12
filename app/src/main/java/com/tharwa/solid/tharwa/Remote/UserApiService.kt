@@ -26,7 +26,7 @@ interface UserApiService {
     companion object {
         //val bsUrl = "https://api.github.com/"
        // val bsUrl="http://localhost:3000/"
-        val bsUrl="http://phplaravel-155520-447541.cloudwaysapps.com/"
+        val bsUrl="https://serene-retreat-29274.herokuapp.com//"
         fun create(): UserApiService {
 
             val retrofit = Retrofit.Builder()
