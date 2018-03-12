@@ -23,7 +23,7 @@ class CodeIntroductionActivity : AppCompatActivity()
     private val Service by lazy {
         UserApiService.create()
     }
-
+    var token:String?=null
     val TAG = "CodeAuthentification"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +60,7 @@ class CodeIntroductionActivity : AppCompatActivity()
                                 //open the Acceuil activity
                                 //Toast.makeText(this@CodeIntroductionActivity,usercd.message(),Toast.LENGTH_LONG).show()
                                 Log.d(TAG,usercd.body()?.token)
+                                this.token=usercd.body()?.token
                             }
                             else
                             {

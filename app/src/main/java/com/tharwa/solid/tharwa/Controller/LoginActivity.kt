@@ -26,6 +26,7 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
     val TAG = "LoginActivity"
     var user :User?=null
     var choice:Int?=null
+    var code:Int?=null
 
     override fun onTermineClicked(choice: Int)
     {
@@ -76,6 +77,7 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
                         { user ->
                             if (user.isSuccessful)
                             {
+                                this.code=user.code()
                                 if (user.code().equals(CodeStatus.succ200.status))
                                 {
                                     //if (user.message().equals("Consultez vos emails SVP")||user.message().equals("Consultez vos SMS SVP"))
@@ -100,6 +102,7 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
                             }
                             else
                             {
+                                this.code=user.code()
                                 when (user.code())
                                 {
                                     //in this case karim with invalide input cahnge the color of the input
@@ -112,6 +115,7 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
 
                         },
                         {  error-> Log.e("error",error.message)
+
                             // Display the error as it is cause it's related to system not reponse
                             Toast.makeText(this@LoginActivity,error.message,Toast.LENGTH_LONG).show()
                             hideProgressDialog()
