@@ -30,7 +30,11 @@
                 android:value=".Controller.LoginActivity" />
         </activity>
         <activity android:name=".Controller.CodeIntroductionActivity"></activity>
+
         <activity android:name=".View.HomeClientActivity"></activity>
+
+        <activity android:name=".Controller.Acceuil"></activity>
+
     </application>
 
 </manifest>

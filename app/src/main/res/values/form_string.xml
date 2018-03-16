@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nom">Nom</string>
+    <string name="prenom">Prénom</string>
+    <string name="email">E-mail</string>
+    <string name="motdepasse">Mot de passe</string>
+    <string name="seconnecter">Se connecter</string>
+    <string name="oublie">Mot de passe oublié</string>
+    <string name="cliqueici">CLIQUEZ ICI</string>
+    <string name="newaccount">Créer un nouveau compte</string>
+    <string name="introduirecode">Nous vous avons envoyé le code de vérification, veuillez l\'introduire ci-dessous</string>
+    <string name="code">Code</string>
+    <string name="valider">Validez le code</string>
+    <string name="termine">Terminé</string>
+    <string name="codereceptionTitle">Veuillez choisir une méthode de recéption du code</string>
+
+    <string name="champvide">Veuillez remplir ce champ</string>
+    <string name="emailInvalide">Veuillez bien écrire votre mail</string>
+    <string name="codeInvalide">Le code doit contenir 4 chiffres</string>
+</resources>

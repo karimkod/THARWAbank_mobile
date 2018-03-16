@@ -16,7 +16,7 @@ object InputValidator
 
         if(text!!.isEmpty())
         {
-            inputLayout.error =  "Veuillez remplir ce champ"
+            inputLayout.error = context?.resources!!.getString(R.string.champvide)
             return false
         }
 
@@ -25,7 +25,7 @@ object InputValidator
             InputType.EMAIL -> {
                 if (!Regex(context?.resources!!.getString(R.string.Email_regex)).matches(text as CharSequence))
                 {
-                    inputLayout.error = "Veuillez bien écrire votre mail"
+                    inputLayout.error = context?.resources!!.getString(R.string.emailInvalide)
                     return false
 
                 }
@@ -34,7 +34,7 @@ object InputValidator
             {
                 if(!Regex(context?.resources!!.getString(R.string.Code_regex)).matches(text as CharSequence))
                 {
-                    inputLayout.error = "Le code ne doit contenir que des chiffres"
+                    inputLayout.error = context?.resources!!.getString(R.string.codeInvalide)
                     return false
 
                 }
