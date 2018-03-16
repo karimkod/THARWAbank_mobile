@@ -14,26 +14,21 @@ import retrofit2.http.*
  */
 interface UserApiService {
 
-
+    //Send the first request of mail,password,choice
     @Headers("Accept:application/json")
     @POST("login")
     fun login(@Body user: User): Observable<Response<User>>
-
+    //send the sencond request of authentification mail,password,nonce
     @Headers("Accept:application/json")
     @POST("login/code")
     fun loginCode(@Body usercd: UserCode): Observable<Response<TokenResponse>>
 
 
 
-
+    //create the service
     companion object {
-        //val bsUrl = "https://api.github.com/"
-       // val bsUrl="http://localhost:3000/"
-<<<<<<< HEAD
-        val bsUrl="https://serene-retreat-29274.herokuapp.com//"
-=======
+
         val bsUrl="https://serene-retreat-29274.herokuapp.com/"
->>>>>>> f6054d6c6c94b1ae1631fed99f21bc9d4f9acf14
         fun create(): UserApiService {
 
             val retrofit = Retrofit.Builder()
