@@ -10,7 +10,6 @@ import android.support.v4.app.FragmentPagerAdapter
 class CostomPagerAdapter(fragManger: FragmentManager) : FragmentPagerAdapter(fragManger) {
 
 
-
     private val fragmentList = ArrayList <Fragment> ()
     private val fragmentTitleList = ArrayList <String> ()
 

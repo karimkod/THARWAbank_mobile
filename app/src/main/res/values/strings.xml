@@ -16,7 +16,7 @@
     <string name="auth_code_400">veuillez rentrer un code valide ou demander un autre</string>
     <string name="Verif_int">Vérfiez votre connexion internet et réessayer</string>
     <string name="new_code">Ce code est expérer essayer avec le nouveau code donner</string>
-
+    <string name="balance_count">Balance</string>
 
 
 </resources>

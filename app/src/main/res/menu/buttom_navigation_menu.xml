@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/buttom_navigation_comptes"
         android:icon="@mipmap/ic_supervisor_account_black"
-        android:title="Mes comptes" />
+        android:title="Mes comptes"
+        android:orderInCategory="100" app:showAsAction="always" />
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/buttom_navigation_virements"
         android:icon="@mipmap/ic_account_balance_wallet_black"
-        android:title="Virement" />
+        android:title="Virement"
+        android:orderInCategory="100" app:showAsAction="always" />
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/buttom_navigation_taux_changes"
         android:icon="@mipmap/ic_euro_symbol_black"
-        android:title="Taux de change" />
+        android:title="Taux de change"
+        android:orderInCategory="100" app:showAsAction="always" />
 </menu>

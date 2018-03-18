@@ -8,38 +8,55 @@
     android:layout_gravity="center_horizontal"
     tools:openDrawer="start">
 
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <LinearLayout
+            android:id="@+id/linearLayout_home"
             android:layout_width="match_parent"
             android:layout_height="510dp"
             android:orientation="vertical"
-            android:id="@+id/linearLayout_home"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bottom_navigation">
+
+
             <!--  App Bare -->
             <android.support.design.widget.AppBarLayout
                 android:id="@+id/appBar"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:elevation="0dp"
+                android:theme="@style/AppTheme.AppBarOverlay"
+                android:background="#2c3e50"
+                android:layout_height="176dp"
                 android:gravity="center">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/acount_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:titleTextColor="@color/white"
+                    android:background="#00b2dfdb"
+                    app:title=" "
+                    app:popupTheme="@style/AppTheme.PopupOverlay"
+                    android:elevation="4dp"
+                    android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/balanceText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Balance"
+                    android:text="@string/balance_count"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimaryLight"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/montantCount"
+                    android:id="@+id/balance_count_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="150 000.00 DZD"
@@ -49,7 +66,7 @@
                     android:textStyle="bold" />
 
                 <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/countType"
+                    android:id="@+id/count_type_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Coumpte Courant"
@@ -59,7 +76,7 @@
                     android:textStyle="bold" />
 
                 <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/countID"
+                    android:id="@+id/id_count_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="THW00345DZD"
@@ -75,7 +92,7 @@
                 android:id="@+id/homeTabBarre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorPrimary"
                 app:tabGravity="fill"
                 app:tabIndicatorColor="@color/colorAccent"
                 app:tabMode="fixed"
@@ -96,14 +113,14 @@
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            app:layout_constraintHeight_max="56dp"
-            android:layout_gravity="bottom"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="0dp"
+            android:background="?android:attr/windowBackground"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:menu="@menu/buttom_navigation_menu" />
 
     </android.support.constraint.ConstraintLayout>

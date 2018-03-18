@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="@color/colorPrimaryLight"
+    android:background="#ecf0f1"
     tools:context="com.tharwa.solid.tharwa.View.VirementsFragment">
 
 

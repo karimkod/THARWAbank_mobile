@@ -20,10 +20,11 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.code_introduction_activity.*
 import com.tharwa.solid.tharwa.R.string.*
 import com.tharwa.solid.tharwa.enumration.InputType
-import kotlinx.android.synthetic.main.login_activity.*
 
 class CodeIntroductionActivity : AppCompatActivity()
     {
+
+
     //used to hold the service
     var disposable: Disposable? = null
      //lazy to garantee that it gonna not be used until we need it
@@ -44,6 +45,7 @@ class CodeIntroductionActivity : AppCompatActivity()
     //Sed the request once the user click on "valider"
     fun validerClicked()
     {
+
         val mail:String?=intent.getStringExtra("mail")
         val passwd:String?=intent.getStringExtra("password")
         val nonce = code.editText?.text.toString()
@@ -70,9 +72,11 @@ class CodeIntroductionActivity : AppCompatActivity()
                                 //open the Acceuil activity
                                 //Toast.makeText(this@CodeIntroductionActivity,usercd.message(),Toast.LENGTH_LONG).show()
                                 Log.d(TAG,usercd.body()?.token)
-                                val intent =Intent(applicationContext,Acceuil::class.java)
+                                val intent =Intent(applicationContext, ClientAcountActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                                 intent.putExtra("token",usercd.body()?.token)
+                                intent.putExtra("userId", usercd.body()?.useId)
+                                intent.putExtra("userType", usercd.body()?.userType)
                                 startActivity(intent)
                                 this.token=usercd.body()?.token
 
