@@ -86,11 +86,11 @@ class CodeIntroductionActivity : AppCompatActivity()
                                 // display messages acording to the recieved code
                                 when(usercd.code())
                                 {
-                                    CodeStatus.err_400.status->
+                                    CodeStatus.err_400.status->showDialogMessage("Le code est invalide", "Veuillez introduire le dernier code que vous avez reçu")
                                         //invalide code
-                                        Toast.makeText(this@CodeIntroductionActivity,resources.getString(auth_code_400),Toast.LENGTH_LONG).show()
                                     CodeStatus.err_403.status->showDialogMessage("Le code est invalide", "Veuillez introduire le dernier code que vous avez reçu")
                                         //Toast.makeText(this@CodeIntroductionActivity,resources.getString(new_code),Toast.LENGTH_LONG).show()
+                                    CodeStatus.err_401.status ->showDialogMessage("Le code est invalide", "Veuillez introduire le dernier code que vous avez reçu")
 
                                 }
 
