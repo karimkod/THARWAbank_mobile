@@ -4,9 +4,6 @@ import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.content.Context
 import android.support.design.widget.TextInputLayout
 import android.widget.EditText
-import android.widget.LinearLayout
-import com.tharwa.solid.tharwa.Controller.InputValidator
-import com.tharwa.solid.tharwa.R.id.email
 import com.tharwa.solid.tharwa.enumration.InputType
 import org.junit.ClassRule
 import org.junit.Rule

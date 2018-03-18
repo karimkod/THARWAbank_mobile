@@ -1,4 +1,4 @@
-package com.tharwa.solid.tharwa.Controller
+package com.tharwa.solid.tharwa.View
 
 import android.app.AlertDialog
 import android.app.Dialog

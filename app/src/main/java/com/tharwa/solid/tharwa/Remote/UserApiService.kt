@@ -1,7 +1,5 @@
 package com.tharwa.solid.tharwa.Remote
-import com.tharwa.solid.tharwa.Model.TokenResponse
-import com.tharwa.solid.tharwa.Model.User
-import com.tharwa.solid.tharwa.Model.UserCode
+import com.tharwa.solid.tharwa.Model.*
 import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -18,11 +16,22 @@ interface UserApiService {
     @Headers("Accept:application/json")
     @POST("login")
     fun login(@Body user: User): Observable<Response<User>>
+
     //send the sencond request of authentification mail,password,nonce
     @Headers("Accept:application/json")
     @POST("login/code")
     fun loginCode(@Body usercd: UserCode): Observable<Response<TokenResponse>>
 
+    // Send the information to create a customer
+    @Headers("Accept:application/json")
+    @POST("/customers")
+    fun createCustomer(@Body usercr: UserCreate): Observable<Response<CreateResponse>>
+
+    // Send the photo of the customer
+
+    @Headers("Accept:multipart/form-data")
+    @POST("/update_photo")
+    fun sendAvatar(@Body userAvatar: Avatar): Observable<Response<AvatarResponse>>
 
 
     //create the service

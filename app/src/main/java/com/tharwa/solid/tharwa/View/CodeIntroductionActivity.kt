@@ -10,6 +10,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.tharwa.solid.tharwa.Bussiness.InputValidator
 import com.tharwa.solid.tharwa.Model.UserCode
 import com.tharwa.solid.tharwa.R
 import com.tharwa.solid.tharwa.Remote.UserApiService
@@ -19,8 +20,8 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.code_introduction_activity.*
 import com.tharwa.solid.tharwa.R.string.*
+import com.tharwa.solid.tharwa.View.Acceuil
 import com.tharwa.solid.tharwa.enumration.InputType
-import kotlinx.android.synthetic.main.login_activity.*
 
 class CodeIntroductionActivity : AppCompatActivity()
     {
@@ -70,7 +71,7 @@ class CodeIntroductionActivity : AppCompatActivity()
                                 //open the Acceuil activity
                                 //Toast.makeText(this@CodeIntroductionActivity,usercd.message(),Toast.LENGTH_LONG).show()
                                 Log.d(TAG,usercd.body()?.token)
-                                val intent =Intent(applicationContext,Acceuil::class.java)
+                                val intent =Intent(applicationContext, Acceuil::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                                 intent.putExtra("token",usercd.body()?.token)
                                 startActivity(intent)
@@ -84,19 +85,13 @@ class CodeIntroductionActivity : AppCompatActivity()
                                 {
                                     CodeStatus.err_400.status->
                                         //invalide code
-                                        Toast.makeText(this@CodeIntroductionActivity,resources.getString(auth_code_400),Toast.LENGTH_LONG).show()
+                                        Toast.makeText(this@CodeIntroductionActivity,resources.getString(err_400),Toast.LENGTH_LONG).show()
                                     CodeStatus.err_403.status->showDialogMessage("Le code est invalide", "Veuillez introduire le dernier code que vous avez reçu")
                                         //Toast.makeText(this@CodeIntroductionActivity,resources.getString(new_code),Toast.LENGTH_LONG).show()
 
                                 }
-
-
                                 //403 code expérer réssayer avec le nouveau code
                             }
-
-
-
-
                         },
                         { error->
 

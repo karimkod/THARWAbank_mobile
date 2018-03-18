@@ -1,7 +1,7 @@
 package com.tharwa.solid.tharwa
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
-import com.tharwa.solid.tharwa.Controller.CodeIntroductionActivity
+import com.tharwa.solid.tharwa.View.CodeIntroductionActivity
 import com.tharwa.solid.tharwa.Model.TokenResponse
 import com.tharwa.solid.tharwa.Model.UserCode
 import com.tharwa.solid.tharwa.Remote.UserApiService
