@@ -24,7 +24,7 @@ interface UserApiService {
 
     // Send the information to create a customer
     @Headers("Accept:application/json")
-    @POST("/customers")
+    @POST("customers")
     fun createCustomer(@Body usercr: UserCreate): Observable<Response<CreateResponse>>
 
     // Send the photo of the customer
@@ -36,7 +36,6 @@ interface UserApiService {
 
     //create the service
     companion object {
-
         val bsUrl="https://serene-retreat-29274.herokuapp.com/"
         fun create(): UserApiService {
 

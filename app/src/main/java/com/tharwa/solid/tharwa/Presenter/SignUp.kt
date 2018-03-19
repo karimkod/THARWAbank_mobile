@@ -1,5 +1,7 @@
 package com.tharwa.solid.tharwa.Presenter
+import android.content.ContentValues.TAG
 import android.content.Context
+import android.util.Log
 import com.tharwa.solid.tharwa.Base.BasePresenter
 import com.tharwa.solid.tharwa.Model.Avatar
 import com.tharwa.solid.tharwa.Model.UserCreate
@@ -26,7 +28,7 @@ class SignUp:BasePresenter
         mView = view
     }
 
-    fun createCustomer(usercr: UserCreate, photo: File)
+   fun createCustomer(usercr: UserCreate, photo: File)
     {
         disposable = Service.createCustomer(usercr)
                 .subscribeOn(Schedulers.io())
@@ -37,17 +39,20 @@ class SignUp:BasePresenter
                                 val message=Error.codeMessage(usercr.code()) +"  " + usercr.body()?.message
                                 if (usercr.isSuccessful)
                                 {
-                                    mView?.showMessage(mView as Context,message )
-
+                                    //mView?.showMessage(mView as Context,message )
+                                    Log.d("SignUpPre",message)
+                                    Log.d("SignUpPre",usercr.body()?.message)
                                     //Get the user ID
-                                    user_id=usercr.body()?.user_id as Text
+                                   // user_id=usercr.body()?.user_id as Text
+                                    //mView?.showMessage(mView as Context,user_id.toString() )
                                     //Create the Avatar if the user set it
-                                    var userAvatar:Avatar?=null
-                                    if (photo!=null)
+                                    //var userAvatar:Avatar?=null
+
+                                   /* if (photo!=null)
                                     {
                                        userAvatar=Avatar(user_id as Text,photo,_method)
                                         createAvatar(userAvatar)
-                                    }
+                                    }*/
                                 }
                                 else //error 400-500
                                 {
@@ -56,7 +61,8 @@ class SignUp:BasePresenter
                         },
                         {
                             error -> //other error
-                            mView?.showError(mView as Context,error.message.toString())
+                            //mView?.showError(mView as Context,error.message.toString())
+                            Log.d("SignUpPrensenter",error.message.toString());
                         }
                 )
     }
@@ -71,14 +77,13 @@ class SignUp:BasePresenter
                             val message=Error.codeMessage(userAvatar.code())+" " + userAvatar.body()?.message
                             if (userAvatar.isSuccessful)
                             {
-                                TODO()
-                                TODO("open the right activity ")
+
+
                                 mView?.showMessage(mView as Context,message )
                             }
                             else
                             {
-                                TODO()
-                                TODO("tzwa9 ")
+
                                 mView?.showMessage(mView as Context,message)
                             }
                         },
