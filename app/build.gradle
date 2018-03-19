@@ -55,7 +55,6 @@ dependencies {
     //Gson
     compile 'com.google.code.gson:gson:2.4'
 
-
     // test dependencies
     testImplementation 'junit:junit:4.12'
     testImplementation "org.mockito:mockito-core:2.+"

@@ -29,14 +29,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controller.LoginActivity" />
         </activity>
-        <activity android:name=".Controller.CodeIntroductionActivity"></activity>
-
-        <activity android:name=".Controller.ClientAcountActivity">
-
-        </activity>
-
-        <activity android:name=".Controller.Acceuil"></activity>
-
+        <activity android:name=".Controller.CodeIntroductionActivity" />
+        <activity android:name=".Controller.ClientAcountActivity"></activity>
+        <activity android:name=".Controller.Acceuil" />
+        <activity android:name=".Controller.ExchangeRateActivity"></activity>
     </application>
 
 </manifest>
