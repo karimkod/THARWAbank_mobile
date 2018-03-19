@@ -10,11 +10,13 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.ProgressBar
-import android.widget.Toast
+import com.tharwa.solid.tharwa.Bussiness.InputValidator
 import com.tharwa.solid.tharwa.Model.User
 import com.tharwa.solid.tharwa.R
 import com.tharwa.solid.tharwa.R.string.*
 import com.tharwa.solid.tharwa.Remote.UserApiService
+import com.tharwa.solid.tharwa.View.CodeReceptionMethodDialog
+import com.tharwa.solid.tharwa.View.SignUpActivity
 import com.tharwa.solid.tharwa.enumration.CodeStatus
 import com.tharwa.solid.tharwa.enumration.InputType
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -113,7 +115,7 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
                                                 "Si vous êtes nouveau sur Tharwa créez un nouveaux compte"
                                     }
                                     CodeStatus.err_500.status -> {
-                                        message = resources.getString(auth_500)
+                                        message = resources.getString(err_500)
                                         title = "Oops..."
                                     }
                                     else -> {

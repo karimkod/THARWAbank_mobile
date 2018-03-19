@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context="com.tharwa.solid.tharwa.Controller.LoginActivity"
+    tools:context="com.tharwa.solid.tharwa.View.LoginActivity"
     tools:layout_editor_absoluteY="25dp">
 
     <android.support.v7.widget.AppCompatImageView

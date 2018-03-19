@@ -1,6 +1,6 @@
 package com.tharwa.solid.tharwa
 import android.arch.core.executor.testing.InstantTaskExecutorRule
-import com.tharwa.solid.tharwa.Controller.LoginActivity
+import com.tharwa.solid.tharwa.View.LoginActivity
 import com.tharwa.solid.tharwa.Model.User
 import com.tharwa.solid.tharwa.Remote.UserApiService
 import com.tharwa.solid.tharwa.enumration.CodeStatus

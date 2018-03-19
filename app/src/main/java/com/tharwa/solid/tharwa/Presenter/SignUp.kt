@@ -1,19 +1,96 @@
 package com.tharwa.solid.tharwa.Presenter
-import  com.tharwa.solid.tharwa.Controller.*
+import android.content.ContentValues.TAG
+import android.content.Context
+import android.util.Log
+import com.tharwa.solid.tharwa.Base.BasePresenter
+import com.tharwa.solid.tharwa.Model.Avatar
+import com.tharwa.solid.tharwa.Model.UserCreate
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+import org.w3c.dom.Text
+import com.tharwa.solid.tharwa.View.SignUpActivity
+import java.io.File
+
 /**
  * Created by LE on 12/03/2018.
  */
-class SignUp
+class SignUp:BasePresenter
 {
-    val signUpActivity:SignUpActivity=SignUpActivity()
-    var Nom:String?=null
-    var Prenom:String?=null
-    var Email:String?=null
-    var Tele:String?=null
-    var Willaya:String?=null
-    var Commune:String?=null
-    var Adresse:String?=null
-    var Fonction:String?=null
+    var disposable: Disposable? = null
+
+    private val Service =Config.newService()
+    private var user_id:Text?=null
+    private val _method:String="PUT"
+    private var mView: SignUpActivity? = null
+
+    constructor(view: SignUpActivity) {
+        mView = view
+    }
+
+   fun createCustomer(usercr: UserCreate, photo: File)
+    {
+        disposable = Service.createCustomer(usercr)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                                usercr ->
+                                val message=Error.codeMessage(usercr.code()) +"  " + usercr.body()?.message
+                                if (usercr.isSuccessful)
+                                {
+                                    //mView?.showMessage(mView as Context,message )
+                                    Log.d("SignUpPre",message)
+                                    Log.d("SignUpPre",usercr.body()?.message)
+                                    //Get the user ID
+                                   // user_id=usercr.body()?.user_id as Text
+                                    //mView?.showMessage(mView as Context,user_id.toString() )
+                                    //Create the Avatar if the user set it
+                                    //var userAvatar:Avatar?=null
+
+                                   /* if (photo!=null)
+                                    {
+                                       userAvatar=Avatar(user_id as Text,photo,_method)
+                                        createAvatar(userAvatar)
+                                    }*/
+                                }
+                                else //error 400-500
+                                {
+                                    mView?.showMessage(mView as Context,message )
+                                }
+                        },
+                        {
+                            error -> //other error
+                            //mView?.showError(mView as Context,error.message.toString())
+                            Log.d("SignUpPrensenter",error.message.toString());
+                        }
+                )
+    }
+    fun createAvatar(userAvatar: Avatar)
+    {
+        disposable = Service.sendAvatar(userAvatar)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            userAvatar ->
+                            val message=Error.codeMessage(userAvatar.code())+" " + userAvatar.body()?.message
+                            if (userAvatar.isSuccessful)
+                            {
 
 
+                                mView?.showMessage(mView as Context,message )
+                            }
+                            else
+                            {
+
+                                mView?.showMessage(mView as Context,message)
+                            }
+                        },
+                        {
+                            error ->
+                            mView?.showError(mView as Context,error.message.toString())
+                        }
+                )
+    }
 }

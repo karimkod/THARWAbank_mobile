@@ -5,13 +5,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 
-
 android {
+    kapt { generateStubs = true }
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.tharwa.solid.tharwa"
         minSdkVersion 15
         targetSdkVersion 26
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -27,9 +28,6 @@ android {
     }
 
 }
-
-
-
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -66,8 +64,4 @@ dependencies {
     androidTestCompile 'com.android.support:support-annotations:24.0.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
 
-    //Spec
-    /* testCompile 'org.jetbrains.spek:spek-api:1.1.0-beta3'
-     testCompile 'org.jetbrains.spek:spek-junit-platform-engine:1.1.0-beta3'
-     testCompile 'org.junit.platform:junit-platform-runner:1.0.0-M3'*/
 }
