@@ -51,7 +51,7 @@ data class UserCreate
 data class CreateResponse
 (
         @SerializedName("message") val message:String,
-        @SerializedName("user_id") val user_id:String
+        @SerializedName("user_id") val user_id:Int
 )
 
 

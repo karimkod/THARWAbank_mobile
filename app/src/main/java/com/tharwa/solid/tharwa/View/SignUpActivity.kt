@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.annotation.NonNull
 import android.support.design.widget.TextInputLayout
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.tharwa.solid.tharwa.Base.BaseActivity
@@ -14,7 +15,7 @@ import kotlinx.android.synthetic.main.sign_up_activity.*
 import java.io.File
 
 
-class SignUpActivity : BaseActivity<SignUp>(),TakePictureFragment.OnFragmentInteractionListener,ViewInterface
+class SignUpActivity : BaseActivity<SignUp>(),TakePictureFragment.OnFragmentInteractionListener
 {
     var Email:String?=null
     var password:String?=null
@@ -24,7 +25,7 @@ class SignUpActivity : BaseActivity<SignUp>(),TakePictureFragment.OnFragmentInte
     var adress:String?=null
     var function:String?=null
     var wilaya:String?=null
-    var Towne:String?=null
+    var Town:String?=null
     var type:Int?=null
     var photo: File?=null
 
@@ -45,15 +46,6 @@ class SignUpActivity : BaseActivity<SignUp>(),TakePictureFragment.OnFragmentInte
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Inscription"
 
-        val clickListenr = {it: View ->
-            (it as TextInputLayout).error = null
-        }
-
-        prenom.setOnClickListener(clickListenr)
-        nom.setOnClickListener(clickListenr)
-
-        nom.editText?.setOnClickListener({nom.callOnClick()})
-        prenom.editText?.setOnClickListener({prenom.callOnClick()})
 
         sign_up.setOnClickListener( {onConnectClicked()})
 
@@ -63,7 +55,7 @@ class SignUpActivity : BaseActivity<SignUp>(),TakePictureFragment.OnFragmentInte
     //Set the information of the user
    fun onConnectClicked()
     {
-        TODO("*Get the data from input and validate them. Replace Data theire*")
+
         //To get the data from inputs
         Email="dodo@example.com"
         password="password"
@@ -74,16 +66,15 @@ class SignUpActivity : BaseActivity<SignUp>(),TakePictureFragment.OnFragmentInte
         adress="5anzomia 9armaza"
         function="Youtuber"
         wilaya="Tissemsilt"
-        Towne="Vialar"
+        Town="Vialar"
         type=0
 
         photo=File("")
         // Create an instance of user
-        var userCrt:UserCreate=UserCreate(Email as String,password as String,phone_numbe as String,
-                FirstName as String+" "+ LastName as String,adress as String,
-                function as String,wilaya as String,Towne as String,type as Int)
+        val userCrt:UserCreate=UserCreate(Email as String,password as String,phone_numbe as String,
+                "$FirstName  $LastName" ,adress as String,
+                function as String,wilaya as String,Town as String,type as Int)
 
         mPresenter?.createCustomer(userCrt,photo as File)
     }
-
 }

@@ -7,8 +7,9 @@ import android.content.Context
 import android.os.Bundle
 import android.support.annotation.NonNull
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 
- abstract class BaseActivity <Presenter  : BasePresenter>:AppCompatActivity() {
+abstract class BaseActivity <Presenter  : BasePresenter>:AppCompatActivity() {
 
    protected var mPresenter: Presenter?=null
     @NonNull
@@ -39,5 +40,14 @@ import android.support.v7.app.AppCompatActivity
         super.onSaveInstanceState(outState)
         mPresenter?.onSaveInstanceState(outState)
     }
-
+    //to display the error
+   fun showError(context: Context, message:String)
+    {
+        Toast.makeText(context,message, Toast.LENGTH_LONG).show()
+    }
+    //to display te given message according to the code
+    fun showMessage(context: Context,message:String)
+    {
+        Toast.makeText(context,message, Toast.LENGTH_LONG).show()
+    }
 }
