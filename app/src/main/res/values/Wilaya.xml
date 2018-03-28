@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Wilaya">
+        <item>@string/wilaya</item>
+        <item>1. Adrar</item>
+        <item>2. Chlef</item>
+        <item>3. Laghouat</item>
+        <item>4. Oum El Bouaghi</item>
+        <item>5. Batna</item>
+        <item>6. Béjaïa</item>
+        <item>7. Biskra</item>
+        <item>8. Béchar</item>
+        <item>9. Blida</item>
+        <item>10. Bouïra</item>
+        <item>11. Tamanrasset</item>
+        <item>12. Tébessa</item>
+        <item>13. Tlemcen</item>
+        <item>14. Tiaret</item>
+        <item>15. Tizi Ouzou</item>
+        <item>16. Alger</item>
+        <item>17. Djelfa</item>
+        <item>18. Jijel</item>
+        <item>19. Sétif</item>
+        <item>20. Saïda</item>
+        <item>21. Skikda</item>
+        <item>22. Sidi Bel Abbès</item>
+        <item>23. Annaba</item>
+        <item>24. Guelma</item>
+        <item>25. Constantine</item>
+        <item>26. Médéa</item>
+        <item>27. Mostaganem</item>
+        <item>28. M\'Sila</item>
+        <item>29. Mascara</item>
+        <item>30. Ouargla</item>
+        <item>31. Oran</item>
+        <item>32. El Bayadh</item>
+        <item>33. Illizi</item>
+        <item>34. Bordj Bou Arréridj</item>
+        <item>35. Boumerdès</item>
+        <item>36. El Taref</item>
+        <item>37. Tindouf</item>
+        <item>38. Tissemsilt</item>
+        <item>39. El Oued</item>
+        <item>40. Khenchela</item>
+        <item>41. Souk Ahras</item>
+        <item>42. Tipaza</item>
+        <item>43. Mila</item>
+        <item>44. Aïn Defla</item>
+        <item>45. Naâma</item>
+        <item>46. Aïn Témouchent</item>
+        <item>47. Ghardaïa</item>
+        <item>48. Relizane</item>
+    </string-array>
+
+    <array name="wilaya_commune">
+        <item>@array/wilayaZero</item>
+        <item>@array/adrar</item>
+        <item>@array/chlef</item>
+        <item>@array/laghouat</item>
+        <item>@array/oum_el_bouaghi</item>
+        <item>@array/batna</item>
+        <item>@array/bejaia</item>
+        <item>@array/biskra</item>
+        <item>@array/bechar</item>
+        <item>@array/blida</item>
+        <item>@array/bouira</item>
+        <item>@array/tamanrasset</item>
+        <item>@array/tebessa</item>
+        <item>@array/tlemcen</item>
+        <item>@array/tiaret</item>
+        <item>@array/tizi_ouzou</item>
+        <item>@array/alger</item>
+        <item>@array/djelfa</item>
+        <item>@array/jijel</item>
+        <item>@array/setif</item>
+        <item>@array/saida</item>
+        <item>@array/skikda</item>
+        <item>@array/sidi_bel_abbes</item>
+        <item>@array/annaba</item>
+        <item>@array/guelma</item>
+        <item>@array/constantine</item>
+        <item>@array/medea</item>
+        <item>@array/mostaganem</item>
+        <item>@array/msila</item>
+        <item>@array/mascara</item>
+        <item>@array/ouargla</item>
+        <item>@array/oran</item>
+        <item>@array/el_bayadh</item>
+        <item>@array/illizi</item>
+        <item>@array/bordj_bou_arreridj</item>
+        <item>@array/boumerdes</item>
+        <item>@array/el_tarf</item>
+        <item>@array/tindouf</item>
+        <item>@array/tissemsilt</item>
+        <item>@array/el_oued</item>
+        <item>@array/khenchela</item>
+        <item>@array/souk_ahras</item>
+        <item>@array/tipaza</item>
+        <item>@array/mila</item>
+        <item>@array/ain_defla</item>
+        <item>@array/naâma</item>
+        <item>@array/ain_temouchent</item>
+        <item>@array/ghardaia</item>
+        <item>@array/relizane</item>
+    </array>
+</resources>

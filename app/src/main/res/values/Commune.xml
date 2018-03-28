@@ -1,0 +1,1602 @@
+<resources>
+    <string-array name="wilayaZero">
+        <item>@string/commune</item>
+    </string-array>
+    <string-array name="adrar">
+        <item>Adrar</item>
+        <item>Tamest</item>
+        <item>Charouine</item>
+        <item>Reggane</item>
+        <item>Inozghmir</item>
+        <item>Tit</item>
+        <item>Ksar Kaddour</item>
+        <item>Tsabit</item>
+        <item>Timimoun</item>
+        <item>Ouled Said</item>
+        <item>Zaouiet Kounta</item>
+        <item>Aoulef</item>
+        <item>Timokten</item>
+        <item>Tamentit</item>
+        <item>Fenoughil</item>
+        <item>Tinerkouk</item>
+        <item>Sali</item>
+        <item>Akabli</item>
+        <item>Metarfa</item>
+        <item>O Ahmed Timmi</item>
+        <item>Bouda</item>
+        <item>Aougrout</item>
+        <item>Talmine</item>
+        <item>B Badji Mokhtar</item>
+        <item>Sbaa</item>
+        <item>Timiaouine</item>
+    </string-array>
+    <string-array name="chlef">
+        <item>Chlef</item>
+        <item>Tenes</item>
+        <item>Benairia</item>
+        <item>El Karimia</item>
+        <item>Tadjna</item>
+        <item>Taougrite</item>
+        <item>Beni Haoua</item>
+        <item>Sobha</item>
+        <item>Harchoun</item>
+        <item>Ouled Fares</item>
+        <item>Sidi Akacha</item>
+        <item>Boukadir</item>
+        <item>Beni Rached</item>
+        <item>Talassa</item>
+        <item>Herenfa</item>
+        <item>Oued Goussine</item>
+        <item>Dahra</item>
+        <item>Ouled Abbes</item>
+        <item>Sendjas</item>
+        <item>Zeboudja</item>
+        <item>Oued Sly</item>
+        <item>Abou El Hassen</item>
+        <item>Chettia</item>
+        <item>Moussadek</item>
+        <item>El Hadjadj</item>
+        <item>Labiod Medjadja</item>
+        <item>Oued Fodda</item>
+        <item>Ouled Ben Abdelkader</item>
+        <item>Bouzghaia</item>
+        <item>Ain Merane</item>
+        <item>Oum Drou</item>
+        <item>Breira</item>
+        <item>Ben Boutaleb</item>
+    </string-array>
+    <string-array name="laghouat">
+        <item>Laghouat</item>
+        <item>Ksar El Hirane</item>
+        <item>Benacer Ben Chohra</item>
+        <item>Sidi Makhlouf</item>
+        <item>Hassi Delaa</item>
+        <item>Hassi R Mel</item>
+        <item>Ain Mahdi</item>
+        <item>Tadjmout</item>
+        <item>Kheneg</item>
+        <item>Gueltat Sidi Saad</item>
+        <item>Ain Sidi Ali</item>
+        <item>Beidha</item>
+        <item>Brida</item>
+        <item>El Ghicha</item>
+        <item>Hadj Mechri</item>
+        <item>Sebgag</item>
+        <item>Taouiala</item>
+        <item>Tadjrouna</item>
+        <item>Aflou</item>
+        <item>El Assafia</item>
+        <item>Oued Morra</item>
+        <item>Oued M Zi</item>
+        <item>El Haouaita</item>
+        <item>Sidi Bouzid</item>
+    </string-array>
+    <string-array name="oum_el_bouaghi">
+        <item>Oum El Bouaghi</item>
+        <item>Ainmlila</item>
+        <item>Behir Chergui</item>
+        <item>El Amiria</item>
+        <item>Sigus</item>
+        <item>El Belala</item>
+        <item>Ain Babouche</item>
+        <item>Berriche</item>
+        <item>Ouled Hamla</item>
+        <item>Dhala</item>
+        <item>Ain Kercha</item>
+        <item>Hanchir Toumghani</item>
+        <item>El Djazia</item>
+        <item>Ain Diss</item>
+        <item>Fkirina</item>
+        <item>Souk Naamane</item>
+        <item>Zorg</item>
+        <item>El Fedjoudj Boughrar</item>
+        <item>Ouled Zouai</item>
+        <item>Bir Chouhada</item>
+        <item>Ksar Sbahi</item>
+        <item>Oued Nini</item>
+        <item>Meskiana</item>
+        <item>Ain Fekroune</item>
+        <item>Rahia</item>
+        <item>Ain Zitoun</item>
+        <item>Ouled Gacem</item>
+        <item>El Harmilia</item>
+    </string-array>
+    <string-array name="batna">
+        <item>Batna</item>
+        <item>Ghassira</item>
+        <item>Maafa</item>
+        <item>Merouana</item>
+        <item>Seriana</item>
+        <item>Menaa</item>
+        <item>El Madher</item>
+        <item>Tazoult</item>
+        <item>Ngaous</item>
+        <item>Guigba</item>
+        <item>Inoughissen</item>
+        <item>Ouyoun El Assafir</item>
+        <item>Djerma</item>
+        <item>Bitam</item>
+        <item>Metkaouak</item>
+        <item>Arris</item>
+        <item>Kimmel</item>
+        <item>Tilatou</item>
+        <item>Ain Djasser</item>
+        <item>Ouled Selam</item>
+        <item>Tigherghar</item>
+        <item>Ain Yagout</item>
+        <item>Fesdis</item>
+        <item>Sefiane</item>
+        <item>Rahbat</item>
+        <item>Tighanimine</item>
+        <item>Lemsane</item>
+        <item>Ksar Belezma</item>
+        <item>Seggana</item>
+        <item>Ichmoul</item>
+        <item>Foum Toub</item>
+        <item>Beni Foudhala El Hakania</item>
+        <item>Oued El Ma</item>
+        <item>Talkhamt</item>
+        <item>Bouzina</item>
+        <item>Chemora</item>
+        <item>Oued Chaaba</item>
+        <item>Taxlent</item>
+        <item>Gosbat</item>
+        <item>Ouled Aouf</item>
+        <item>Boumagueur</item>
+        <item>Barika</item>
+        <item>Djezzar</item>
+        <item>Tkout</item>
+        <item>Ain Touta</item>
+        <item>Hidoussa</item>
+        <item>Teniet El Abed</item>
+        <item>Oued Taga</item>
+        <item>Ouled Fadel</item>
+        <item>Timgad</item>
+        <item>Ras El Aioun</item>
+        <item>Chir</item>
+        <item>Ouled Si Slimane</item>
+        <item>Zanat El Beida</item>
+        <item>Amdoukal</item>
+        <item>Ouled Ammar</item>
+        <item>Lazrou</item>
+        <item>Boumia</item>
+        <item>Boulhilat</item>
+    </string-array>
+    <string-array name="bejaia">
+        <item>Bejaia</item>
+        <item>Amizour</item>
+        <item>Ferraoun</item>
+        <item>Taourirt Ighil</item>
+        <item>Chelata</item>
+        <item>Tamokra</item>
+        <item>Timzrit</item>
+        <item>Mcisna</item>
+        <item>Thinabdher</item>
+        <item>Tichi</item>
+        <item>Semaoun</item>
+        <item>Kendira</item>
+        <item>Tifra</item>
+        <item>Ighram</item>
+        <item>Amalou</item>
+        <item>Ighil Ali</item>
+        <item>Ifelain Ilmathen</item>
+        <item>Toudja</item>
+        <item>Darguina</item>
+        <item>Sidi Ayad</item>
+        <item>Aokas</item>
+        <item>Beni Djellil</item>
+        <item>Adekar</item>
+        <item>Akbou</item>
+        <item>Seddouk</item>
+        <item>Tazmalt</item>
+        <item>Ait Rizine</item>
+        <item>Chemini</item>
+        <item>Souk Oufella</item>
+        <item>Taskriout</item>
+        <item>Tibane</item>
+        <item>Tala Hamza</item>
+        <item>Barbacha</item>
+        <item>Beni Ksila</item>
+        <item>Ouzallaguen</item>
+        <item>Bouhamza</item>
+        <item>Beni Melikeche</item>
+        <item>Sidi Aich</item>
+        <item>El Kseur</item>
+        <item>Melbou</item>
+        <item>Akfadou</item>
+        <item>Leflaye</item>
+        <item>Kherrata</item>
+        <item>Draa Kaid</item>
+        <item>Tamridjet</item>
+        <item>Ait Smail</item>
+        <item>Boukhelifa</item>
+        <item>Tizi Nberber</item>
+        <item>Beni Maouch</item>
+        <item>Oued Ghir</item>
+        <item>Boudjellil</item>
+    </string-array>
+    <string-array name="biskra">
+        <item>Biskra</item>
+        <item>Oumache</item>
+        <item>Branis</item>
+        <item>Chetma</item>
+        <item>Ouled Djellal</item>
+        <item>Ras El Miaad</item>
+        <item>Doucen</item>
+        <item>Ech Chaiba</item>
+        <item>Sidi Okba</item>
+        <item>Mchouneche</item>
+        <item>El Haouch</item>
+        <item>Ain Naga</item>
+        <item>Zeribet El Oued</item>
+        <item>El Feidh</item>
+        <item>El Kantara</item>
+        <item>Ain Zaatout</item>
+        <item>El Outaya</item>
+        <item>Djemorah</item>
+        <item>Tolga</item>
+        <item>Lioua</item>
+        <item>Lichana</item>
+        <item>Ourlal</item>
+        <item>Mlili</item>
+        <item>Foughala</item>
+        <item>Bordj Ben Azzouz</item>
+        <item>Meziraa</item>
+        <item>Bouchagroun</item>
+        <item>Mekhadma</item>
+        <item>El Ghrous</item>
+        <item>El Hadjab</item>
+        <item>Khanguet Sidinadji</item>
+    </string-array>
+    <string-array name="bechar">
+        <item>Bechar</item>
+        <item>Erg Ferradj</item>
+        <item>Ouled Khoudir</item>
+        <item>Meridja</item>
+        <item>Timoudi</item>
+        <item>Lahmar</item>
+        <item>Beni Abbes</item>
+        <item>Beni Ikhlef</item>
+        <item>Mechraa Houari B</item>
+        <item>Kenedsa</item>
+        <item>Igli</item>
+        <item>Tabalbala</item>
+        <item>Taghit</item>
+        <item>El Ouata</item>
+        <item>Boukais</item>
+        <item>Mogheul</item>
+        <item>Abadla</item>
+        <item>Kerzaz</item>
+        <item>Ksabi</item>
+        <item>Tamtert</item>
+        <item>Beni Ounif</item>
+    </string-array>
+    <string-array name="blida">
+        <item>Blida</item>
+        <item>Chebli</item>
+        <item>Bouinan</item>
+        <item>Oued El Alleug</item>
+        <item>Ouled Yaich</item>
+        <item>Chrea</item>
+        <item>El Affroun</item>
+        <item>Chiffa</item>
+        <item>Hammam Melouane</item>
+        <item>Ben Khlil</item>
+        <item>Soumaa</item>
+        <item>Mouzaia</item>
+        <item>Souhane</item>
+        <item>Meftah</item>
+        <item>Ouled Selama</item>
+        <item>Boufarik</item>
+        <item>Oued Djer</item>
+        <item>Beni Tamou</item>
+        <item>Bouarfa</item>
+        <item>Beni Mered</item>
+        <item>Guerrouaou</item>
+        <item>Ain Romana</item>
+        <item>Djebabra</item>
+    </string-array>
+    <string-array name="bouira">
+        <item>Bouira</item>
+        <item>El Asnam</item>
+        <item>Guerrouma</item>
+        <item>Kadiria</item>
+        <item>Hanif</item>
+        <item>Dirah</item>
+        <item>Ait Laaziz</item>
+        <item>Raouraoua</item>
+        <item>Mezdour</item>
+        <item>Haizer</item>
+        <item>Lakhdaria</item>
+        <item>Maala</item>
+        <item>El Hachimia</item>
+        <item>Aomar</item>
+        <item>Bordj Oukhriss</item>
+        <item>El Adjiba</item>
+        <item>El Hakimia</item>
+        <item>El Khebouzia</item>
+        <item>Ahl El Ksar</item>
+        <item>Bouderbala</item>
+        <item>Zbarbar</item>
+        <item>Djebahia</item>
+        <item>Aghbalou</item>
+        <item>Taguedit</item>
+        <item>Saharidj</item>
+        <item>Dechmia</item>
+        <item>Ridane</item>
+        <item>Bechloul</item>
+        <item>Boukram</item>
+        <item>Ain Bessam</item>
+        <item>Bir Ghbalou</item>
+        <item>Mchedallah</item>
+        <item>Sour El Ghozlane</item>
+        <item>Ouled Rached</item>
+        <item>Ain Laloui</item>
+        <item>Hadjera Zerga</item>
+        <item>Ath Mansour</item>
+        <item>El Mokrani</item>
+        <item>Oued El Berdi</item>
+    </string-array>
+    <string-array name="tamanrasset">
+        <item>Tamanghasset</item>
+        <item>Abalessa</item>
+        <item>In Ghar</item>
+        <item>In Guezzam</item>
+        <item>Idles</item>
+        <item>Tazouk</item>
+        <item>Tinzaouatine</item>
+        <item>In Salah</item>
+        <item>In Amguel</item>
+        <item>Foggaret Ezzaouia</item>
+    </string-array>
+    <string-array name="tebessa">
+        <item>Tebessa</item>
+        <item>Bir El Ater</item>
+        <item>Cheria</item>
+        <item>Stah Guentis</item>
+        <item>El Aouinet</item>
+        <item>Lahouidjbet</item>
+        <item>Safsaf El Ouesra</item>
+        <item>Hammamet</item>
+        <item>Negrine</item>
+        <item>Bir El Mokadem</item>
+        <item>El Kouif</item>
+        <item>Morsott</item>
+        <item>Bir Dheheb</item>
+        <item>El Ogla El Malha</item>
+        <item>Gorriguer</item>
+        <item>Bekkaria</item>
+        <item>Boukhadra</item>
+        <item>Ouenza</item>
+        <item>El Ma El Biodh</item>
+        <item>Oum Ali</item>
+        <item>Thlidjene</item>
+        <item>Ain Zerga</item>
+        <item>El Meridj</item>
+        <item>Boulhaf Dyr</item>
+        <item>Bedjene</item>
+        <item>El Mazeraa</item>
+        <item>Ferkane</item>
+    </string-array>
+    <string-array name="tlemcen">
+        <item>Souk El Khemis</item>
+        <item>Tlemcen</item>
+        <item>Beni Mester</item>
+        <item>Ain Tallout</item>
+        <item>Remchi</item>
+        <item>El Fehoul</item>
+        <item>Sabra</item>
+        <item>Ghazaouet</item>
+        <item>Souani</item>
+        <item>Djebala</item>
+        <item>El Gor</item>
+        <item>Oued Chouly</item>
+        <item>Ain Fezza</item>
+        <item>Ouled Mimoun</item>
+        <item>Amieur</item>
+        <item>Ain Youcef</item>
+        <item>Zenata</item>
+        <item>Beni Snous</item>
+        <item>Bab El Assa</item>
+        <item>Dar Yaghmouracene</item>
+        <item>Fellaoucene</item>
+        <item>Azails</item>
+        <item>Sebbaa Chioukh</item>
+        <item>Terni Beni Hediel</item>
+        <item>Bensekrane</item>
+        <item>Ain Nehala</item>
+        <item>Hennaya</item>
+        <item>Maghnia</item>
+        <item>Hammam Boughrara</item>
+        <item>Souahlia</item>
+        <item>Msirda Fouaga</item>
+        <item>Ain Fetah</item>
+        <item>El Aricha</item>
+        <item>Souk Thlata</item>
+        <item>Sidi Abdelli</item>
+        <item>Sebdou</item>
+        <item>Beni Ouarsous</item>
+        <item>Sidi Medjahed</item>
+        <item>Beni Boussaid</item>
+        <item>Marsa Ben Mhidi</item>
+        <item>Nedroma</item>
+        <item>Sidi Djillali</item>
+        <item>Beni Bahdel</item>
+        <item>El Bouihi</item>
+        <item>Honaine</item>
+        <item>Tianet</item>
+        <item>Ouled Riyah</item>
+        <item>Bouhlou</item>
+        <item>Ain Ghoraba</item>
+        <item>Chetouane</item>
+        <item>Beni Semiel</item>
+        <item>Ain Kebira</item>
+    </string-array>
+    <string-array name="tiaret">
+        <item>Sidi Abderrahmane</item>
+        <item>Bougara</item>
+        <item>Tiaret</item>
+        <item>Medroussa</item>
+        <item>Ain Bouchekif</item>
+        <item>Sidi Ali Mellal</item>
+        <item>Ain Zarit</item>
+        <item>Ain Deheb</item>
+        <item>Sidi Bakhti</item>
+        <item>Medrissa</item>
+        <item>Zmalet El Emir Aek</item>
+        <item>Madna</item>
+        <item>Sebt</item>
+        <item>Mellakou</item>
+        <item>Dahmouni</item>
+        <item>Rahouia</item>
+        <item>Mahdia</item>
+        <item>Sougueur</item>
+        <item>Sidi Abdelghani</item>
+        <item>Ain El Hadid</item>
+        <item>Ouled Djerad</item>
+        <item>Naima</item>
+        <item>Meghila</item>
+        <item>Guertoufa</item>
+        <item>Sidi Hosni</item>
+        <item>Djillali Ben Amar</item>
+        <item>Sebaine</item>
+        <item>Tousnina</item>
+        <item>Frenda</item>
+        <item>Ain Kermes</item>
+        <item>Ksar Chellala</item>
+        <item>Rechaiga</item>
+        <item>Nadorah</item>
+        <item>Tagdemt</item>
+        <item>Oued Lilli</item>
+        <item>Mechraa Safa</item>
+        <item>Hamadia</item>
+        <item>Chehaima</item>
+        <item>Takhemaret</item>
+        <item>Serghine</item>
+        <item>Faidja</item>
+        <item>Tidda</item>
+    </string-array>
+    <string-array name="tizi_ouzou">
+        <item>Souk El Thenine</item>
+        <item>Tizi Ouzou</item>
+        <item>Ain El Hammam</item>
+        <item>Akbil</item>
+        <item>Freha</item>
+        <item>Mechtrass</item>
+        <item>Irdjen</item>
+        <item>Timizart</item>
+        <item>Makouda</item>
+        <item>Draa El Mizan</item>
+        <item>Tizi Ghenif</item>
+        <item>Bounouh</item>
+        <item>Ait Chaffaa</item>
+        <item>Frikat</item>
+        <item>Beni Aissi</item>
+        <item>Beni Zmenzer</item>
+        <item>Iferhounene</item>
+        <item>Azazga</item>
+        <item>Iloula Oumalou</item>
+        <item>Yakouren</item>
+        <item>Larba Nait Irathen</item>
+        <item>Tizi Rached</item>
+        <item>Zekri</item>
+        <item>Ouaguenoun</item>
+        <item>Ain Zaouia</item>
+        <item>Mkira</item>
+        <item>Ait Yahia</item>
+        <item>Ait Mahmoud</item>
+        <item>Maatka</item>
+        <item>Ait Boumehdi</item>
+        <item>Abi Youcef</item>
+        <item>Beni Douala</item>
+        <item>Illilten</item>
+        <item>Bouzguen</item>
+        <item>Ait Aggouacha</item>
+        <item>Ouadhia</item>
+        <item>Azzefoun</item>
+        <item>Tigzirt</item>
+        <item>Ait Aissa Mimoun</item>
+        <item>Boghni</item>
+        <item>Ifigha</item>
+        <item>Ait Oumalou</item>
+        <item>Tirmitine</item>
+        <item>Akerrou</item>
+        <item>Yatafen</item>
+        <item>Beni Ziki</item>
+        <item>Draa Ben Khedda</item>
+        <item>Ouacif</item>
+        <item>Idjeur</item>
+        <item>Mekla</item>
+        <item>Tizi Nthlata</item>
+        <item>Beni Yenni</item>
+        <item>Aghrib</item>
+        <item>Iflissen</item>
+        <item>Boudjima</item>
+        <item>Ait Yahia Moussa</item>
+        <item>Ait Khelil</item>
+        <item>Iboudraren</item>
+        <item>Aghni Goughran</item>
+        <item>Mizrana</item>
+        <item>Imsouhal</item>
+        <item>Tadmait</item>
+        <item>Ait Bouadou</item>
+        <item>Assi Youcef</item>
+        <item>Ait Toudert</item>
+    </string-array>
+    <string-array name="alger">
+        <item>Alger Centre</item>
+        <item>El Madania</item>
+        <item>Hamma Anassers</item>
+        <item>Bab El Oued</item>
+        <item>Bologhine Ibn Ziri</item>
+        <item>Casbah</item>
+        <item>Oued Koriche</item>
+        <item>Bir Mourad Rais</item>
+        <item>El Biar</item>
+        <item>Bouzareah</item>
+        <item>Birkhadem</item>
+        <item>El Harrach</item>
+        <item>Baraki</item>
+        <item>Oued Smar</item>
+        <item>Bourouba</item>
+        <item>Hussein Dey</item>
+        <item>Kouba</item>
+        <item>Bachedjerah</item>
+        <item>Dar El Beida</item>
+        <item>Bab Azzouar</item>
+        <item>Ben Aknoun</item>
+        <item>Dely Ibrahim</item>
+        <item>Bains Romains</item>
+        <item>Rais Hamidou</item>
+        <item>Djasr Kasentina</item>
+        <item>El Mouradia</item>
+        <item>Hydra</item>
+        <item>Bordj El Kiffan</item>
+        <item>El Magharia</item>
+        <item>Beni Messous</item>
+        <item>Les Eucalyptus</item>
+        <item>Birtouta</item>
+        <item>Tassala El Merdja</item>
+        <item>Ouled Chebel</item>
+        <item>Sidi Moussa</item>
+        <item>Ain Taya</item>
+        <item>Bordj El Bahri</item>
+        <item>Marsa</item>
+        <item>Haraoua</item>
+        <item>Rouiba</item>
+        <item>Reghaia</item>
+        <item>Staoueli</item>
+        <item>Zeralda</item>
+        <item>Mahelma</item>
+        <item>Rahmania</item>
+        <item>Souidania</item>
+        <item>Cheraga</item>
+        <item>Ouled Fayet</item>
+        <item>El Achour</item>
+        <item>Draria</item>
+        <item>Douera</item>
+        <item>Baba Hassen</item>
+        <item>Khracia</item>
+        <item>Saoula</item>
+    </string-array>
+    <string-array name="djelfa">
+        <item>Deldoul</item>
+        <item>Djelfa</item>
+        <item>Moudjebara</item>
+        <item>El Guedid</item>
+        <item>Hassi Bahbah</item>
+        <item>Ain Maabed</item>
+        <item>Sed Rahal</item>
+        <item>Feidh El Botma</item>
+        <item>Birine</item>
+        <item>Bouira Lahdeb</item>
+        <item>Zaccar</item>
+        <item>El Khemis</item>
+        <item>Sidi Baizid</item>
+        <item>Mliliha</item>
+        <item>El Idrissia</item>
+        <item>Douis</item>
+        <item>Hassi El Euch</item>
+        <item>Messaad</item>
+        <item>Guettara</item>
+        <item>Sidi Ladjel</item>
+        <item>Had Sahary</item>
+        <item>Guernini</item>
+        <item>Selmana</item>
+        <item>Ain Chouhada</item>
+        <item>Oum Laadham</item>
+        <item>Dar Chouikh</item>
+        <item>Charef</item>
+        <item>Beni Yacoub</item>
+        <item>Zaafrane</item>
+        <item>Ain El Ibel</item>
+        <item>Ain Oussera</item>
+        <item>Benhar</item>
+        <item>Hassi Fedoul</item>
+        <item>Amourah</item>
+        <item>Ain Fekka</item>
+        <item>Tadmit</item>
+    </string-array>
+    <string-array name="jijel">
+        <item>Jijel</item>
+        <item>Erraguene</item>
+        <item>El Aouana</item>
+        <item>Ziamma Mansouriah</item>
+        <item>Taher</item>
+        <item>Emir Abdelkader</item>
+        <item>Chekfa</item>
+        <item>Chahna</item>
+        <item>El Milia</item>
+        <item>Sidi Maarouf</item>
+        <item>Settara</item>
+        <item>El Ancer</item>
+        <item>Sidi Abdelaziz</item>
+        <item>Kaous</item>
+        <item>Ghebala</item>
+        <item>Bouraoui Belhadef</item>
+        <item>Djmila</item>
+        <item>Selma Benziada</item>
+        <item>Boussif Ouled Askeur</item>
+        <item>El Kennar Nouchfi</item>
+        <item>Ouled Yahia Khadrouch</item>
+        <item>Boudria Beni Yadjis</item>
+        <item>Kemir Oued Adjoul</item>
+        <item>Texena</item>
+        <item>Djemaa Beni Habibi</item>
+        <item>Bordj Taher</item>
+        <item>Ouled Rabah</item>
+        <item>Ouadjana</item>
+    </string-array>
+    <string-array name="setif">
+        <item>Setif</item>
+        <item>Ain El Kebira</item>
+        <item>Beni Aziz</item>
+        <item>Ouled Sidi Ahmed</item>
+        <item>Boutaleb</item>
+        <item>Ain Roua</item>
+        <item>Draa Kebila</item>
+        <item>Bir El Arch</item>
+        <item>Beni Chebana</item>
+        <item>Ouled Tebben</item>
+        <item>Hamma</item>
+        <item>Maaouia</item>
+        <item>Ain Legraj</item>
+        <item>Ain Abessa</item>
+        <item>Dehamcha</item>
+        <item>Babor</item>
+        <item>Guidjel</item>
+        <item>Ain Lahdjar</item>
+        <item>Bousselam</item>
+        <item>El Eulma</item>
+        <item>Djemila</item>
+        <item>Beni Ouartilane</item>
+        <item>Rosfa</item>
+        <item>Ouled Addouane</item>
+        <item>Belaa</item>
+        <item>Ain Arnat</item>
+        <item>Amoucha</item>
+        <item>Ain Oulmane</item>
+        <item>Beidha Bordj</item>
+        <item>Bouandas</item>
+        <item>Bazer Sakhra</item>
+        <item>Hammam Essokhna</item>
+        <item>Mezloug</item>
+        <item>Bir Haddada</item>
+        <item>Serdj El Ghoul</item>
+        <item>Harbil</item>
+        <item>El Ouricia</item>
+        <item>Tizi Nbechar</item>
+        <item>Salah Bey</item>
+        <item>Ain Azal</item>
+        <item>Guenzet</item>
+        <item>Talaifacene</item>
+        <item>Bougaa</item>
+        <item>Beni Fouda</item>
+        <item>Tachouda</item>
+        <item>Beni Mouhli</item>
+        <item>Ouled Sabor</item>
+        <item>Guellal</item>
+        <item>Ain Sebt</item>
+        <item>Hammam Guergour</item>
+        <item>Ait Naoual Mezada</item>
+        <item>Ksar El Abtal</item>
+        <item>Beni Hocine</item>
+        <item>Ait Tizi</item>
+        <item>Maouklane</item>
+        <item>Guelta Zerka</item>
+        <item>Oued El Barad</item>
+        <item>Taya</item>
+        <item>Tella</item>
+    </string-array>
+    <string-array name="saida">
+        <item>Ain El Hadjar</item>
+        <item>Maamora</item>
+        <item>Saida</item>
+        <item>Doui Thabet</item>
+        <item>Ouled Khaled</item>
+        <item>Moulay Larbi</item>
+        <item>Youb</item>
+        <item>Hounet</item>
+        <item>Sidi Boubekeur</item>
+        <item>El Hassasna</item>
+        <item>Sidi Ahmed</item>
+        <item>Ain Sekhouna</item>
+        <item>Tircine</item>
+    </string-array>
+    <string-array name="skikda">
+        <item>El Marsa</item>
+        <item>Skikda</item>
+        <item>Ain Zouit</item>
+        <item>El Hadaik</item>
+        <item>Azzaba</item>
+        <item>Djendel Saadi Mohamed</item>
+        <item>Ain Cherchar</item>
+        <item>Bekkouche Lakhdar</item>
+        <item>Benazouz</item>
+        <item>Es Sebt</item>
+        <item>Collo</item>
+        <item>Beni Zid</item>
+        <item>Kerkera</item>
+        <item>Ouled Attia</item>
+        <item>Oued Zehour</item>
+        <item>El Harrouch</item>
+        <item>Zerdazas</item>
+        <item>Ouled Hebaba</item>
+        <item>Sidi Mezghiche</item>
+        <item>Emdjez Edchich</item>
+        <item>Beni Oulbane</item>
+        <item>Ain Bouziane</item>
+        <item>Ramdane Djamel</item>
+        <item>Beni Bachir</item>
+        <item>Salah Bouchaour</item>
+        <item>Tamalous</item>
+        <item>Ain Kechra</item>
+        <item>Oum Toub</item>
+        <item>Bein El Ouiden</item>
+        <item>Fil Fila</item>
+        <item>Cheraia</item>
+        <item>Kanoua</item>
+        <item>El Ghedir</item>
+        <item>Bouchtata</item>
+        <item>Ouldja Boulbalout</item>
+        <item>Kheneg Mayoum</item>
+        <item>Hamadi Krouma</item>
+    </string-array>
+    <string-array name="sidi_bel_abbes">
+        <item>Sidi Khaled</item>
+        <item>Sidi Bel Abbes</item>
+        <item>Tessala</item>
+        <item>Sidi Brahim</item>
+        <item>Mostefa Ben Brahim</item>
+        <item>Telagh</item>
+        <item>Mezaourou</item>
+        <item>Boukhanafis</item>
+        <item>Sidi Ali Boussidi</item>
+        <item>Badredine El Mokrani</item>
+        <item>Marhoum</item>
+        <item>Tafissour</item>
+        <item>Amarnas</item>
+        <item>Tilmouni</item>
+        <item>Sidi Lahcene</item>
+        <item>Ain Thrid</item>
+        <item>Makedra</item>
+        <item>Tenira</item>
+        <item>Moulay Slissen</item>
+        <item>El Hacaiba</item>
+        <item>Hassi Zehana</item>
+        <item>Tabia</item>
+        <item>Merine</item>
+        <item>Ras El Ma</item>
+        <item>Ain Tindamine</item>
+        <item>Ain Kada</item>
+        <item>Mcid</item>
+        <item>Ain El Berd</item>
+        <item>Sfissef</item>
+        <item>Ain Adden</item>
+        <item>Oued Taourira</item>
+        <item>Dhaya</item>
+        <item>Zerouala</item>
+        <item>Lamtar</item>
+        <item>Sidi Chaib</item>
+        <item>Sidi Dahou Dezairs</item>
+        <item>Oued Sbaa</item>
+        <item>Boudjebaa El Bordj</item>
+        <item>Sehala Thaoura</item>
+        <item>Sidi Yacoub</item>
+        <item>Sidi Hamadouche</item>
+        <item>Belarbi</item>
+        <item>Oued Sefioun</item>
+        <item>Teghalimet</item>
+        <item>Ben Badis</item>
+        <item>Sidi Ali Benyoub</item>
+        <item>Chetouane Belaila</item>
+        <item>Bir El Hammam</item>
+        <item>Taoudmout</item>
+        <item>Redjem Demouche</item>
+        <item>Benachiba Chelia</item>
+        <item>Hassi Dahou</item>
+    </string-array>
+    <string-array name="annaba">
+        <item>Annaba</item>
+        <item>Berrahel</item>
+        <item>El Hadjar</item>
+        <item>Eulma</item>
+        <item>El Bouni</item>
+        <item>Oued El Aneb</item>
+        <item>Cheurfa</item>
+        <item>Seraidi</item>
+        <item>Ain Berda</item>
+        <item>Chetaibi</item>
+        <item>Sidi Amer</item>
+        <item>Treat</item>
+    </string-array>
+    <string-array name="guelma">
+        <item>Guelma</item>
+        <item>Nechmaya</item>
+        <item>Bouati Mahmoud</item>
+        <item>Oued Zenati</item>
+        <item>Tamlouka</item>
+        <item>Oued Fragha</item>
+        <item>Ain Sandel</item>
+        <item>Ras El Agba</item>
+        <item>Dahouara</item>
+        <item>Belkhir</item>
+        <item>Ben Djarah</item>
+        <item>Bou Hamdane</item>
+        <item>Ain Makhlouf</item>
+        <item>Ain Ben Beida</item>
+        <item>Khezara</item>
+        <item>Beni Mezline</item>
+        <item>Bou Hachana</item>
+        <item>Guelaat Bou Sbaa</item>
+        <item>Hammam Maskhoutine</item>
+        <item>El Fedjoudj</item>
+        <item>Bordj Sabat</item>
+        <item>Hamman Nbail</item>
+        <item>Ain Larbi</item>
+        <item>Medjez Amar</item>
+        <item>Bouchegouf</item>
+        <item>Heliopolis</item>
+        <item>Ain Hessania</item>
+        <item>Roknia</item>
+        <item>Salaoua Announa</item>
+        <item>Medjez Sfa</item>
+        <item>Boumahra Ahmed</item>
+        <item>Ain Reggada</item>
+        <item>Oued Cheham</item>
+        <item>Djeballah Khemissi</item>
+    </string-array>
+    <string-array name="constantine">
+        <item>Constantine</item>
+        <item>Hamma Bouziane</item>
+        <item>El Haria</item>
+        <item>Zighoud Youcef</item>
+        <item>Didouche Mourad</item>
+        <item>El Khroub</item>
+        <item>Ain Abid</item>
+        <item>Beni Hamiden</item>
+        <item>Ouled Rahmoune</item>
+        <item>Ain Smara</item>
+        <item>Mesaoud Boudjeriou</item>
+        <item>Ibn Ziad</item>
+    </string-array>
+    <string-array name="medea">
+        <item>Sidi Naamane</item>
+        <item>Ouled Brahim</item>
+        <item>Medea</item>
+        <item>Ouzera</item>
+        <item>Ouled Maaref</item>
+        <item>Ain Boucif</item>
+        <item>Aissaouia</item>
+        <item>Ouled Deide</item>
+        <item>El Omaria</item>
+        <item>Derrag</item>
+        <item>El Guelbelkebir</item>
+        <item>Bouaiche</item>
+        <item>Mezerena</item>
+        <item>Damiat</item>
+        <item>Sidi Ziane</item>
+        <item>Tamesguida</item>
+        <item>El Hamdania</item>
+        <item>Kef Lakhdar</item>
+        <item>Chelalet El Adhaoura</item>
+        <item>Bouskene</item>
+        <item>Rebaia</item>
+        <item>Bouchrahil</item>
+        <item>Ouled Hellal</item>
+        <item>Tafraout</item>
+        <item>Baata</item>
+        <item>Boghar</item>
+        <item>Ouled Bouachra</item>
+        <item>Sidi Zahar</item>
+        <item>Oued Harbil</item>
+        <item>Benchicao</item>
+        <item>Sidi Damed</item>
+        <item>Aziz</item>
+        <item>Souagui</item>
+        <item>Zoubiria</item>
+        <item>Ksar El Boukhari</item>
+        <item>El Azizia</item>
+        <item>Djouab</item>
+        <item>Chahbounia</item>
+        <item>Meghraoua</item>
+        <item>Cheniguel</item>
+        <item>Ain Ouksir</item>
+        <item>Oum El Djalil</item>
+        <item>Ouamri</item>
+        <item>Si Mahdjoub</item>
+        <item>Tlatet Eddoair</item>
+        <item>Beni Slimane</item>
+        <item>Berrouaghia</item>
+        <item>Seghouane</item>
+        <item>Meftaha</item>
+        <item>Mihoub</item>
+        <item>Boughezoul</item>
+        <item>Tablat</item>
+        <item>Deux Bassins</item>
+        <item>Draa Essamar</item>
+        <item>Sidi Errabia</item>
+        <item>Bir Ben Laabed</item>
+        <item>El Ouinet</item>
+        <item>Ouled Antar</item>
+        <item>Bouaichoune</item>
+        <item>Hannacha</item>
+        <item>Sedraia</item>
+        <item>Medjebar</item>
+        <item>Khams Djouamaa</item>
+        <item>Saneg</item>
+    </string-array>
+    <string-array name="mostaganem">
+        <item>Mansourah</item>
+        <item>Mostaganem</item>
+        <item>Sayada</item>
+        <item>Fornaka</item>
+        <item>Stidia</item>
+        <item>Ain Nouissy</item>
+        <item>Hassi Maameche</item>
+        <item>Ain Tadles</item>
+        <item>Sour</item>
+        <item>Oued El Kheir</item>
+        <item>Sidi Bellater</item>
+        <item>Kheiredine </item>
+        <item>Sidi Ali</item>
+        <item>Abdelmalek Ramdane</item>
+        <item>Hadjadj</item>
+        <item>Nekmaria</item>
+        <item>Achaacha</item>
+        <item>Khadra</item>
+        <item>Bouguirat</item>
+        <item>Sirat</item>
+        <item>Ain Sidi Cherif</item>
+        <item>Mesra</item>
+        <item>Souaflia</item>
+        <item>Ouled Boughalem</item>
+        <item>Ouled Maallah</item>
+        <item>Mezghrane</item>
+        <item>Ain Boudinar</item>
+        <item>Tazgait</item>
+        <item>Safsaf</item>
+        <item>Touahria</item>
+        <item>El Hassiane</item>
+    </string-array>
+    <string-array name="msila">
+        <item>Souamaa</item>
+        <item>Sidi Mhamed</item>
+        <item>Msila</item>
+        <item>Maadid</item>
+        <item>Hammam Dhalaa</item>
+        <item>Ouled Derradj</item>
+        <item>Tarmount</item>
+        <item>Mtarfa</item>
+        <item>Khoubana</item>
+        <item>Mcif</item>
+        <item>Chellal</item>
+        <item>Ouled Madhi</item>
+        <item>Magra</item>
+        <item>Berhoum</item>
+        <item>Ain Khadra</item>
+        <item>Ouled Addi Guebala</item>
+        <item>Belaiba</item>
+        <item>Sidi Aissa</item>
+        <item>Ain El Hadjel</item>
+        <item>Sidi Hadjeres</item>
+        <item>Ouanougha</item>
+        <item>Bou Saada</item>
+        <item>Tamsa</item>
+        <item>Ben Srour</item>
+        <item>Ouled Slimane</item>
+        <item>El Houamed</item>
+        <item>El Hamel</item>
+        <item>Ouled Mansour</item>
+        <item>Maarif</item>
+        <item>Dehahna</item>
+        <item>Bouti Sayah</item>
+        <item>Khettouti Sed Djir</item>
+        <item>Zarzour</item>
+        <item>Oued Chair</item>
+        <item>Benzouh</item>
+        <item>Bir Foda</item>
+        <item>Ouled Atia</item>
+        <item>Ain El Melh</item>
+        <item>Medjedel</item>
+        <item>Slim</item>
+        <item>Ain Errich</item>
+        <item>Beni Ilmane</item>
+        <item>Oultene</item>
+        <item>Djebel Messaad</item>
+    </string-array>
+    <string-array name="mascara">
+        <item>Chorfa</item>
+        <item>Mohammadia</item>
+        <item>Ain Fares</item>
+        <item>Mascara</item>
+        <item>Bou Hanifia</item>
+        <item>Tizi</item>
+        <item>Hacine</item>
+        <item>Maoussa</item>
+        <item>Teghennif</item>
+        <item>El Hachem</item>
+        <item>Sidi Kada</item>
+        <item>Zelmata</item>
+        <item>Oued El Abtal</item>
+        <item>Ain Ferah</item>
+        <item>Ghriss</item>
+        <item>Froha</item>
+        <item>Matemore</item>
+        <item>Makdha</item>
+        <item>Sidi Boussaid</item>
+        <item>El Bordj</item>
+        <item>Ain Fekan</item>
+        <item>Benian</item>
+        <item>Khalouia</item>
+        <item>El Menaouer</item>
+        <item>Oued Taria</item>
+        <item>Aouf</item>
+        <item>Ain Frass</item>
+        <item>Sig</item>
+        <item>Oggaz</item>
+        <item>Alaimia</item>
+        <item>El Gaada</item>
+        <item>Zahana</item>
+        <item>Sidi Abdelmoumene</item>
+        <item>Ferraguig</item>
+        <item>El Ghomri</item>
+        <item>Sedjerara</item>
+        <item>Moctadouz</item>
+        <item>Bou Henni</item>
+        <item>Guettena</item>
+        <item>El Mamounia</item>
+        <item>El Keurt</item>
+        <item>Gharrous</item>
+        <item>Gherdjoum</item>
+        <item>Ras Ain Amirouche</item>
+        <item>Nesmot</item>
+        <item>Sidi Abdeldjebar</item>
+        <item>Sehailia</item>
+    </string-array>
+    <string-array name="ouargla">
+        <item>Ain Beida</item>
+        <item>Ouargla</item>
+        <item>Ngoussa</item>
+        <item>Hassi Messaoud</item>
+        <item>Rouissat</item>
+        <item>Balidat Ameur</item>
+        <item>Tebesbest</item>
+        <item>Nezla</item>
+        <item>Zaouia El Abidia</item>
+        <item>Sidi Khouiled</item>
+        <item>Hassi Ben Abdellah</item>
+        <item>Touggourt</item>
+        <item>El Hadjira</item>
+        <item>Taibet</item>
+        <item>Tamacine</item>
+        <item>Benaceur</item>
+        <item>Mnaguer</item>
+        <item>Megarine</item>
+        <item>El Allia</item>
+        <item>El Borma</item>
+    </string-array>
+    <string-array name="oran">
+        <item>Ain Turk</item>
+        <item>Oran</item>
+        <item>Gdyel</item>
+        <item>Bir El Djir</item>
+        <item>Hassi Bounif</item>
+        <item>Es Senia</item>
+        <item>Arzew</item>
+        <item>Bethioua</item>
+        <item>Marsat El Hadjadj</item>
+        <item>El Ancar</item>
+        <item>Oued Tlelat</item>
+        <item>Tafraoui</item>
+        <item>Sidi Chami</item>
+        <item>Boufatis</item>
+        <item>Mers El Kebir</item>
+        <item>Bousfer</item>
+        <item>El Karma</item>
+        <item>El Braya</item>
+        <item>Hassi Ben Okba</item>
+        <item>Ben Freha</item>
+        <item>Hassi Mefsoukh</item>
+        <item>Sidi Ben Yabka</item>
+        <item>Messerghin</item>
+        <item>Boutlelis</item>
+        <item>Ain Biya</item>
+    </string-array>
+    <string-array name="el_bayadh">
+        <item>Sidi Ameur</item>
+        <item>El Bayadh</item>
+        <item>Rogassa</item>
+        <item>Stitten</item>
+        <item>Brezina</item>
+        <item>Ghassoul</item>
+        <item>Boualem</item>
+        <item>El Abiodh Sidi Cheikh</item>
+        <item>Ain El Orak</item>
+        <item>Arbaouat</item>
+        <item>Bougtoub</item>
+        <item>El Kheither</item>
+        <item>Kef El Ahmar</item>
+        <item>Boussemghoun</item>
+        <item>Chellala</item>
+        <item>Krakda</item>
+        <item>El Bnoud</item>
+        <item>Cheguig</item>
+        <item>El Mehara</item>
+        <item>Tousmouline</item>
+        <item>Sidi Tifour</item>
+    </string-array>
+    <string-array name="illizi">
+        <item>Illizi</item>
+        <item>Djanet</item>
+        <item>Debdeb</item>
+        <item>Bordj Omar Driss</item>
+        <item>Bordj El Haouasse</item>
+        <item>In Amenas</item>
+    </string-array>
+    <string-array name="bordj_bou_arreridj">
+        <item>Ouled Sidi Brahim</item>
+        <item>Bordj Bou Arreridj</item>
+        <item>Ras El Oued</item>
+        <item>Bordj Zemoura</item>
+        <item>El Mhir</item>
+        <item>Ben Daoud</item>
+        <item>El Achir</item>
+        <item>Ain Taghrout</item>
+        <item>Bordj Ghdir</item>
+        <item>Sidi Embarek</item>
+        <item>El Hamadia</item>
+        <item>Belimour</item>
+        <item>Medjana</item>
+        <item>Teniet En Nasr</item>
+        <item>Djaafra</item>
+        <item>El Main</item>
+        <item>Ouled Brahem</item>
+        <item>Ouled Dahmane</item>
+        <item>Hasnaoua</item>
+        <item>Khelil</item>
+        <item>Taglait</item>
+        <item>Ksour</item>
+        <item>Tafreg</item>
+        <item>Colla</item>
+        <item>Tixter</item>
+        <item>El Ach</item>
+        <item>El Anseur</item>
+        <item>Tesmart</item>
+        <item>Ain Tesra</item>
+        <item>Bir Kasdali</item>
+        <item>Ghilassa</item>
+        <item>Rabta</item>
+        <item>Haraza</item>
+    </string-array>
+    <string-array name="boumerdes">
+        <item>Ouled Aissa</item>
+        <item>Boumerdes</item>
+        <item>Boudouaou</item>
+        <item>Afir</item>
+        <item>Bordj Menaiel</item>
+        <item>Baghlia</item>
+        <item>Sidi Daoud</item>
+        <item>Naciria</item>
+        <item>Djinet</item>
+        <item>Isser</item>
+        <item>Zemmouri</item>
+        <item>Si Mustapha</item>
+        <item>Tidjelabine</item>
+        <item>Chabet El Ameur</item>
+        <item>Thenia</item>
+        <item>Timezrit</item>
+        <item>Corso</item>
+        <item>Ouled Moussa</item>
+        <item>Larbatache</item>
+        <item>Bouzegza Keddara</item>
+        <item>Taourga</item>
+        <item>Ben Choud</item>
+        <item>Dellys</item>
+        <item>Ammal</item>
+        <item>Beni Amrane</item>
+        <item>Souk El Had</item>
+        <item>Boudouaou El Bahri</item>
+        <item>Ouled Hedadj</item>
+        <item>Laghata</item>
+        <item>Hammedi</item>
+        <item>Khemis El Khechna</item>
+        <item>El Kharrouba</item>
+    </string-array>
+    <string-array name="el_tarf">
+        <item>Besbes</item>
+        <item>Zitouna</item>
+        <item>Ain Kerma</item>
+        <item>El Tarf</item>
+        <item>Bouhadjar</item>
+        <item>Ben Mhidi</item>
+        <item>Bougous</item>
+        <item>El Kala</item>
+        <item>Ain El Assel</item>
+        <item>El Aioun</item>
+        <item>Bouteldja</item>
+        <item>Souarekh</item>
+        <item>Berrihane</item>
+        <item>Lac Des Oiseaux</item>
+        <item>Chefia</item>
+        <item>Drean</item>
+        <item>Chihani</item>
+        <item>Chebaita Mokhtar</item>
+        <item>Asfour</item>
+        <item>Echatt</item>
+        <item>Zerizer</item>
+        <item>Oued Zitoun</item>
+        <item>Hammam Beni Salah</item>
+        <item>Raml Souk</item>
+    </string-array>
+    <string-array name="tindouf">
+        <item>Tindouf</item>
+        <item>Oum El Assel</item>
+    </string-array>
+    <string-array name="tissemsilt">
+        <item>Larbaa</item>
+        <item>Sidi Slimane</item>
+        <item>Tissemsilt</item>
+        <item>Bordj Bou Naama</item>
+        <item>Theniet El Had</item>
+        <item>Lazharia</item>
+        <item>Beni Chaib</item>
+        <item>Lardjem</item>
+        <item>Melaab</item>
+        <item>Sidi Lantri</item>
+        <item>Bordj El Emir Abdelkader</item>
+        <item>Layoune</item>
+        <item>Ouled Bessem</item>
+        <item>Ammari</item>
+        <item>Youssoufia</item>
+        <item>Sidi Boutouchent</item>
+        <item>Maasem</item>
+        <item>Sidi Abed</item>
+        <item>Tamalaht</item>
+        <item>Boucaid</item>
+        <item>Beni Lahcene</item>
+    </string-array>
+    <string-array name="el_oued">
+        <item>Taghzout</item>
+        <item>El Ogla</item>
+        <item>El Oued</item>
+        <item>Robbah</item>
+        <item>Oued El Alenda</item>
+        <item>Bayadha</item>
+        <item>Nakhla</item>
+        <item>Guemar</item>
+        <item>Kouinine</item>
+        <item>Reguiba</item>
+        <item>Hamraia</item>
+        <item>Debila</item>
+        <item>Hassani Abdelkrim</item>
+        <item>Hassi Khelifa</item>
+        <item>Taleb Larbi</item>
+        <item>Douar El Ma</item>
+        <item>Sidi Aoun</item>
+        <item>Trifaoui</item>
+        <item>Magrane</item>
+        <item>Beni Guecha</item>
+        <item>Ourmas</item>
+        <item>Still</item>
+        <item>Mrara</item>
+        <item>Sidi Khellil</item>
+        <item>Tendla</item>
+        <item>Mih Ouansa</item>
+        <item>El Mghair</item>
+        <item>Djamaa</item>
+        <item>Oum Touyour</item>
+        <item>Sidi Amrane</item>
+    </string-array>
+    <string-array name="khenchela">
+        <item>Khenchela</item>
+        <item>Mtoussa</item>
+        <item>Kais</item>
+        <item>Baghai</item>
+        <item>El Hamma</item>
+        <item>Ain Touila</item>
+        <item>Taouzianat</item>
+        <item>Bouhmama</item>
+        <item>El Oueldja</item>
+        <item>Remila</item>
+        <item>Cherchar</item>
+        <item>Djellal</item>
+        <item>Babar</item>
+        <item>Tamza</item>
+        <item>Ensigha</item>
+        <item>Ouled Rechache</item>
+        <item>El Mahmal</item>
+        <item>Msara</item>
+        <item>Yabous</item>
+        <item>Khirane</item>
+        <item>Chelia</item>
+    </string-array>
+    <string-array name="souk_ahras">
+        <item>Souk Ahras</item>
+        <item>Sedrata</item>
+        <item>Hanancha</item>
+        <item>Mechroha</item>
+        <item>Ouled Driss</item>
+        <item>Tiffech</item>
+        <item>Zaarouria</item>
+        <item>Taoura</item>
+        <item>Drea</item>
+        <item>Haddada</item>
+        <item>Khedara</item>
+        <item>Merahna</item>
+        <item>Ouled Moumen</item>
+        <item>Bir Bouhouche</item>
+        <item>Mdaourouche</item>
+        <item>Oum El Adhaim</item>
+        <item>Ain Zana</item>
+        <item>Quillen</item>
+        <item>Sidi Fredj</item>
+        <item>Safel El Ouiden</item>
+        <item>Ragouba</item>
+        <item>Khemissa</item>
+        <item>Oued Keberit</item>
+        <item>Terraguelt</item>
+        <item>Zouabi</item>
+    </string-array>
+    <string-array name="tipaza">
+        <item>Sidi Amar</item>
+        <item>Khemisti</item>
+        <item>Tipaza</item>
+        <item>Menaceur</item>
+        <item>Larhat</item>
+        <item>Douaouda</item>
+        <item>Bourkika</item>
+        <item>Aghabal</item>
+        <item>Hadjout</item>
+        <item>Gouraya</item>
+        <item>Nodor</item>
+        <item>Chaiba</item>
+        <item>Ain Tagourait</item>
+        <item>Cherchel</item>
+        <item>Damous</item>
+        <item>Meurad</item>
+        <item>Fouka</item>
+        <item>Bou Ismail</item>
+        <item>Ahmer El Ain</item>
+        <item>Bou Haroun</item>
+        <item>Sidi Ghiles</item>
+        <item>Messelmoun</item>
+        <item>Sidi Rached</item>
+        <item>Kolea</item>
+        <item>Attatba</item>
+        <item>Sidi Semiane</item>
+        <item>Beni Milleuk</item>
+        <item>Hadjerat Ennous</item>
+    </string-array>
+    <string-array name="mila">
+        <item>Mila</item>
+        <item>Ferdjioua</item>
+        <item>Chelghoum Laid</item>
+        <item>Oued Athmenia</item>
+        <item>Ain Mellouk</item>
+        <item>Telerghma</item>
+        <item>Oued Seguen</item>
+        <item>Tadjenanet</item>
+        <item>Benyahia Abderrahmane</item>
+        <item>Oued Endja</item>
+        <item>Ahmed Rachedi</item>
+        <item>Ouled Khalouf</item>
+        <item>Tiberguent</item>
+        <item>Bouhatem</item>
+        <item>Rouached</item>
+        <item>Tessala Lamatai</item>
+        <item>Grarem Gouga</item>
+        <item>Sidi Merouane</item>
+        <item>Tassadane Haddada</item>
+        <item>Derradji Bousselah</item>
+        <item>Minar Zarza</item>
+        <item>Amira Arras</item>
+        <item>Terrai Bainen</item>
+        <item>Hamala</item>
+        <item>Ain Tine</item>
+        <item>El Mechira</item>
+        <item>Sidi Khelifa</item>
+        <item>Zeghaia</item>
+        <item>Elayadi Barbes</item>
+        <item>Ain Beida Harriche</item>
+        <item>Yahia Beniguecha</item>
+        <item>Chigara</item>
+    </string-array>
+    <string-array name="ain_defla">
+        <item>Ain Benian</item>
+        <item>Ain Soltane</item>
+        <item>Sidi Lakhdar</item>
+        <item>Ain Defla</item>
+        <item>Miliana</item>
+        <item>Boumedfaa</item>
+        <item>Khemis Miliana</item>
+        <item>Hammam Righa</item>
+        <item>Arib</item>
+        <item>Djelida</item>
+        <item>El Amra</item>
+        <item>Bourached</item>
+        <item>El Attaf</item>
+        <item>El Abadia</item>
+        <item>Djendel</item>
+        <item>Oued Chorfa</item>
+        <item>Ain Lechiakh</item>
+        <item>Oued Djemaa</item>
+        <item>Rouina</item>
+        <item>Zeddine</item>
+        <item>El Hassania</item>
+        <item>Bir Ouled Khelifa</item>
+        <item>Tarik Ibn Ziad</item>
+        <item>Bordj Emir Khaled</item>
+        <item>Ain Torki</item>
+        <item>Ben Allal</item>
+        <item>Hoceinia</item>
+        <item>Barbouche</item>
+        <item>Djemaa Ouled Chikh</item>
+        <item>Mekhatria</item>
+        <item>Bathia</item>
+        <item>Tachta Zegagha</item>
+        <item>Ain Bouyahia</item>
+        <item>El Maine</item>
+        <item>Tiberkanine</item>
+        <item>Belaas</item>
+    </string-array>
+    <string-array name="naâma">
+        <item>Naama</item>
+        <item>Mechria</item>
+        <item>Ain Sefra</item>
+        <item>Tiout</item>
+        <item>Sfissifa</item>
+        <item>Moghrar</item>
+        <item>Assela</item>
+        <item>Djeniane Bourzeg</item>
+        <item>Ain Ben Khelil</item>
+        <item>Makman Ben Amer</item>
+        <item>Kasdir</item>
+        <item>El Biod</item>
+    </string-array>
+    <string-array name="ain_temouchent">
+        <item>Ain Temouchent</item>
+        <item>Chaabet El Ham</item>
+        <item>Ain Kihal</item>
+        <item>Hammam Bouhadjar</item>
+        <item>Bou Zedjar</item>
+        <item>Oued Berkeche</item>
+        <item>Aghlal</item>
+        <item>Terga</item>
+        <item>Ain El Arbaa</item>
+        <item>Tamzoura</item>
+        <item>Chentouf</item>
+        <item>Sidi Ben Adda</item>
+        <item>Aoubellil</item>
+        <item>El Malah</item>
+        <item>Sidi Boumediene</item>
+        <item>Oued Sabah</item>
+        <item>Ouled Boudjemaa</item>
+        <item>Ain Tolba</item>
+        <item>El Amria</item>
+        <item>Hassi El Ghella</item>
+        <item>Hassasna</item>
+        <item>Ouled Kihal</item>
+        <item>Beni Saf</item>
+        <item>Sidi Safi</item>
+        <item>Oulhaca El Gheraba</item>
+        <item>Tadmaya</item>
+        <item>El Emir Abdelkader</item>
+        <item>El Messaid</item>
+    </string-array>
+    <string-array name="ghardaia">
+        <item>Mansoura</item>
+        <item>Ghardaia</item>
+        <item>El Meniaa</item>
+        <item>Dhayet Bendhahoua</item>
+        <item>Berriane</item>
+        <item>Metlili</item>
+        <item>El Guerrara</item>
+        <item>El Atteuf</item>
+        <item>Zelfana</item>
+        <item>Sebseb</item>
+        <item>Bounoura</item>
+        <item>Hassi Fehal</item>
+        <item>Hassi Gara</item>
+    </string-array>
+    <string-array name="relizane">
+        <item>El Hassi</item>
+        <item>El Ouldja</item>
+        <item>Relizane</item>
+        <item>Oued Rhiou</item>
+        <item>Belaassel Bouzegza</item>
+        <item>Sidi Saada</item>
+        <item>Ouled Aiche</item>
+        <item>Sidi Lazreg</item>
+        <item>El Hamadna</item>
+        <item>Sidi Mhamed Ben Ali</item>
+        <item>Mediouna</item>
+        <item>Sidi Khettab</item>
+        <item>Ammi Moussa</item>
+        <item>Zemmoura</item>
+        <item>Beni Dergoun</item>
+        <item>Djidiouia</item>
+        <item>El Guettar</item>
+        <item>Hamri</item>
+        <item>El Matmar</item>
+        <item>Sidi Mhamed Ben Aouda</item>
+        <item>Ain Tarek</item>
+        <item>Oued Essalem</item>
+        <item>Ouarizane</item>
+        <item>Mazouna</item>
+        <item>Kalaa</item>
+        <item>Ain Rahma</item>
+        <item>Yellel</item>
+        <item>Oued El Djemaa</item>
+        <item>Ramka</item>
+        <item>Mendes</item>
+        <item>Lahlef</item>
+        <item>Beni Zentis</item>
+        <item>Souk El Haad</item>
+        <item>Dar Ben Abdellah</item>
+        <item>Had Echkalla</item>
+        <item>Bendaoud</item>
+        <item>Merdja Sidi Abed</item>
+        <item>Ouled Sidi Mihoub</item>
+    </string-array>
+</resources>

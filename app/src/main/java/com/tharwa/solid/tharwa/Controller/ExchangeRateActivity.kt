@@ -2,6 +2,8 @@ package com.tharwa.solid.tharwa.Controller
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.tharwa.solid.tharwa.R
+
 
 class ExchangeRateActivity : AppCompatActivity() {
 

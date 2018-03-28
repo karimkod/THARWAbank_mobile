@@ -1,41 +1,50 @@
 package com.tharwa.solid.tharwa.View
+
 import android.content.Context
-import android.net.Uri
+import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.NonNull
-import android.support.design.widget.TextInputLayout
-import android.util.Log
 import android.view.View
-import android.widget.Toast
+import android.view.WindowManager
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.ProgressBar
+
 import com.tharwa.solid.tharwa.Base.BaseActivity
-import com.tharwa.solid.tharwa.Model.UserCreate
+import com.tharwa.solid.tharwa.FormInterface
+import com.tharwa.solid.tharwa.InvalideInputException
 import com.tharwa.solid.tharwa.Presenter.SignUp
 import com.tharwa.solid.tharwa.R
+import com.tharwa.solid.tharwa.enumration.InputType
 import kotlinx.android.synthetic.main.sign_up_activity.*
 import java.io.File
 
 
-class SignUpActivity : BaseActivity<SignUp>(),TakePictureFragment.OnFragmentInteractionListener
-{
-    var Email:String?=null
-    var password:String?=null
-    var phone_numbe:String?=null
-    var LastName:String?=null
-    var FirstName:String?=null
-    var adress:String?=null
-    var function:String?=null
-    var wilaya:String?=null
-    var Town:String?=null
-    var type:Int?=null
-    var photo: File?=null
+class SignUpActivity : BaseActivity<SignUp>(), TakePictureFragment.OnFragmentInteractionListener, AdapterView.OnItemSelectedListener,
+        FormInterface {
 
-    override fun onFragmentInteraction(uri: Uri) {
 
-    }
+    val mail get() = email.editText?.text.toString()
+    val password get() =  motdepasse.editText?.text.toString()
+    val phone_number get() = phone.editText?.text.toString()
+    val lastName get() = nom.editText?.text.toString()
+    val firstName get() = prenom.editText?.text.toString()
+    val adress get() = adresse.editText?.text.toString()
+    val function get() = fonction.editText?.text.toString()
+    val wilaya get() = wilayaSpinner.selectedItem.toString()
+    val commune get() = communeSpinner.selectedItem.toString()
+    val type get() = if (simple.isChecked) 0 else 1
+
+    override var takePictureFragment:TakePictureFragment? = null
+
+    val loadingFragment by lazy {LoadingFragment()}
+
+    val communeIdArray by lazy { resources.obtainTypedArray(R.array.wilaya_commune) }
+
+
     @NonNull
-    override fun createPresenter(@NonNull context:Context):SignUp
-    {
-            return SignUp(this)
+    override fun createPresenter(@NonNull context: Context): SignUp {
+        return SignUp(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,36 +54,74 @@ class SignUpActivity : BaseActivity<SignUp>(),TakePictureFragment.OnFragmentInte
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Inscription"
-
-
-        sign_up.setOnClickListener( {onConnectClicked()})
-
+        setUpWilayaSpinner()
+        setUpCommuneSpinner(0)
+        (mPresenter as SignUp).picturePresenter = takePictureFragment?.presenter
+        sign_up.setOnClickListener({( mPresenter as SignUp).onConnectClicked()})
 
 
     }
-    //Set the information of the user
-   fun onConnectClicked()
+
+    fun setUpWilayaSpinner() {
+        val adapter = ArrayAdapter.createFromResource(this, R.array.Wilaya, android.R.layout.simple_spinner_dropdown_item)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        wilayaSpinner.adapter = adapter
+        wilayaSpinner.onItemSelectedListener = this
+    }
+
+    fun setUpCommuneSpinner(id: Int) {
+        val adapter = ArrayAdapter.createFromResource(this, communeIdArray.getResourceId(id, -1), android.R.layout.simple_spinner_dropdown_item)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        communeSpinner.adapter = adapter
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        if (parent == wilayaSpinner)
+            setUpCommuneSpinner(position)
+    }
+
+    fun isValidInputs(): Boolean
     {
+        clearErrors(arrayOf(nom,prenom,email,motdepasse,phone,fonction,wilayaTextInput,adresse))
+        try {
+            verifyField(lastName, nom, InputType.NAME, true, this)
+            verifyField(firstName, prenom, InputType.NAME, true, this)
+            verifyField(mail, email, InputType.EMAIL, true, this)
+            verifyField(password, motdepasse, InputType.OTHER, true, this)
+            verifyField(phone_number, phone, InputType.TEL, true, this)
+            verifyField(function, fonction, InputType.OTHER, true, this)
+            verifyField(wilaya, wilayaTextInput, InputType.WILAYA, true, this)
+            verifyField(adress, adresse, InputType.OTHER, true, this)
+            return true
+        } catch (e: InvalideInputException) {
+            return false
+        }
 
-        //To get the data from inputs
-        Email="dodo@example.com"
-        password="password"
-        phone_numbe="+213557894579"
-        FirstName="JoJo"
-        LastName="Ben 9a9a"
 
-        adress="5anzomia 9armaza"
-        function="Youtuber"
-        wilaya="Tissemsilt"
-        Town="Vialar"
-        type=0
-
-        photo=File("")
-        // Create an instance of user
-        val userCrt:UserCreate=UserCreate(Email as String,password as String,phone_numbe as String,
-                "$FirstName  $LastName" ,adress as String,
-                function as String,wilaya as String,Town as String,type as Int)
-
-        mPresenter?.createCustomer(userCrt,photo as File)
     }
+
+    fun showProgressDialog()
+    {
+        loadingFragment.show(supportFragmentManager.beginTransaction(),"loadingFrag")
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
+
+    }
+
+    fun hideProgressDialog()
+    {
+        supportFragmentManager.beginTransaction().remove(loadingFragment).commit()
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+    }
+
+
+
+
+
 }

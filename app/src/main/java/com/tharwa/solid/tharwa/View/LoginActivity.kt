@@ -10,7 +10,8 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.ProgressBar
-import com.tharwa.solid.tharwa.Bussiness.InputValidator
+import com.tharwa.solid.tharwa.FormInterface
+import com.tharwa.solid.tharwa.InvalideInputException
 import com.tharwa.solid.tharwa.Model.User
 import com.tharwa.solid.tharwa.R
 import com.tharwa.solid.tharwa.R.string.*
@@ -24,7 +25,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.login_activity.*
 
-class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoiceInteraction {
+class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoiceInteraction,FormInterface {
     var mail: String? = null
     var passwd: String? = null
     val TAG = "LoginActivity"
@@ -167,11 +168,19 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
     //to veryfy if the entered data is valid
     fun onConnectClicked()
     {
-        mail=email.editText?.text.toString()
-        if (!InputValidator.checkInput(email, this, InputType.EMAIL)) return
-        passwd = motdepasse.editText?.text.toString()
-        if (!InputValidator.checkInput(motdepasse)) return
-        showChoiceDialog()
+       try {
+           verifyField(email.editText?.text.toString(),email,InputType.EMAIL,true,this)
+           verifyField(motdepasse.editText?.text.toString(),motdepasse,InputType.OTHER,true,this)
+
+           mail=email.editText?.text.toString()
+           passwd = motdepasse.editText?.text.toString()
+
+           showChoiceDialog()
+       }catch (e:InvalideInputException)
+       {
+
+       }
+
     }
 
     fun showDialogMessage(title: String, message: String) {
@@ -184,6 +193,7 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
         })
         builder.create().show()
     }
+
 
 
 }

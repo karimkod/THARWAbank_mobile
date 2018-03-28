@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat xmlns:tools="http://schemas.android.com/tools"
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -17,8 +18,8 @@
         />
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:fillViewport="true"
         android:scrollbarStyle="insideOverlay"
         android:scrollbars="vertical">
@@ -38,8 +39,16 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="40dp"
+                android:layout_marginBottom="10dp"
                 android:layout_weight="1" />
 
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text=" * : Champs obligatoire"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="50dp"/>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/nom"
@@ -47,13 +56,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="50dp"
                 android:layout_marginStart="50dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                app:errorEnabled="true">
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/nom"
+                    android:inputType="text"
+                    android:imeOptions="actionNext"
 
-                    android:hint="Nom" />
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -63,13 +76,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="50dp"
                 android:layout_marginStart="50dp"
-                android:layout_marginTop="10dp">
+                app:errorEnabled="true">
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:hint="Prénom" />
+                    android:hint="@string/prenom"
+                    android:inputType="text"
+                    android:imeOptions="actionNext"
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -80,14 +96,33 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="50dp"
                 android:layout_marginStart="50dp"
-
-                android:layout_marginTop="10dp">
+                app:errorEnabled="true">
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="E-mail"
-                    android:inputType="textEmailAddress" />
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:imeOptions="actionNext"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/motdepasse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="50dp"
+                android:layout_marginStart="50dp"
+                app:errorEnabled="true"
+                app:passwordToggleEnabled="true">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/motdepasse"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -95,18 +130,20 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/phone"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginBottom="8dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="50dp"
-
                 android:layout_marginStart="50dp"
-                android:layout_marginTop="8dp">
+                app:errorEnabled="true"
+
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Téléphone"
-                    android:inputType="phone" />
+                    android:hint="@string/phone"
+                    android:inputType="phone"
+                    android:imeOptions="actionNext"
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -114,66 +151,135 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/fonction"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginBottom="8dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="50dp"
-
                 android:layout_marginStart="50dp"
-                android:layout_marginTop="8dp">
+                app:errorEnabled="true"
+
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Fonction"
-                    android:inputType="text" />
+                    android:hint="@string/fonction"
+                    android:inputType="text"
+                    android:imeOptions="actionDone"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="50dp"
+                android:text="Vous êtes un client: " />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:background="@android:color/darker_gray" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginTop="10dp"
+
+                >
+
+                <RadioButton
+                    android:id="@+id/simple"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:checked="true"
+                    android:text="simple"
+
+                    />
+
+                <RadioButton
+                    android:id="@+id/employer"
+                    style="@style/Base.Widget.AppCompat.CompoundButton.RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="employeur"
+                    />
+
+            </RadioGroup>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/wilayaTextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="50dp"
+                android:layout_marginStart="50dp"
+                app:errorEnabled="true">
+
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/wilayaSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:spinnerMode="dialog">
+
+                </android.support.v7.widget.AppCompatSpinner>
+
 
             </android.support.design.widget.TextInputLayout>
 
 
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/wilaya"
-                style="@android:style/Widget.Material.Light.Spinner.Underlined"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/communeTextInput"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginBottom="8dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="50dp"
                 android:layout_marginStart="50dp"
-                android:layout_marginTop="8dp"
-                android:spinnerMode="dialog"
-                tools:ignore="NewApi">
-
-            </android.support.v7.widget.AppCompatSpinner>
+                app:errorEnabled="true">
 
 
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/commune"
-                style="@android:style/Widget.Material.Light.Spinner.Underlined"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="8dp"
-                android:spinnerMode="dialog"
-                tools:targetApi="lollipop">
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/communeSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:spinnerMode="dialog">
 
-            </android.support.v7.widget.AppCompatSpinner>
+                </android.support.v7.widget.AppCompatSpinner>
+
+            </android.support.design.widget.TextInputLayout>
+
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/adresse"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginBottom="8dp"
+                android:layout_height="wrap_content"
+
                 android:layout_marginEnd="50dp"
 
                 android:layout_marginStart="50dp"
-                android:layout_marginTop="8dp">
+                app:errorEnabled="true"
+
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Adresse"
-                    android:inputType="text" />
+                    android:hint="@string/adresse"
+                    android:inputType="text"
+                    android:imeOptions="actionDone"
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -186,13 +292,12 @@
                 android:layout_marginBottom="12dp"
                 android:layout_marginEnd="42dp"
                 android:layout_marginStart="42dp"
-                android:text="Terminé"
-
-                android:textColor="#000"
-                />
+                android:text="@string/termine"
+                android:textColor="#000" />
         </LinearLayout>
 
     </ScrollView>
+
 
 
 

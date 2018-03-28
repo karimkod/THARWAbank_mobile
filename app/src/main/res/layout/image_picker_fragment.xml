@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="6dp"
+    android:paddingTop="6dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:drawableLeft="@drawable/ic_image"
+            android:textAlignment="textStart"
+            android:layout_gravity="start"
+            android:text="Choisir de la gallerie"
+            android:paddingLeft="0dp"
+            android:paddingStart="0dp"
+            android:drawablePadding="32dp"
+            android:id="@+id/camera"
+            />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/gallery"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:drawableLeft="@drawable/ic_camera"
+            android:textAlignment="textStart"
+            android:layout_gravity="start"
+            android:text="Nouvelle photo"
+            android:paddingLeft="0dp"
+            android:paddingStart="0dp"
+            android:drawablePadding="32dp"
+            />
+
+
+
+</LinearLayout>

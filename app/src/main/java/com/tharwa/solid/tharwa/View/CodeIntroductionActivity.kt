@@ -10,7 +10,8 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.ProgressBar
 import android.widget.Toast
-import com.tharwa.solid.tharwa.Bussiness.InputValidator
+import com.tharwa.solid.tharwa.FormInterface
+import com.tharwa.solid.tharwa.InvalideInputException
 import com.tharwa.solid.tharwa.Model.UserCode
 import com.tharwa.solid.tharwa.R
 import com.tharwa.solid.tharwa.Remote.UserApiService
@@ -23,7 +24,7 @@ import com.tharwa.solid.tharwa.R.string.*
 import com.tharwa.solid.tharwa.View.Acceuil
 import com.tharwa.solid.tharwa.enumration.InputType
 
-class CodeIntroductionActivity : AppCompatActivity()
+class CodeIntroductionActivity : AppCompatActivity(),FormInterface
     {
     //used to hold the service
     var disposable: Disposable? = null
@@ -48,10 +49,16 @@ class CodeIntroductionActivity : AppCompatActivity()
         val mail:String?=intent.getStringExtra("mail")
         val passwd:String?=intent.getStringExtra("password")
         val nonce = code.editText?.text.toString()
-        if(!InputValidator.checkInput(code,this,InputType.CODE))
-            return
-        val usercode = UserCode(mail.toString(), passwd.toString(), nonce)
-        loginCode(usercode)
+        try
+        {
+            verifyField(nonce,code,InputType.CODE,true,this)
+            val usercode = UserCode(mail.toString(), passwd.toString(), nonce)
+            loginCode(usercode)
+        }catch  (e:InvalideInputException)
+        {
+
+        }
+
     }
 
 // this is the function that get the response once the user send the code

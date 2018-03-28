@@ -8,21 +8,23 @@ import com.tharwa.solid.tharwa.enumration.CodeStatus
  */
 class Error
 {
-    companion object {
-        fun codeMessage(code:Int):String
-        {
+    companion object
+    {
+        fun codeMessage(code:Int):Int
+        {/*
             var message:String?=null
             when(code)
             {
-                CodeStatus.succ_201.status->{message= R.string.succ_201 as String}
-                CodeStatus.err_400.status->{message= R.string.err_400 as String}
-                CodeStatus.err_403.status->{message= R.string.err_403 as String}
-                CodeStatus.err_405.status->{message= R.string.err_405 as String}
-                CodeStatus.err_422.status->{message= R.string.err_422 as String}
-                CodeStatus.err_500.status->{message= R.string.err_500 as String}
-                CodeStatus.err_503.status->{message= R.string.err_503 as String}
+                CodeStatus.succ_201.status->{message= R.string.succ_201 }
+                CodeStatus.err_400.status->{message= R.string.err_400 }
+                CodeStatus.err_403.status->{message= R.string.err_403 }
+                CodeStatus.err_405.status->{message= R.string.err_405 }
+                CodeStatus.err_422.status->{message= R.string.err_422 }
+                CodeStatus.err_500.status->{message= R.string.err_500 }
+                CodeStatus.err_503.status->{message= R.string.err_503 }
             }
-            return message as String
+            return message*/
+            return 0
         }
     }
 }
