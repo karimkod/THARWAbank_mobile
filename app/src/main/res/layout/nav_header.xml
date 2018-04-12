@@ -15,14 +15,14 @@
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:paddingTop="8dp"
-        android:src="@mipmap/take_picture" />
+        android:src="@drawable/customer1" />
     <!-- name -->
     <TextView
         android:id="@+id/user_name_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:text="Smaili Naziha"
+        android:text="Mohammed Belkacem"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold" />
@@ -31,7 +31,7 @@
         android:id="@+id/user_mail_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="dn_smaili@esi.dz"
+        android:text="tharwa.client@gmail.com"
         android:textColor="@color/white"
         android:textStyle="bold" />
 </LinearLayout>

@@ -45,21 +45,12 @@
                     android:elevation="4dp"
                     android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/balanceText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/balance_count"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryLight"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/balance_count_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="150 000.00 DZD"
+                    android:text="0.00 DZD"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="24sp"
@@ -126,7 +117,7 @@
     </android.support.constraint.ConstraintLayout>
 
 
-    <!-- Navigation View -->
+    <!-- Navigation View
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -134,7 +125,8 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu" />
+        app:menu="@menu/drawer_menu"
+        />-->
 
 
 </android.support.v4.widget.DrawerLayout>

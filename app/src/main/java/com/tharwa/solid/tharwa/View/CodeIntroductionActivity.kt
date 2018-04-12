@@ -78,7 +78,7 @@ class CodeIntroductionActivity : AppCompatActivity(),FormInterface
                                 //open the Acceuil activity
                                 //Toast.makeText(this@CodeIntroductionActivity,usercd.message(),Toast.LENGTH_LONG).show()
                                 Log.d(TAG,usercd.body()?.token)
-                                val intent =Intent(applicationContext, Acceuil::class.java)
+                                val intent =Intent(applicationContext, ClientAcountActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                                 intent.putExtra("token",usercd.body()?.token)
                                 startActivity(intent)

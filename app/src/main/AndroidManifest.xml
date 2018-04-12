@@ -54,7 +54,8 @@
                 android:value=".Controller.LoginActivity" />
         </activity>
         <activity android:name=".Controller.CodeIntroductionActivity" />
-        <activity android:name=".Controller.ClientAcountActivity"></activity>
+        <activity android:name=".Controller.ClientAcountActivity"
+            android:exported="true"></activity>
         <activity android:name=".View.Acceuil" />
         <activity android:name=".Controller.ExchangeRateActivity"></activity>
     </application>

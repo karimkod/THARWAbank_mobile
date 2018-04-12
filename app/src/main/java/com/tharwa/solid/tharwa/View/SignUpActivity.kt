@@ -1,14 +1,15 @@
 package com.tharwa.solid.tharwa.View
 
+import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.annotation.NonNull
+import android.support.v4.app.DialogFragment
 import android.view.View
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.ProgressBar
 
 import com.tharwa.solid.tharwa.Base.BaseActivity
 import com.tharwa.solid.tharwa.FormInterface
@@ -17,7 +18,6 @@ import com.tharwa.solid.tharwa.Presenter.SignUp
 import com.tharwa.solid.tharwa.R
 import com.tharwa.solid.tharwa.enumration.InputType
 import kotlinx.android.synthetic.main.sign_up_activity.*
-import java.io.File
 
 
 class SignUpActivity : BaseActivity<SignUp>(), TakePictureFragment.OnFragmentInteractionListener, AdapterView.OnItemSelectedListener,
@@ -35,12 +35,13 @@ class SignUpActivity : BaseActivity<SignUp>(), TakePictureFragment.OnFragmentInt
     val commune get() = communeSpinner.selectedItem.toString()
     val type get() = if (simple.isChecked) 0 else 1
 
+
+
     override var takePictureFragment:TakePictureFragment? = null
 
     val loadingFragment by lazy {LoadingFragment()}
 
     val communeIdArray by lazy { resources.obtainTypedArray(R.array.wilaya_commune) }
-
 
     @NonNull
     override fun createPresenter(@NonNull context: Context): SignUp {
@@ -110,7 +111,6 @@ class SignUpActivity : BaseActivity<SignUp>(), TakePictureFragment.OnFragmentInt
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
-
     }
 
     fun hideProgressDialog()
@@ -118,6 +118,22 @@ class SignUpActivity : BaseActivity<SignUp>(), TakePictureFragment.OnFragmentInt
         supportFragmentManager.beginTransaction().remove(loadingFragment).commit()
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
+    }
+
+    fun showSuccessDialog()
+    {
+        val builder =AlertDialog.Builder(this)
+        builder.setTitle("Inscription réussie")
+        builder.setMessage("Votre compte est en phase de validation, cela prendra " +
+                "moins de 24hrs")
+        builder.setNeutralButton("Terminé",DialogInterface.OnClickListener {
+            _,_ ->
+            mPresenter?.onSuccessDialogEnded()
+        })
+        builder.setOnCancelListener{ mPresenter?.onSuccessDialogEnded() }
+
+        val dialog = builder.create()
+        dialog.show()
     }
 
 
