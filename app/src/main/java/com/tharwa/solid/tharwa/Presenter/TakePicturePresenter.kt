@@ -1,10 +1,13 @@
 package com.tharwa.solid.tharwa.Presenter
 import android.util.Log
 import com.tharwa.solid.tharwa.Contract.addPictureContract
+import com.tharwa.solid.tharwa.Remote.UserApiService
+import okhttp3.*
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 /**
  * Created by thinkpad on 27/03/2018.
@@ -65,6 +68,7 @@ class TakePicturePresenter(val view:addPictureContract.View)
     {
         Log.d("Presenter",image?.path)
         view.setImage(image?.path as String)
+        //sendImage()
     }
 
     fun ImageReceived(filePath:String?)
@@ -72,6 +76,23 @@ class TakePicturePresenter(val view:addPictureContract.View)
         Log.d("Presenter",filePath)
         image = File(filePath)
         view.setImage(filePath as String)
+    }
 
+    fun sendImage()
+    {
+        val reqFile = RequestBody.create(MediaType.parse("image/*"), image!!)
+        val body = MultipartBody.Part.createFormData("upload", image!!.getName(), reqFile)
+        val name = RequestBody.create(MediaType.parse("text/plain"), "upload_test")
+
+        val req = UserApiService.createServiceForImage().postImage(body, name)
+        req.enqueue(object : retrofit2.Callback<ResponseBody> {
+            override fun onResponse(call: retrofit2.Call<ResponseBody>, response: retrofit2.Response<ResponseBody>) {
+                // Do Something
+            }
+
+            override fun onFailure(call: retrofit2.Call<ResponseBody>, t: Throwable) {
+                t.printStackTrace()
+            }
+        })
     }
 }

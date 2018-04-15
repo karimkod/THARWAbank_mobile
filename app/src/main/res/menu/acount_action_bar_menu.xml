@@ -6,9 +6,9 @@
 
     <item
         android:id="@+id/action_bar_notification"
-        android:icon="@android:drawable/ic_popup_reminder"
+        android:icon="@drawable/ic_no_notification"
         android:orderInCategory="100"
         android:title="notification"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
 </menu>

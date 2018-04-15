@@ -3,8 +3,11 @@ package com.tharwa.solid.tharwa.Controller
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.design.widget.BottomSheetBehavior
+import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import android.widget.Toolbar
 import com.tharwa.solid.tharwa.R
@@ -27,19 +30,28 @@ class ClientAcountActivity : AppCompatActivity() {
         setContentView(R.layout.activity_client_acount)
         setSupportActionBar(findViewById(R.id.acount_toolbar))
 
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_hamburger)
+            setTitle("THARWA")
+        }
+
 
         // les fragments de la tab Barre
         pageAdapter = CostomPagerAdapter(supportFragmentManager)
-        pager = findViewById<ViewPager>(R.id.homeViewPager)
+        //pager = findViewById<ViewPager>(R.id.homeViewPager)
 
-        pageAdapter!!.addFragment(VirementsFragment(), "Virements")
-        pageAdapter!!.addFragment(CommissionFragment(), "Commissions")
+        pageAdapter?.addFragment(VirementsFragment(), "Virements")
+        pageAdapter?.addFragment(CommissionFragment(), "Commissions")
 
         pager?.adapter = pageAdapter
-        homeTabBarre.setupWithViewPager(pager)
+        //homeTabBarre.setupWithViewPager(pager)
 
-        buttomNavigation = findViewById(R.id.bottom_navigation)
-        buttomNavigation?.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+       // buttomNavigation = findViewById(R.id.bottom_navigation)
+        val bottomSheet = BottomSheetBehavior.from(floatingButtons)
+
+        //buttomNavigation?.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
 
 
     }
@@ -69,6 +81,22 @@ class ClientAcountActivity : AppCompatActivity() {
             }
         }
         false
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when(item?.itemId)
+        {
+            android.R.id.home ->
+            {
+                drawer_layout.openDrawer(GravityCompat.START)
+                return true
+            }
+
+            else -> return super.onOptionsItemSelected(item)
+        }
+
     }
 
 }

@@ -9,100 +9,77 @@
     tools:openDrawer="start">
 
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
+        <!--  App Bare -->
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="5dp">
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/acount_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:titleTextColor="@color/white"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                />
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/balance_count_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00 DZD"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/count_type_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Coumpte Courant"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryLight"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/id_count_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="THW00345DZD"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </android.support.design.widget.AppBarLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout_home"
-            android:layout_width="match_parent"
-            android:layout_height="510dp"
+            android:layout_width="321dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/floatingButtons"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/bottom_navigation">
-
-
-            <!--  App Bare -->
-            <android.support.design.widget.AppBarLayout
-                android:id="@+id/appBar"
-                android:layout_width="match_parent"
-                android:theme="@style/AppTheme.AppBarOverlay"
-                android:background="#2c3e50"
-                android:layout_height="176dp"
-                android:gravity="center">
-
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/acount_toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:titleTextColor="@color/white"
-                    android:background="#00b2dfdb"
-                    app:title=" "
-                    app:popupTheme="@style/AppTheme.PopupOverlay"
-                    android:elevation="4dp"
-                    android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
-
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/balance_count_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0.00 DZD"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/count_type_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Coumpte Courant"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryLight"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/id_count_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="THW00345DZD"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-            </android.support.design.widget.AppBarLayout>
-
-            <!-- Tab Layout -->
-            <android.support.design.widget.TabLayout
-                android:id="@+id/homeTabBarre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                app:tabGravity="fill"
-                app:tabIndicatorColor="@color/colorAccent"
-                app:tabMode="fixed"
-                app:tabSelectedTextColor="@color/colorAccent"
-                app:tabTextColor="@color/white" />
-
-            <!--  Viewer-->
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/homeViewPager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </android.support.v4.view.ViewPager>
+            app:layout_constraintTop_toTopOf="parent">
 
 
         </LinearLayout>
 
-        <android.support.design.widget.BottomNavigationView
+     <!--   <android.support.design.widget.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -112,12 +89,104 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:menu="@menu/buttom_navigation_menu" />
-
-    </android.support.constraint.ConstraintLayout>
+            app:menu="@menu/buttom_navigation_menu" />-->
 
 
-    <!-- Navigation View
+        <LinearLayout
+            android:id="@+id/floatingButtons"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:behavior_hideable="false"
+            app:behavior_peekHeight="50dp"
+            app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary">
+        </LinearLayout>
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/exchange_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rippleColor="@color/white"
+            app:backgroundTint="@color/white"
+            app:background="@color/white"
+            app:fabSize="normal"
+            app:layout_anchor="@id/floatingButtons"
+            app:layout_anchorGravity="left|top"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_exchange_rate"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Taux de change"
+            app:layout_anchor="@id/floatingButtons"
+            app:layout_anchorGravity="left|bottom"
+            android:textColor="@color/white"
+            android:layout_marginLeft="15dp"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/transfer_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rippleColor="@color/white"
+            app:backgroundTint="@color/white"
+            app:background="@color/white"
+            app:fabSize="normal"
+            app:layout_anchor="@id/floatingButtons"
+            app:layout_anchorGravity="center|top"
+            android:src="@drawable/ic_transfer_money"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Virement"
+            app:layout_anchor="@id/floatingButtons"
+            app:layout_anchorGravity="center|bottom"
+            android:textColor="@color/white"
+            android:layout_marginLeft="15dp"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/change_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rippleColor="@color/white"
+            app:backgroundTint="@color/white"
+            app:background="@color/white"
+            app:fabSize="normal"
+            app:layout_anchor="@id/floatingButtons"
+            app:layout_anchorGravity="right|top"
+            android:layout_marginRight="30dp"
+            android:src="@drawable/ic_change_account"
+            />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Changer compte"
+            app:layout_anchor="@id/floatingButtons"
+            app:layout_anchorGravity="right|bottom"
+            android:textColor="@color/white"
+            android:layout_marginRight="10dp"
+            />
+
+
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -126,7 +195,6 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu"
-        />-->
-
+        />
 
 </android.support.v4.widget.DrawerLayout>

@@ -21,7 +21,6 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.code_introduction_activity.*
 import com.tharwa.solid.tharwa.R.string.*
-import com.tharwa.solid.tharwa.View.Acceuil
 import com.tharwa.solid.tharwa.enumration.InputType
 
 class CodeIntroductionActivity : AppCompatActivity(),FormInterface
