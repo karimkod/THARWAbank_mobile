@@ -1,35 +1,29 @@
 package com.tharwa.solid.tharwa.Presenter
 
-import android.content.ContentValues.TAG
-import android.content.Context
 import android.util.Log
-import com.tharwa.solid.tharwa.Base.BasePresenter
-import com.tharwa.solid.tharwa.Model.Avatar
+import com.tharwa.solid.tharwa.Contract.SignUpContrat
 import com.tharwa.solid.tharwa.Model.UserCreate
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import org.w3c.dom.Text
 import com.tharwa.solid.tharwa.View.SignUpActivity
+import com.tharwa.solid.tharwa.util.Config
 import java.io.File
 
 /**
  * Created by LE on 12/03/2018.
  */
-class SignUp : BasePresenter {
+class SignUpPresenter (val mView:SignUpContrat.View){
     var disposable: Disposable? = null
 
     private val Service = Config.newService()
     private var user_id: Int? = null
     private val _method: String = "PUT"
-    private var mView: SignUpActivity? = null
+
     var picturePresenter: TakePicturePresenter? = null
 
 
-    constructor(view: SignUpActivity) {
-        mView = view
 
-    }
 
     fun createCustomer(usercr: UserCreate, photo: File) {
         disposable = Service.createCustomer(usercr)
@@ -54,34 +48,7 @@ class SignUp : BasePresenter {
                             Log.e("SignUpPrensenter", error.message.toString())
                         }
                 )
-    }/*
-    fun createAvatar(userAvatar: Avatar)
-    {
-        disposable = Service.sendAvatar(userAvatar)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        {
-                            userAvatar ->
-                            val message=Error.codeMessage(userAvatar.code())+" " + userAvatar.body()?.message
-                            if (userAvatar.isSuccessful)
-                            {
-
-
-                                mView?.showMessage(mView as Context,message )
-                            }
-                            else
-                            {
-
-                                mView?.showMessage(mView as Context,message)
-                            }
-                        },
-                        {
-                            error ->
-                            mView?.showError(mView as Context,error.message.toString())
-                        }
-                )
-    }*/
+    }
 
     fun onConnectClicked() {
 
@@ -105,8 +72,5 @@ class SignUp : BasePresenter {
 
     fun onSuccessDialogEnded() {
         mView?.finish()
-
     }
-
-
 }

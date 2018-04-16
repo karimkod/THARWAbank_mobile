@@ -1,4 +1,4 @@
-package com.tharwa.solid.tharwa.Controller
+package com.tharwa.solid.tharwa.View
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -9,11 +9,7 @@ import android.support.v4.view.ViewPager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import android.widget.Toolbar
 import com.tharwa.solid.tharwa.R
-import com.tharwa.solid.tharwa.View.CommissionFragment
-import com.tharwa.solid.tharwa.View.CostomPagerAdapter
-import com.tharwa.solid.tharwa.View.VirementsFragment
 import kotlinx.android.synthetic.main.activity_client_acount.*
 
 class ClientAcountActivity : AppCompatActivity() {
@@ -35,7 +31,6 @@ class ClientAcountActivity : AppCompatActivity() {
             setHomeAsUpIndicator(R.drawable.ic_hamburger)
             setTitle("THARWA")
         }
-
 
         // les fragments de la tab Barre
         pageAdapter = CostomPagerAdapter(supportFragmentManager)

@@ -65,3 +65,31 @@ data class AvatarResponse
 (
         @SerializedName("message") val message:String
 )
+
+data class MyTransferCuToSav
+(
+    @SerializedName("type") val type:Int,
+    @SerializedName("amount") val amount:Int,
+    @SerializedName("from") val from:Int,
+    @SerializedName("to") val to:Int
+
+)
+data class Response
+(
+        @SerializedName("message") val message:String
+)
+
+data class VirmentInterne
+(
+@SerializedName("num_acc_sender") val num_acc_sender:Int ,
+@SerializedName("type_acc_sender") val type_acc_sender: Int,
+@SerializedName("code_curr_sender") val code_curr_sender: String,
+@SerializedName("num_acc_receiver") val num_acc_receiver:Int,
+@SerializedName("type_acc_receiver") val type_acc_receiver:Int,
+@SerializedName("code_curr_receiver")val code_curr_receiver:String ,
+@SerializedName("montant_virement")val montant_virement:Int,
+@SerializedName("type") val type:Int
+)
+
+
+

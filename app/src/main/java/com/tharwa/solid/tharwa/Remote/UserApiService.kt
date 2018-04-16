@@ -44,7 +44,21 @@ interface UserApiService {
     @Headers("Accept:multipart/form-data")
     @POST("/update_photo")
     fun postImage(@Part image: MultipartBody.Part, @Part("name") name: RequestBody): retrofit2.Call<ResponseBody>
-    //fun sendAvatar(@Body userAvatar: Avatar): Observable<Response<AvatarResponse>>
+
+
+    @PUT("/my_exchange")
+    fun myTransferCuSav(@Header("Authorization")token:String,@Body mytransfer:MyTransferCuToSav): Observable<Response<com.tharwa.solid.tharwa.Model.Response>>
+
+    //virement interne
+    @PUT("/virements_internes")
+    fun virementInterne(@Header("Authorization")token:String,
+                        @Body virement:VirmentInterne): Observable<Response<com.tharwa.solid.tharwa.Model.Response>>
+
+
+
+
+
+
 
 
 

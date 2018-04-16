@@ -5,6 +5,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 
+
 android {
     kapt { generateStubs = true }
     compileSdkVersion 26
@@ -64,5 +65,4 @@ dependencies {
     // Required for instrumented tests
     androidTestCompile 'com.android.support:support-annotations:24.0.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
-
 }

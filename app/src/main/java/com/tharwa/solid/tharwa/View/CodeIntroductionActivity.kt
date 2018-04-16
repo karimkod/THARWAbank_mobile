@@ -12,6 +12,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.tharwa.solid.tharwa.FormInterface
 import com.tharwa.solid.tharwa.InvalideInputException
+import com.tharwa.solid.tharwa.Model.UserClass
 import com.tharwa.solid.tharwa.Model.UserCode
 import com.tharwa.solid.tharwa.R
 import com.tharwa.solid.tharwa.Remote.UserApiService
@@ -21,6 +22,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.code_introduction_activity.*
 import com.tharwa.solid.tharwa.R.string.*
+import com.tharwa.solid.tharwa.View.ClientAcountActivity
 import com.tharwa.solid.tharwa.enumration.InputType
 
 class CodeIntroductionActivity : AppCompatActivity(),FormInterface
@@ -80,6 +82,10 @@ class CodeIntroductionActivity : AppCompatActivity(),FormInterface
                                 val intent =Intent(applicationContext, ClientAcountActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                                 intent.putExtra("token",usercd.body()?.token)
+
+                                //Get the token
+                                UserClass.token=usercd.body()!!.token
+
                                 startActivity(intent)
                                 this.token=usercd.body()?.token
 

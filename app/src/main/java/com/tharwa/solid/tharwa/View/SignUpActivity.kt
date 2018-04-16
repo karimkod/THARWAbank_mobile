@@ -5,35 +5,36 @@ import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.support.annotation.NonNull
-import android.support.v4.app.DialogFragment
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 
-import com.tharwa.solid.tharwa.Base.BaseActivity
+import com.tharwa.solid.tharwa.Contract.SignUpContrat
+
 import com.tharwa.solid.tharwa.FormInterface
 import com.tharwa.solid.tharwa.InvalideInputException
-import com.tharwa.solid.tharwa.Presenter.SignUp
+import com.tharwa.solid.tharwa.Presenter.SignUpPresenter
 import com.tharwa.solid.tharwa.R
 import com.tharwa.solid.tharwa.enumration.InputType
 import kotlinx.android.synthetic.main.sign_up_activity.*
 
 
-class SignUpActivity : BaseActivity<SignUp>(), TakePictureFragment.OnFragmentInteractionListener, AdapterView.OnItemSelectedListener,
-        FormInterface {
+class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentInteractionListener, AdapterView.OnItemSelectedListener,
+        FormInterface,SignUpContrat.View{
 
-
-    val mail get() = email.editText?.text.toString()
-    val password get() =  motdepasse.editText?.text.toString()
-    val phone_number get() = phone.editText?.text.toString()
-    val lastName get() = nom.editText?.text.toString()
-    val firstName get() = prenom.editText?.text.toString()
-    val adress get() = adresse.editText?.text.toString()
-    val function get() = fonction.editText?.text.toString()
-    val wilaya get() = wilayaSpinner.selectedItem.toString()
-    val commune get() = communeSpinner.selectedItem.toString()
-    val type get() = if (simple.isChecked) 0 else 1
+    override val presenter: SignUpPresenter by lazy { SignUpPresenter(this) }
+    override val mail get() = email.editText?.text.toString()
+    override val password get() =  motdepasse.editText?.text.toString()
+    override val phone_number get() = phone.editText?.text.toString()
+    override val lastName get() = nom.editText?.text.toString()
+    override val firstName get() = prenom.editText?.text.toString()
+    override val adress get() = adresse.editText?.text.toString()
+    override val function get() = fonction.editText?.text.toString()
+    override val wilaya get() = wilayaSpinner.selectedItem.toString()
+    override val commune get() = communeSpinner.selectedItem.toString()
+    override val type get() = if (simple.isChecked) 0 else 1
 
 
 
@@ -43,10 +44,6 @@ class SignUpActivity : BaseActivity<SignUp>(), TakePictureFragment.OnFragmentInt
 
     val communeIdArray by lazy { resources.obtainTypedArray(R.array.wilaya_commune) }
 
-    @NonNull
-    override fun createPresenter(@NonNull context: Context): SignUp {
-        return SignUp(this)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,8 +54,8 @@ class SignUpActivity : BaseActivity<SignUp>(), TakePictureFragment.OnFragmentInt
         supportActionBar?.title = "Inscription"
         setUpWilayaSpinner()
         setUpCommuneSpinner(0)
-        (mPresenter as SignUp).picturePresenter = takePictureFragment?.presenter
-        sign_up.setOnClickListener({( mPresenter as SignUp).onConnectClicked()})
+        (presenter ).picturePresenter = takePictureFragment?.presenter
+        sign_up.setOnClickListener({( presenter ).onConnectClicked()})
 
 
     }
@@ -85,7 +82,7 @@ class SignUpActivity : BaseActivity<SignUp>(), TakePictureFragment.OnFragmentInt
             setUpCommuneSpinner(position)
     }
 
-    fun isValidInputs(): Boolean
+    override fun isValidInputs(): Boolean
     {
         clearErrors(arrayOf(nom,prenom,email,motdepasse,phone,fonction,wilayaTextInput,adresse))
         try {
@@ -105,7 +102,7 @@ class SignUpActivity : BaseActivity<SignUp>(), TakePictureFragment.OnFragmentInt
 
     }
 
-    fun showProgressDialog()
+    override fun showProgressDialog()
     {
         loadingFragment.show(supportFragmentManager.beginTransaction(),"loadingFrag")
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
@@ -113,14 +110,14 @@ class SignUpActivity : BaseActivity<SignUp>(), TakePictureFragment.OnFragmentInt
 
     }
 
-    fun hideProgressDialog()
+    override fun hideProgressDialog()
     {
         supportFragmentManager.beginTransaction().remove(loadingFragment).commit()
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
     }
 
-    fun showSuccessDialog()
+    override fun showSuccessDialog()
     {
         val builder =AlertDialog.Builder(this)
         builder.setTitle("Inscription réussie")
@@ -128,15 +125,19 @@ class SignUpActivity : BaseActivity<SignUp>(), TakePictureFragment.OnFragmentInt
                 "moins de 24hrs")
         builder.setNeutralButton("Terminé",DialogInterface.OnClickListener {
             _,_ ->
-            mPresenter?.onSuccessDialogEnded()
+            presenter.onSuccessDialogEnded()
         })
-        builder.setOnCancelListener{ mPresenter?.onSuccessDialogEnded() }
+        builder.setOnCancelListener{presenter.onSuccessDialogEnded() }
 
         val dialog = builder.create()
         dialog.show()
     }
 
+    override  fun showMessage(message:String)
+    {
 
+        this.showMessage(message)
+    }
 
 
 

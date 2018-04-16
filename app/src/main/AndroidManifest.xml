@@ -2,18 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tharwa.solid.tharwa">
 
-
-    <!--Permissions -->
+    <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <!--Features-->
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <!-- Features -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
-
-    <!--Application Tag-->
-
+    <!-- Application Tag -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,8 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
-        <!--file provider to provide the image from the camera app-->
+        <!-- file provider to provide the image from the camera app -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.tharwa.solid.tharwa.fileprovider"
@@ -31,18 +29,10 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths">
-
-            </meta-data>
+                android:resource="@xml/file_paths"></meta-data>
         </provider>
 
-        <activity android:name=".View.LandingPage">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".View.LandingPage"></activity>
         <activity
             android:name=".Controller.LoginActivity"
             android:windowSoftInputMode="adjustUnspecified" />
@@ -54,10 +44,17 @@
                 android:value=".Controller.LoginActivity" />
         </activity>
         <activity android:name=".Controller.CodeIntroductionActivity" />
-        <activity android:name=".Controller.ClientAcountActivity"
+        <activity
+            android:name=".View.ClientAcountActivity"
             android:exported="true"></activity>
+        <activity android:name=".Presenter.ExchangeRateActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <activity android:name=".Controller.ExchangeRateActivity"></activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".View.VirementInterneTh"></activity>
     </application>
 
 </manifest>
