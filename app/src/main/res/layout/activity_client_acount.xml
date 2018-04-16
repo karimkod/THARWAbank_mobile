@@ -68,14 +68,20 @@
 
         <LinearLayout
             android:id="@+id/linearLayout_home"
-            android:layout_width="321dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/floatingButtons"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
+            >
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Pas de transaction"
+                android:gravity="center|top"
+                android:layout_marginTop="5dp"
+                />
 
         </LinearLayout>
 
@@ -103,7 +109,8 @@
             app:behavior_peekHeight="50dp"
             app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
             android:orientation="horizontal"
-            android:background="@color/colorPrimary">
+            android:background="@color/colorPrimary"
+            >
         </LinearLayout>
 
 

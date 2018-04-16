@@ -1,5 +1,6 @@
 package com.tharwa.solid.tharwa.Model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import org.w3c.dom.Text
 import java.io.File
@@ -27,12 +28,22 @@ data class UserCode
 //Receive the token response
 data class TokenResponse
 (
-    @SerializedName("user_id") val useId: String,
-    @SerializedName("user_type") val userType: String,
+    @SerializedName("name") val name:String,
+    @SerializedName("photo") val photoPath:String,
+    @SerializedName("type") val type:Int,
+    @SerializedName("account_types") val accountTypes:Array<Int>,
+    @SerializedName("current_account") val currentAccount:currentAccountDetail,
+    @SerializedName("user_id") val userId: String,
     @SerializedName("access_token") val token: String,
     @SerializedName("expires_in") val expiresIn: String
 
 )
+
+data class currentAccountDetail(
+    @SerializedName("account_code") val accountCode:String,
+    @SerializedName("balance") val balance:Double
+
+    )
 //The request to send to the restful API
 data class UserCreate
 (
