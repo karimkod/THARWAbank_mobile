@@ -25,13 +25,8 @@
         android:text="Mohammed Belkacem"
         android:textColor="@color/white"
         android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textAllCaps="true"/>
     <!-- email -->
-    <TextView
-        android:id="@+id/user_mail_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="tharwa.client@gmail.com"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+
 </LinearLayout>

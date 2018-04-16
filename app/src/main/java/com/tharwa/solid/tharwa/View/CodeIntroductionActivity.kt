@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.tharwa.solid.tharwa.FormInterface
 import com.tharwa.solid.tharwa.InvalideInputException
 import com.tharwa.solid.tharwa.Model.UserCode
+import com.tharwa.solid.tharwa.Model.UserData
 import com.tharwa.solid.tharwa.R
 import com.tharwa.solid.tharwa.Remote.UserApiService
 import com.tharwa.solid.tharwa.enumration.CodeStatus
@@ -76,12 +77,12 @@ class CodeIntroductionActivity : AppCompatActivity(),FormInterface
                                 // get the token
                                 //open the Acceuil activity
                                 //Toast.makeText(this@CodeIntroductionActivity,usercd.message(),Toast.LENGTH_LONG).show()
-                                Log.d(TAG,usercd.body()?.token)
+                                Log.d(TAG,usercd.body()?.toString())
                                 val intent =Intent(applicationContext, ClientAcountActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                                intent.putExtra("token",usercd.body()?.token)
+                                //intent.putExtra("token",usercd.body()?.token)
+                                UserData.user = usercd.body()
                                 startActivity(intent)
-                                this.token=usercd.body()?.token
 
                             }
                             else
