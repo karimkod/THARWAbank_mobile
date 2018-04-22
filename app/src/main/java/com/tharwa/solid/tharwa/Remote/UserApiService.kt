@@ -42,8 +42,10 @@ interface UserApiService {
 
     @Multipart
     @Headers("Accept:multipart/form-data")
-    @POST("/update_photo")
-    fun postImage(@Part image: MultipartBody.Part, @Part("name") name: RequestBody): retrofit2.Call<ResponseBody>
+    @POST("user/photo")
+    fun postImage(@Part image: okhttp3.MultipartBody.Part
+            ,@Part("id_user") userId:okhttp3.RequestBody)
+            :retrofit2.Call<okhttp3.ResponseBody>
 
 
     @PUT("/my_exchange")
@@ -56,16 +58,13 @@ interface UserApiService {
 
 
 
-
-
-
-
-
-
-
     //create the service
     companion object {
-        val bsUrl="https://serene-retreat-29274.herokuapp.com/"
+
+        private val URL="https://serene-retreat-29274.herokuapp.com/"
+
+        //val bsUrl="https://serene-retreat-29274.herokuapp.com/"
+
         fun create(): UserApiService {
 
             val retrofit = Retrofit.Builder()
@@ -73,7 +72,7 @@ interface UserApiService {
                             RxJava2CallAdapterFactory.create())
                     .addConverterFactory(
                             GsonConverterFactory.create())
-                    .baseUrl(bsUrl)
+                    .baseUrl(URL)
                     .build()
             return retrofit.create(UserApiService::class.java)
         }
@@ -84,7 +83,7 @@ interface UserApiService {
             interceptor.level = HttpLoggingInterceptor.Level.BODY
             val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
-            return Retrofit.Builder().baseUrl("http://192.168.0.165:80").client(client).build().create(UserApiService::class.java)
+            return Retrofit.Builder().baseUrl(URL).client(client).build().create(UserApiService::class.java)
         }
     }
 }

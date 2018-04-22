@@ -125,17 +125,17 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
                                     }
 
                                 }
-                                showDialogMessage(title,message)
+                                showDialogMessage(this,title,message)
                             }
 
 
                         },
                         { error ->
-                            Log.e("error", error.message)
+                            //Log.e("error", error.message)
                             hideProgressDialog()
                             // Display the error as it is cause it's related to system not reponse
                             //Toast.makeText(this@LoginActivity,error.message,Toast.LENGTH_LONG).show()
-                            showDialogMessage("Oops",error.message.toString())
+                            showDialogMessage(this,"Oops",error.message.toString())
                         }
                 )
     }
@@ -183,16 +183,7 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
 
     }
 
-    fun showDialogMessage(title: String, message: String) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(title)
-        builder.setMessage(message)
 
-        builder.setNeutralButton("Réessayer", DialogInterface.OnClickListener { _, _ ->
-
-        })
-        builder.create().show()
-    }
 
 
 

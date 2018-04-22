@@ -25,7 +25,7 @@ class SignUpPresenter (val mView:SignUpContrat.View){
 
 
 
-    fun createCustomer(usercr: UserCreate, photo: File) {
+    fun createCustomer(usercr: UserCreate) {
         disposable = Service.createCustomer(usercr)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -58,7 +58,7 @@ class SignUpPresenter (val mView:SignUpContrat.View){
                 val userCrt = UserCreate(activity.mail, activity.password, activity.phone_number,
                         "   ${activity.firstName} ${activity.lastName}", activity.adress,
                         activity.function, activity.wilaya, activity.commune, activity.type)
-                createCustomer(userCrt, picturePresenter!!.getImage as File)
+                createCustomer(userCrt)
 
                 mView?.showProgressDialog()
             } catch (e: InexistantImage) {
@@ -71,6 +71,6 @@ class SignUpPresenter (val mView:SignUpContrat.View){
     }
 
     fun onSuccessDialogEnded() {
-        mView?.finish()
+        mView.finish()
     }
 }

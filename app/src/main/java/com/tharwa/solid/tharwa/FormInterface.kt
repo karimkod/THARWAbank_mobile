@@ -1,6 +1,8 @@
 package com.tharwa.solid.tharwa
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.support.design.widget.TextInputLayout
 import com.tharwa.solid.tharwa.Bussiness.InputValidator
 import com.tharwa.solid.tharwa.enumration.InputType
@@ -9,7 +11,6 @@ import com.tharwa.solid.tharwa.enumration.InputType
  * Created by thinkpad on 27/03/2018.
  */
 
-class InvalideInputException : Exception()
 
 interface FormInterface
 {
@@ -30,4 +31,15 @@ interface FormInterface
             i.error = ""
     }
 
+    fun showDialogMessage(context:Context,title: String, message: String) {
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle(title)
+        builder.setMessage(message)
+
+        builder.setNeutralButton("Réessayer", null)
+        builder.create().show()
+    }
+
 }
+
+class InvalideInputException : Exception()

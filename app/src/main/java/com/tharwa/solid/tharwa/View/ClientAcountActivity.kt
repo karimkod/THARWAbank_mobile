@@ -131,7 +131,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
         override fun doInBackground(vararg params: String?): Bitmap
         {
 
-            val inputStream = URL("https://serene-retreat-29274.herokuapp.com/images/customer/${params[0]}").openStream()
+            val inputStream = URL("http://192.168.43.5/images/customer/${params[0]}").openStream()
             Log.d("ClientAccountActivity","https://serene-retreat-29274.herokuapp.com/images/customer/${params[0]}")
             return BitmapFactory.decodeStream(inputStream)
 

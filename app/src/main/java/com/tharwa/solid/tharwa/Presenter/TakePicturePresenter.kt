@@ -1,5 +1,6 @@
 package com.tharwa.solid.tharwa.Presenter
 import android.util.Log
+import android.widget.Toast
 import com.tharwa.solid.tharwa.Contract.addPictureContract
 import com.tharwa.solid.tharwa.Remote.UserApiService
 import okhttp3.*
@@ -44,8 +45,6 @@ class TakePicturePresenter(val view:addPictureContract.View)
     {
         view.hidePictureMethodModal()
         view.dispatchTakePictureIntent()
-
-
     }
 
     fun fromCameraClicked()
@@ -76,22 +75,25 @@ class TakePicturePresenter(val view:addPictureContract.View)
         Log.d("Presenter",filePath)
         image = File(filePath)
         view.setImage(filePath as String)
+        //sendImage()
     }
 
     fun sendImage()
     {
-        val reqFile = RequestBody.create(MediaType.parse("image/*"), image!!)
-        val body = MultipartBody.Part.createFormData("upload", image!!.getName(), reqFile)
-        val name = RequestBody.create(MediaType.parse("text/plain"), "upload_test")
+        Log.d("TakePictureBefo  re",image?.path)
 
-        val req = UserApiService.createServiceForImage().postImage(body, name)
-        req.enqueue(object : retrofit2.Callback<ResponseBody> {
-            override fun onResponse(call: retrofit2.Call<ResponseBody>, response: retrofit2.Response<ResponseBody>) {
-                // Do Something
+        val reqFile = RequestBody.create(MediaType.parse("image/*"), image!!)
+        val body = MultipartBody.Part.createFormData("photo", image!!.name, reqFile)
+        val userID = RequestBody.create(okhttp3.MultipartBody.FORM,"7")
+        val req = UserApiService.createServiceForImage().postImage(body,userID)
+        req.enqueue(object : retrofit2.Callback<okhttp3.ResponseBody> {
+            override fun onResponse(call: retrofit2.Call<okhttp3.ResponseBody>, response: retrofit2.Response<ResponseBody>) {
+
+                Log.d("TakePicturePresenter", response.message())
             }
 
             override fun onFailure(call: retrofit2.Call<ResponseBody>, t: Throwable) {
-                t.printStackTrace()
+               t.printStackTrace()
             }
         })
     }

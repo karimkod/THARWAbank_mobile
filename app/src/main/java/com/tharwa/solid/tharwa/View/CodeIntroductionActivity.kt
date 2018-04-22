@@ -82,26 +82,22 @@ class CodeIntroductionActivity : AppCompatActivity(),FormInterface
                                 Log.d(TAG,usercd.body()?.toString())
                                 val intent =Intent(applicationContext, ClientAcountActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-
-
-                                //intent.putExtra("token",usercd.body()?.token)
                                 UserData.user = usercd.body()
                                 startActivity(intent)
-
                             }
                             else
                             {
                                 // display messages acording to the recieved code
                                 when(usercd.code())
                                 {
+                                    CodeStatus.err_401.status->
+                                        showDialogMessage(this,"Code invalide", "Le code que vous avez saisi est invalide")
                                     CodeStatus.err_400.status->
-                                        //invalide code
-                                        Toast.makeText(this@CodeIntroductionActivity,resources.getString(err_400),Toast.LENGTH_LONG).show()
-                                    CodeStatus.err_403.status->showDialogMessage("Le code est invalide", "Veuillez introduire le dernier code que vous avez reçu")
-                                        //Toast.makeText(this@CodeIntroductionActivity,resources.getString(new_code),Toast.LENGTH_LONG).show()
+                                        showDialogMessage(this,"Code invalide", "Le code doit être composé de 4 chiffre")
+                                    else->
+                                        showDialogMessage(this,"Oops", "Une erreur c'est produite, veuillez reéssayer plus tard")
 
                                 }
-                                //403 code expérer réssayer avec le nouveau code
                             }
                         },
                         { error->
@@ -127,18 +123,6 @@ class CodeIntroductionActivity : AppCompatActivity(),FormInterface
             progressbar_code.visibility = ProgressBar.INVISIBLE
             black_overlay_code.visibility = View.INVISIBLE
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-        }
-
-
-        fun showDialogMessage(title:String,message:String)
-        {
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle(title)
-            builder.setMessage(message)
-            builder.setNeutralButton("Réessayer", DialogInterface.OnClickListener { _, _ ->
-
-            })
-            builder.create().show()
         }
 
 

@@ -32,7 +32,13 @@
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
 
-        <activity android:name=".View.LandingPage"></activity>
+        <activity android:name=".View.LandingPage">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Controller.LoginActivity"
             android:windowSoftInputMode="adjustUnspecified" />
@@ -48,11 +54,7 @@
             android:name=".View.ClientAcountActivity"
             android:exported="true"></activity>
         <activity android:name=".Presenter.ExchangeRateActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".View.VirementInterneTh"></activity>
     </application>
