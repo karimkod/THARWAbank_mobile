@@ -16,6 +16,7 @@ import com.tharwa.solid.tharwa.Contract.SignUpContrat
 import com.tharwa.solid.tharwa.FormInterface
 import com.tharwa.solid.tharwa.InvalideInputException
 import com.tharwa.solid.tharwa.Presenter.SignUpPresenter
+import com.tharwa.solid.tharwa.Presenter.TakePicturePresenter
 import com.tharwa.solid.tharwa.R
 import com.tharwa.solid.tharwa.enumration.InputType
 import kotlinx.android.synthetic.main.sign_up_activity.*
@@ -37,9 +38,6 @@ class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentIntera
     override val type get() = if (simple.isChecked) 0 else 1
 
 
-
-    override var takePictureFragment:TakePictureFragment? = null
-
     val loadingFragment by lazy {LoadingFragment()}
 
     val communeIdArray by lazy { resources.obtainTypedArray(R.array.wilaya_commune) }
@@ -54,8 +52,8 @@ class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentIntera
         supportActionBar?.title = "Inscription"
         setUpWilayaSpinner()
         setUpCommuneSpinner(0)
-        presenter.picturePresenter = takePictureFragment?.presenter
-        sign_up.setOnClickListener({( presenter ).onConnectClicked()})
+
+        sign_up.setOnClickListener({presenter.onSignUpClicked()})
 
 
     }
@@ -139,6 +137,11 @@ class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentIntera
         this.showMessage(message)
     }
 
+
+    override fun setTakePicturePresenter(picturePresenter: TakePicturePresenter)
+    {
+        presenter.picturePresenter = picturePresenter
+    }
 
 
 }

@@ -1,9 +1,6 @@
 package com.tharwa.solid.tharwa.Presenter
 import android.util.Log
-import android.widget.Toast
 import com.tharwa.solid.tharwa.Contract.addPictureContract
-import com.tharwa.solid.tharwa.Remote.UserApiService
-import okhttp3.*
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -14,41 +11,37 @@ import java.util.*
  * Created by thinkpad on 27/03/2018.
  */
 
-class InexistantImage : Exception()
+class MissingPicture : Exception()
 
-class TakePicturePresenter(val view:addPictureContract.View)
-{
-    private var image:File? = null
+class TakePicturePresenter(val view:addPictureContract.View) {
+    private var image: File? = null
 
-    val getImage:File?
-        @Throws(InexistantImage::class)
-        get() { if (image == null)
-        {
-            view.signalMissingImage()
-            throw InexistantImage()
-        } else
-            return image
-        }
+    val getImage: File?
+        get() =
+            if (image == null) {
+                view.signalMissingImage()
+                throw MissingPicture()
+
+            } else
+                 image
+
 
 
 
     val REQUEST_IMAGE_CAPTURE = 1
     val REQUEST_IMAGE_GALLERY = 2
 
-    fun addPictureClicked()
-    {
+    fun addPictureClicked() {
         view.clearMissingImageError()
         view.showPictureMethodModal()
     }
 
-    fun fromGalleryClicked()
-    {
+    fun fromGalleryClicked() {
         view.hidePictureMethodModal()
         view.dispatchTakePictureIntent()
     }
 
-    fun fromCameraClicked()
-    {
+    fun fromCameraClicked() {
         view.hidePictureMethodModal()
         view.dispatchChoosePictureIntent()
     }
@@ -63,38 +56,15 @@ class TakePicturePresenter(val view:addPictureContract.View)
         return image as File
     }
 
-    fun ImageReceived()
-    {
-        Log.d("Presenter",image?.path)
+    fun ImageReceived() {
+        Log.d("Presenter", image?.path)
         view.setImage(image?.path as String)
-        //sendImage()
+
     }
 
-    fun ImageReceived(filePath:String?)
-    {
-        Log.d("Presenter",filePath)
+    fun ImageReceived(filePath: String?) {
+        Log.d("Presenter", filePath)
         image = File(filePath)
         view.setImage(filePath as String)
-        //sendImage()
-    }
-
-    fun sendImage()
-    {
-        Log.d("TakePictureBefo  re",image?.path)
-
-        val reqFile = RequestBody.create(MediaType.parse("image/*"), image!!)
-        val body = MultipartBody.Part.createFormData("photo", image!!.name, reqFile)
-        val userID = RequestBody.create(okhttp3.MultipartBody.FORM,"7")
-        val req = UserApiService.createServiceForImage().postImage(body,userID)
-        req.enqueue(object : retrofit2.Callback<okhttp3.ResponseBody> {
-            override fun onResponse(call: retrofit2.Call<okhttp3.ResponseBody>, response: retrofit2.Response<ResponseBody>) {
-
-                Log.d("TakePicturePresenter", response.message())
-            }
-
-            override fun onFailure(call: retrofit2.Call<ResponseBody>, t: Throwable) {
-               t.printStackTrace()
-            }
-        })
     }
 }

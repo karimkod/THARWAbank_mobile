@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.support.design.widget.TextInputLayout
+import android.support.v7.app.AppCompatActivity
+import android.widget.ScrollView
 import com.tharwa.solid.tharwa.Bussiness.InputValidator
 import com.tharwa.solid.tharwa.enumration.InputType
 
@@ -21,6 +23,12 @@ interface FormInterface
         if(error != null)
         {
             input.error = error
+            if(context is AppCompatActivity)
+            {
+                context.findViewById<ScrollView>(R.id.scroll_view)?.apply {
+                    post({kotlin.run { this.smoothScrollTo(0,input.top) }})
+                }
+            }
             throw InvalideInputException()
         }
     }

@@ -135,7 +135,7 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
                             hideProgressDialog()
                             // Display the error as it is cause it's related to system not reponse
                             //Toast.makeText(this@LoginActivity,error.message,Toast.LENGTH_LONG).show()
-                            showDialogMessage(this,"Oops",error.message.toString())
+                            showDialogMessage(this,"Oops","Veuillez réessayer plus tard".toString())
                         }
                 )
     }

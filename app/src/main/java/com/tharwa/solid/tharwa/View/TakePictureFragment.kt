@@ -12,10 +12,13 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.support.v4.app.Fragment
 import android.support.v4.content.FileProvider
+import android.support.v7.app.AppCompatActivity
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ScrollView
+import android.widget.Toast
 import com.tharwa.solid.tharwa.Contract.addPictureContract
 import com.tharwa.solid.tharwa.Presenter.TakePicturePresenter
 import com.tharwa.solid.tharwa.R
@@ -52,8 +55,8 @@ class TakePictureFragment : Fragment(), addPictureContract.View {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
-            context.takePictureFragment = this
-            mListener = context
+
+            mListener = context.apply {context.setTakePicturePresenter(presenter)}
 
         } else {
             throw RuntimeException(context!!.toString() + " must implement OnFragmentInteractionListener")
@@ -163,16 +166,29 @@ class TakePictureFragment : Fragment(), addPictureContract.View {
     override fun clearMissingImageError()
     {
         imageLayout.error = ""
+
     }
 
     override fun signalMissingImage()
     {
         imageLayout.error = "Veuillez séléctionner une photo de vous"
+        mListener?.scrollToImage(view)
+        Toast.makeText(context,"Hello",Toast.LENGTH_LONG).show()
+
     }
 
-    interface OnFragmentInteractionListener {
-        var takePictureFragment: TakePictureFragment?
-
+    interface OnFragmentInteractionListener
+    {
+        fun setTakePicturePresenter(picturePresenter: TakePicturePresenter)
+        fun scrollToImage(v:View?)
+        {
+            if(this is AppCompatActivity)
+            {
+                this.findViewById<ScrollView>(R.id.scroll_view)?.apply {
+                    post({kotlin.run { this.smoothScrollTo(0,v!!.top )}})
+                }
+            }
+        }
     }
 
 }

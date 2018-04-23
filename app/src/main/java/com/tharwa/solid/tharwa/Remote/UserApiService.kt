@@ -61,9 +61,9 @@ interface UserApiService {
     //create the service
     companion object {
 
-        private val URL="https://serene-retreat-29274.herokuapp.com/"
+        //private val URL="https://serene-retreat-29274.herokuapp.com/"
 
-        //val bsUrl="https://serene-retreat-29274.herokuapp.com/"
+        private val URL="http://192.168.0.165/"
 
         fun create(): UserApiService {
 
