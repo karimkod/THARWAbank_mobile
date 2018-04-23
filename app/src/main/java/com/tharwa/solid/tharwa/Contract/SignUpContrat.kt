@@ -15,6 +15,7 @@ interface SignUpContrat
         fun isValidInputs():Boolean
         fun showProgressDialog()
         fun finish()
+        fun showDialogMessage(title:String, message:String)
         val mail:String
         val password :String
         val phone_number :String

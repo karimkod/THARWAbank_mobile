@@ -143,5 +143,10 @@ class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentIntera
         presenter.picturePresenter = picturePresenter
     }
 
+    override fun showDialogMessage(title: String, message: String)
+    {
+        showDialogMessage(this,title,message)
+    }
+
 
 }

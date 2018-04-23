@@ -16,14 +16,14 @@ class MissingPicture : Exception()
 class TakePicturePresenter(val view:addPictureContract.View) {
     private var image: File? = null
 
-    val getImage: File?
+    val getImage: File
         get() =
             if (image == null) {
                 view.signalMissingImage()
                 throw MissingPicture()
 
             } else
-                 image
+                 image!!
 
 
 
