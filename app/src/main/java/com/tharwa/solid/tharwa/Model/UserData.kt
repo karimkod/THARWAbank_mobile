@@ -5,5 +5,7 @@ package com.tharwa.solid.tharwa.Model
  */
 object UserData
 {
+
     var user:TokenResponse? = null
+    var currentAccoutInfo:AccountInfo? = null
 }

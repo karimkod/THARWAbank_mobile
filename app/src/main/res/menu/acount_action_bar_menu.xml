@@ -11,4 +11,9 @@
         android:title="notification"
         app:showAsAction="always" />
 
+    <item android:id="@+id/actualiser"
+        android:icon="@drawable/ic_refresh_black_24dp"
+        app:showAsAction="always"
+        android:title="actualiser" />
+
 </menu>

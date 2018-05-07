@@ -82,7 +82,7 @@ class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentIntera
 
     override fun isValidInputs(): Boolean
     {
-        clearErrors(arrayOf(nom,prenom,email,motdepasse,phone,fonction,wilayaTextInput,adresse))
+        clearErrors(nom,prenom,email,motdepasse,phone,fonction,wilayaTextInput,adresse)
         try {
             verifyField(lastName, nom, InputType.NAME, true, this)
             verifyField(firstName, prenom, InputType.NAME, true, this)
@@ -147,6 +147,8 @@ class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentIntera
     {
         showDialogMessage(this,title,message)
     }
+
+
 
 
 }

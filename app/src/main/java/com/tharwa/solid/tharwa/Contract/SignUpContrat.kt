@@ -10,10 +10,11 @@ interface SignUpContrat
 {
     interface View:BaseActivity<SignUpPresenter>
     {
-        fun hideProgressDialog()
+
         fun showSuccessDialog()
         fun isValidInputs():Boolean
         fun showProgressDialog()
+        fun hideProgressDialog()
         fun finish()
         fun showDialogMessage(title:String, message:String)
         val mail:String

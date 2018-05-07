@@ -29,7 +29,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
 
         <activity android:name=".View.LandingPage">
@@ -52,11 +52,21 @@
         <activity android:name=".Controller.CodeIntroductionActivity" />
         <activity
             android:name=".View.ClientAcountActivity"
-            android:exported="true"></activity>
-        <activity android:name=".Presenter.ExchangeRateActivity">
+            android:exported="true" />
+        <activity android:name=".Presenter.ExchangeRateActivity"></activity>
+        <activity android:name=".View.VirementInterneTh" />
 
+
+        <activity android:name=".View.VirementTharwaActivity"
+            android:parentActivityName=".View.ClientAcountActivity"
+            android:exported="true">
+
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.ClientAcountActivity" />
         </activity>
-        <activity android:name=".View.VirementInterneTh"></activity>
     </application>
 
 </manifest>

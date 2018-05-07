@@ -46,6 +46,25 @@ object InputValidator {
                     return context.resources.getString(R.string.wilayaInvalide)
             }
 
+            InputType.ACCOUNTNUMBER ->
+            {
+                if(text.length < 6)
+                    return "Le numéro de compte doit contenir 6 chiffres"
+
+            }
+
+            InputType.MONTANT ->
+            {
+                try {
+                    val montantFloat = text.toFloat()
+                    if (montantFloat <= 0)
+                        return "le montant doit être supriéure à zero"
+                }catch (e:NumberFormatException)
+                {
+                    return "Veuillez introduire un montant valide"
+                }
+
+            }
             else -> return null
 
         }

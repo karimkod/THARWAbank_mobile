@@ -31,7 +31,7 @@ data class TokenResponse
     @SerializedName("name") val name:String,
     @SerializedName("photo") val photoPath:String,
     @SerializedName("type") val type:Int,
-    @SerializedName("account_types") val accountTypes:Array<Int>,
+    @SerializedName("accounts_types") val accountTypes:Array<Int>,
     @SerializedName("current_account") val currentAccount:currentAccountDetail,
     @SerializedName("user_id") val userId: String,
     @SerializedName("access_token") val token: String,
@@ -42,8 +42,13 @@ data class TokenResponse
 data class currentAccountDetail(
     @SerializedName("account_code") val accountCode:String,
     @SerializedName("balance") val balance:Double
-
     )
+
+data class Account(
+        val type:String,
+        val id: Int
+)
+
 //The request to send to the restful API
 data class UserCreate
 (
@@ -103,4 +108,29 @@ data class VirmentInterne
 )
 
 
+data class VirementTharwa
+(
+        @SerializedName("num_acc_receiver") val numAccount:Int,
+        @SerializedName("montant_virement") val montant:Float,
+        @SerializedName("type")val typeVirement:Int = 0
+)
 
+data class DestinationAccoutInfo
+(
+        @SerializedName("name") val name:String,
+        @SerializedName("commune") val commune:String,
+        @SerializedName("wilaya") val wilaya: String
+)
+
+
+data class AccountInfo(
+        @SerializedName("id") val id:Int,
+        @SerializedName("currency_code") val currency:String,
+        @SerializedName("type") val type:Int,
+        @SerializedName("balance") val balance:Double,
+        @SerializedName("status") val status:Int
+
+
+
+
+)

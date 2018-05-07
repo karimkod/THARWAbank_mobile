@@ -103,6 +103,7 @@ class CodeIntroductionActivity : AppCompatActivity(),FormInterface
                         { error->
 
                             hideProgressDialog()
+                            showDialogMessage(this,"Oops", error.message.toString())//"Une erreur c'est produite, veuillez reéssayer plus tard")
                             Toast.makeText(this@CodeIntroductionActivity,"Hello someone",Toast.LENGTH_LONG).show()
 
                         }

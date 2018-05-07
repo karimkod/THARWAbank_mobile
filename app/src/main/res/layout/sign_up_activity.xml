@@ -35,13 +35,12 @@
             <fragment
                 android:id="@+id/headlines_fragment"
                 android:name="com.tharwa.solid.tharwa.View.TakePictureFragment"
-                android:layout_width="237dp"
-                android:layout_height="192dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="10dp"
-                android:layout_weight="1"
                 tools:layout="@layout/take_picture_fragment" />
 
             <android.support.v7.widget.AppCompatTextView

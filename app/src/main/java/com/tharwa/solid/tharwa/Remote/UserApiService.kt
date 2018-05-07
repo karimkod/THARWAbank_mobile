@@ -57,13 +57,30 @@ interface UserApiService {
                         @Body virement:VirmentInterne): Observable<Response<com.tharwa.solid.tharwa.Model.Response>>
 
 
+    @Headers("Accept:application/json")
+    @POST("virements_internes_thw")
+    fun virementToTharwa(@Header("Authorization")token:String,@Body virementTharwa: VirementTharwa):Observable<Response<ResponseBody>>
+
+
+    @GET("accounts/name/{id}")
+    fun getDestinationAccountInfo(@Header("Authorization")token:String, @Path("id")id:Int):Observable<Response<DestinationAccoutInfo>>
+
+
+    @GET("accounts/type/{type}")
+    fun getAccountInfo(@Header("Authorization")token:String,@Path("type")type:Int):Observable<Response<AccountInfo>>
+
+
+    @Multipart
+    @Headers("Accept:multipart/form-data")
+    @POST("virements_internes_thw")
+    fun VirementToTharwa(@Header("Authorization")token:String,@Part image: okhttp3.MultipartBody.Part ,@Part("num_acc_receiver") destination:okhttp3.RequestBody,@Part("montant_virement") montant:okhttp3.RequestBody,@Part("type") type:okhttp3.RequestBody):retrofit2.Call<okhttp3.ResponseBody>
 
     //create the service
     companion object {
 
         //private val URL="https://serene-retreat-29274.herokuapp.com/"
 
-        private val URL="http://192.168.0.165/"
+        val URL="http://192.168.43.5/"
 
         fun create(): UserApiService {
 

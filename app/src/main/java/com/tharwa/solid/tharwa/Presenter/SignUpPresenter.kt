@@ -60,9 +60,6 @@ class SignUpPresenter (val mView:SignUpContrat.View){
                                 mView.showDialogMessage(title,message)
                             }
 
-
-
-
                         },
                         { error ->
                             mView.hideProgressDialog()

@@ -33,7 +33,7 @@ interface FormInterface
         }
     }
 
-    fun clearErrors(inputs:Array<TextInputLayout>)
+    fun clearErrors(vararg inputs:TextInputLayout)
     {
         for(i in inputs)
             i.error = ""
