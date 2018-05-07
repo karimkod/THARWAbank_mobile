@@ -24,7 +24,7 @@ import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
-import java.net.MalformedURLException
+import com.tharwa.solid.tharwa.Remote.UserApiService
 import java.net.URL
 
 
@@ -131,8 +131,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
         override fun doInBackground(vararg params: String?): Bitmap
         {
 
-            val inputStream = URL("http://192.168.43.5/images/customer/${params[0]}").openStream()
-            Log.d("ClientAccountActivity","https://serene-retreat-29274.herokuapp.com/images/customer/${params[0]}")
+            val inputStream = URL("${UserApiService.URL}images/customer/${params[0]}").openStream()
             return BitmapFactory.decodeStream(inputStream)
 
         }
@@ -149,6 +148,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val row = inflater.inflate(R.layout.dialog_listview,null,false)
         val lv = row.findViewById<ListView>(R.id.transfer_type_list)
+        Log.d("ClientAccountActivity",UserData.user!!.accountTypes.toString())
         lv.adapter = TransferListAdapter(UserData.user!!.accountTypes,this)
         lv.onItemClickListener = this
         dialogBuilder.setView(row)
@@ -164,7 +164,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
             //Toast.makeText(this,"Virrerrr",Toast.LENGTH_SHORT).show()
         }else if(position == 1)
         {
-            Toast.makeText(this,"Pas implémenté",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this ,"Pas implémenté",Toast.LENGTH_SHORT).show()
         }
     }
 
