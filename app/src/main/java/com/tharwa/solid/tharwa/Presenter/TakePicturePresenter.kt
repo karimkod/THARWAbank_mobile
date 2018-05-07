@@ -12,7 +12,6 @@ import java.util.*
  */
 
 class MissingPicture : Exception()
-
 class TakePicturePresenter(val view:addPictureContract.View) {
     private var image: File? = null
 

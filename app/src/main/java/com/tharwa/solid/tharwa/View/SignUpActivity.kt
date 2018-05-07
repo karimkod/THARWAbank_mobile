@@ -133,8 +133,11 @@ class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentIntera
 
     override  fun showMessage(message:String)
     {
-
         this.showMessage(message)
+    }
+
+    override fun showTag(tag: String, message: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 
@@ -147,6 +150,5 @@ class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentIntera
     {
         showDialogMessage(this,title,message)
     }
-
 
 }

@@ -24,4 +24,11 @@
     <string name="balance_count">Balance</string>
 
 
+    <string name="compte_from">Sélectionner votre compte source:</string>
+    <string name="compte_to">Sélectionner le compte de destination:</string>
+    <string name="montant">Montant:</string>
+    <string name="confirme_virme">Confirmer</string>
+
+    <string name="new_vir">Nouveau Virement</string>
+
 </resources>

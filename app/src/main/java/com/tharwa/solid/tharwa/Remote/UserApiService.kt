@@ -56,15 +56,17 @@ interface UserApiService {
     fun virementInterne(@Header("Authorization")token:String,
                         @Body virement:VirmentInterne): Observable<Response<com.tharwa.solid.tharwa.Model.Response>>
 
+    //virement interne to same user
+    @Headers("Accept:application/json")
+    @POST("/virements_internes")
+    fun virToMe(@Header("Authorization")token:String,
+                @Body virment: VirToMe):Observable<Response<com.tharwa.solid.tharwa.Model.Response>>
 
 
     //create the service
     companion object {
-
-        //private val URL="https://serene-retreat-29274.herokuapp.com/"
-
-        private val URL="http://192.168.0.165/"
-
+        private val URL="https://serene-retreat-29274.herokuapp.com/"
+        //private val URL="http://192.168.1.10/"
         fun create(): UserApiService {
 
             val retrofit = Retrofit.Builder()

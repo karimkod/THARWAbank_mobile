@@ -29,15 +29,15 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
 
         <activity android:name=".View.LandingPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".Controller.LoginActivity"
@@ -52,11 +52,12 @@
         <activity android:name=".Controller.CodeIntroductionActivity" />
         <activity
             android:name=".View.ClientAcountActivity"
-            android:exported="true"></activity>
-        <activity android:name=".Presenter.ExchangeRateActivity">
+            android:exported="true">
 
         </activity>
-        <activity android:name=".View.VirementInterneTh"></activity>
-    </application>
+        <activity android:name=".View.ExchangeRateActivity"></activity>
 
+        <activity android:name=".View.Virment.VirToMeActivity" android:windowSoftInputMode="stateHidden">
+        </activity>
+    </application>
 </manifest>

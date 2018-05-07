@@ -1,9 +1,9 @@
 package com.tharwa.solid.tharwa.Model
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import org.w3c.dom.Text
 import java.io.File
+import java.lang.reflect.Constructor
 
 /**
  * Created by LE on 03/03/2018.
@@ -31,9 +31,10 @@ data class TokenResponse
     @SerializedName("name") val name:String,
     @SerializedName("photo") val photoPath:String,
     @SerializedName("type") val type:Int,
-    @SerializedName("account_types") val accountTypes:Array<Int>,
+    @SerializedName("accounts_types") val accountTypes:Array<Int>,
     @SerializedName("current_account") val currentAccount:currentAccountDetail,
     @SerializedName("user_id") val userId: String,
+    @SerializedName("user_type") val user_type: String,
     @SerializedName("access_token") val token: String,
     @SerializedName("expires_in") val expiresIn: String
 
@@ -47,7 +48,6 @@ data class currentAccountDetail(
 //The request to send to the restful API
 data class UserCreate
 (
-
     @SerializedName("email") val email:String,
     @SerializedName("password") val password:String,
     @SerializedName("phone_number") val Tel:String,
@@ -57,6 +57,7 @@ data class UserCreate
     @SerializedName("wilaya") val wilaya:String,
     @SerializedName("commune") val commune:String,
     @SerializedName("type") val type:Int
+
 )
 // The response of the first request
 data class CreateResponse
@@ -101,6 +102,17 @@ data class VirmentInterne
 @SerializedName("montant_virement")val montant_virement:Int,
 @SerializedName("type") val type:Int
 )
+
+
+data class VirToMe
+(
+        @SerializedName("type_acc_sender") val type_acc_sender:Int,
+        @SerializedName("type_acc_receiver") val type_acc_receiver:Int,
+        @SerializedName("montant_virement") val montant_virement:Int,
+        @SerializedName("type") val type:Int
+)
+
+
 
 
 

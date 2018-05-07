@@ -18,6 +18,4 @@ interface addPictureContract
         fun signalMissingImage()
         fun clearMissingImageError()
     }
-
-
 }

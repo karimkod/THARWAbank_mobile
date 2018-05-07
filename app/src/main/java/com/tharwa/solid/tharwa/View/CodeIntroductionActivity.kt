@@ -1,7 +1,5 @@
 package com.tharwa.solid.tharwa.Controller
 
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -12,7 +10,6 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.tharwa.solid.tharwa.FormInterface
 import com.tharwa.solid.tharwa.InvalideInputException
-import com.tharwa.solid.tharwa.Model.UserClass
 import com.tharwa.solid.tharwa.Model.UserCode
 import com.tharwa.solid.tharwa.Model.UserData
 import com.tharwa.solid.tharwa.R
@@ -22,7 +19,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.code_introduction_activity.*
-import com.tharwa.solid.tharwa.R.string.*
 import com.tharwa.solid.tharwa.View.ClientAcountActivity
 import com.tharwa.solid.tharwa.enumration.InputType
 
@@ -41,7 +37,6 @@ class CodeIntroductionActivity : AppCompatActivity(),FormInterface
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.code_introduction_activity)
-        //Toast.makeText(this@CodeIntroductionActivity,intent.getStringExtra("mail"),Toast.LENGTH_LONG).show()
         valider.setOnClickListener({validerClicked()})
     }
 
@@ -56,6 +51,7 @@ class CodeIntroductionActivity : AppCompatActivity(),FormInterface
             verifyField(nonce,code,InputType.CODE,true,this)
             val usercode = UserCode(mail.toString(), passwd.toString(), nonce)
             loginCode(usercode)
+            Log.e("errlogin", UserData.user.toString())
         }catch  (e:InvalideInputException)
         {
 
@@ -73,16 +69,13 @@ class CodeIntroductionActivity : AppCompatActivity(),FormInterface
                 .subscribe(
 
                         { usercd ->
+                            Log.e("errlogin",usercd.body().toString())
                             hideProgressDialog()
                             if (usercd.isSuccessful)
                             {
-                                // get the token
-                                //open the Acceuil activity
-                                //Toast.makeText(this@CodeIntroductionActivity,usercd.message(),Toast.LENGTH_LONG).show()
-                                Log.d(TAG,usercd.body()?.toString())
+                                UserData.user = usercd.body()
                                 val intent =Intent(applicationContext, ClientAcountActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                                UserData.user = usercd.body()
                                 startActivity(intent)
                             }
                             else
@@ -96,15 +89,13 @@ class CodeIntroductionActivity : AppCompatActivity(),FormInterface
                                         showDialogMessage(this,"Code invalide", "Le code doit être composé de 4 chiffre")
                                     else->
                                         showDialogMessage(this,"Oops", "Une erreur c'est produite, veuillez reéssayer plus tard")
-
                                 }
                             }
                         },
                         { error->
-
                             hideProgressDialog()
-                            Toast.makeText(this@CodeIntroductionActivity,"Hello someone",Toast.LENGTH_LONG).show()
-
+                            Log.e("errlogin",error.message.toString())
+                           Toast.makeText(this@CodeIntroductionActivity,error.message,Toast.LENGTH_LONG).show()
                         }
                 )
     }

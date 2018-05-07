@@ -1,7 +1,9 @@
 package com.tharwa.solid.tharwa.View
 
 import Adapters.TransferListAdapter
+import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
@@ -24,13 +26,13 @@ import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
+import com.tharwa.solid.tharwa.View.Virment.VirToMeActivity
+import com.tharwa.solid.tharwa.View.Virment.VirToMeFragment
 import java.net.MalformedURLException
 import java.net.URL
 
 
 class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener {
-
-
     private var pageAdapter: CostomPagerAdapter? = null
     private var pager: ViewPager? = null
     protected var navigatorView:NavigationView? = null
@@ -46,16 +48,6 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
             setTitle("THARWA")
         }
 
-        // les fragments de la tab Barre
-        pageAdapter = CostomPagerAdapter(supportFragmentManager)
-        //pager = findViewById<ViewPager>(R.id.homeViewPager)
-
-        pageAdapter?.addFragment(VirementsFragment(), "Virements")
-        pageAdapter?.addFragment(CommissionFragment(), "Commissions")
-
-        pager?.adapter = pageAdapter
-        //homeTabBarre.setupWithViewPager(pager)
-
        // buttomNavigation = findViewById(R.id.bottom_navigation)
         BottomSheetBehavior.from(floatingButtons)
 
@@ -64,8 +56,6 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
         Log.d("ClientAccountActivity",UserData.user.toString())
 
         transfer_money.setOnClickListener{openTransferDialog()}
-
-
 
     }
 
@@ -131,7 +121,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
         override fun doInBackground(vararg params: String?): Bitmap
         {
 
-            val inputStream = URL("http://192.168.43.5/images/customer/${params[0]}").openStream()
+          val inputStream = URL("http://192.168.43.5/images/customer/${params[0]}").openStream()
             Log.d("ClientAccountActivity","https://serene-retreat-29274.herokuapp.com/images/customer/${params[0]}")
             return BitmapFactory.decodeStream(inputStream)
 
@@ -145,28 +135,43 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
     fun openTransferDialog()
     {
-        val dialogBuilder = AlertDialog.Builder(this)
+       val dialogBuilder = AlertDialog.Builder(this)
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val row = inflater.inflate(R.layout.dialog_listview,null,false)
         val lv = row.findViewById<ListView>(R.id.transfer_type_list)
-        lv.adapter = TransferListAdapter(UserData.user!!.accountTypes,this)
-        lv.onItemClickListener = this
-        dialogBuilder.setView(row)
-        dialogBuilder.setTitle("Quel type de virement?")
-        val dialog = dialogBuilder.create()
-        dialog.show()
-    }
 
+            lv.adapter = TransferListAdapter(UserData.user!!.accountTypes,this)
+            lv.onItemClickListener = this
+            dialogBuilder.setView(row)
+            dialogBuilder.setTitle("Quel type de virement?")
+            val dialog = dialogBuilder.create()
+            dialog.show()
+
+
+
+    }
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
     {
-        if(position == 0)
+        when(position)
         {
-            //Toast.makeText(this,"Virrerrr",Toast.LENGTH_SHORT).show()
-        }else if(position == 1)
-        {
-            Toast.makeText(this,"Pas implémenté",Toast.LENGTH_SHORT).show()
+            0->Toast.makeText(this,"Virrerrr",Toast.LENGTH_SHORT).show()
+            1->{
+                Toast.makeText(this,"Pas implémenté",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,UserData.user!!.accountTypes.toString(),Toast.LENGTH_LONG).show()
+            }
+            2->{
+                if (UserData.user!!.accountTypes.size==1)
+                    Toast.makeText(this,"Vous avez uniquemetent le compte courant" +
+                            "veuillez créer un autre compte",Toast.LENGTH_SHORT).show()
+                else
+                {
+                    val dialog = VirToMeFragment()
+                    val ft = supportFragmentManager.beginTransaction()
+                    dialog.show(ft, ContentValues.TAG)
+                }
+            }
+            else->{}
         }
+
     }
-
-
 }
