@@ -95,6 +95,22 @@ data class Response
         @SerializedName("message") val message:String
 )
 
+
+data class ExchangeRateResponse
+(
+        @SerializedName("Euro") val Euro:String,
+        @SerializedName("USDollars") val USDollars:String ,
+        @SerializedName("TurkeyLira") val TurkeyLira:String ,
+        @SerializedName("CanadaDollars") val CanadaDollars:String ,
+        @SerializedName("SaouditRyal") val SaouditRyal:String ,
+        @SerializedName("ChinaYuan") val ChinaYuan:String,
+        @SerializedName("MarocDinars") val MarocDinars:String ,
+        @SerializedName("TunisiaDinars") val TunisiaDinars:String ,
+        @SerializedName("PoundSterling") val PoundSterling:String ,
+        @SerializedName("EmaratDirham") val EmaratDirham:String
+
+)
+
 data class VirmentInterne
 (
 @SerializedName("num_acc_sender") val num_acc_sender:Int ,
@@ -129,8 +145,5 @@ data class AccountInfo(
         @SerializedName("type") val type:Int,
         @SerializedName("balance") val balance:Double,
         @SerializedName("status") val status:Int
-
-
-
 
 )

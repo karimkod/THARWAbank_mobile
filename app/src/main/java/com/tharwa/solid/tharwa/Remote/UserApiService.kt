@@ -70,6 +70,10 @@ interface UserApiService {
     fun getAccountInfo(@Header("Authorization")token:String,@Path("type")type:Int):Observable<Response<AccountInfo>>
 
 
+    @GET("/currency")
+    fun getExchangeRate( @Header("Authorization")token:String ): Observable<Response<com.tharwa.solid.tharwa.Model.ExchangeRateResponse>>
+
+
     @Multipart
     @Headers("Accept:multipart/form-data")
     @POST("virements_internes_thw")
@@ -78,7 +82,7 @@ interface UserApiService {
     //create the service
     companion object {
 
-        //private val URL="https://serene-retreat-29274.herokuapp.com/"
+        //val URL="https://serene-retreat-29274.herokuapp.com/"
 
         val URL="http://192.168.43.5/"
 

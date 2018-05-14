@@ -73,10 +73,16 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
         transfer_money.setOnClickListener{openTransferDialog()}
 
-
+        exchange_rate.setOnClickListener{  openExchangeRate()}
 
     }
 
+    fun  openExchangeRate(){
+
+        val intent =Intent(this, ExchangeRateActivity::class.java)
+        startActivity(intent)
+
+    }
 
     override fun onResume()
     {   super.onResume()
