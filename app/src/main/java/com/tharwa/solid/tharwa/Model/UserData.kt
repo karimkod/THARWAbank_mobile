@@ -7,5 +7,5 @@ object UserData
 {
 
     var user:TokenResponse? = null
-    var currentAccoutInfo:AccountInfo? = null
+    var currentAccoutInfo:Account? = null
 }

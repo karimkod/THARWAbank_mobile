@@ -4,6 +4,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import org.w3c.dom.Text
 import java.io.File
+import java.util.*
 
 /**
  * Created by LE on 03/03/2018.
@@ -32,22 +33,42 @@ data class TokenResponse
     @SerializedName("photo") val photoPath:String,
     @SerializedName("type") val type:Int,
     @SerializedName("accounts_types") val accountTypes:Array<Int>,
-    @SerializedName("current_account") val currentAccount:currentAccountDetail,
+    @SerializedName("current_account") val currentAccount:Account,
     @SerializedName("user_id") val userId: String,
     @SerializedName("access_token") val token: String,
-    @SerializedName("expires_in") val expiresIn: String
+    @SerializedName("expires_in") val expiresIn: Int
 
-)
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
 
-data class currentAccountDetail(
-    @SerializedName("account_code") val accountCode:String,
-    @SerializedName("balance") val balance:Double
-    )
+        other as TokenResponse
 
-data class Account(
-        val type:String,
-        val id: Int
-)
+        if (name != other.name) return false
+        if (photoPath != other.photoPath) return false
+        if (type != other.type) return false
+        if (!Arrays.equals(accountTypes, other.accountTypes)) return false
+        if (currentAccount != other.currentAccount) return false
+        if (userId != other.userId) return false
+        if (token != other.token) return false
+        if (expiresIn != other.expiresIn) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + photoPath.hashCode()
+        result = 31 * result + type
+        result = 31 * result + Arrays.hashCode(accountTypes)
+        result = 31 * result + currentAccount.hashCode()
+        result = 31 * result + userId.hashCode()
+        result = 31 * result + token.hashCode()
+        result = 31 * result + expiresIn
+        return result
+    }
+}
 
 //The request to send to the restful API
 data class UserCreate
@@ -120,17 +141,4 @@ data class DestinationAccoutInfo
         @SerializedName("name") val name:String,
         @SerializedName("commune") val commune:String,
         @SerializedName("wilaya") val wilaya: String
-)
-
-
-data class AccountInfo(
-        @SerializedName("id") val id:Int,
-        @SerializedName("currency_code") val currency:String,
-        @SerializedName("type") val type:Int,
-        @SerializedName("balance") val balance:Double,
-        @SerializedName("status") val status:Int
-
-
-
-
 )

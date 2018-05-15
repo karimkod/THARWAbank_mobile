@@ -19,7 +19,7 @@ interface FormInterface
     @Throws(InvalideInputException::class)
     fun verifyField(text:String, input: TextInputLayout, type: InputType, required:Boolean,context: Context)
     {
-        val error = InputValidator.checkInput(text,context,type,required)
+        val error = InputValidator.checkInput(text,context.resources,type,required)
         if(error != null)
         {
             input.error = error

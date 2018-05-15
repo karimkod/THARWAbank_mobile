@@ -35,6 +35,9 @@
     <string name="wilaya_label">Wilaya :</string>
     <string name="commune_label">Commune :</string>
     <string name="proceding">Procédant</string>
+    <string name="accountNumberInvalide">Le numéro de compte doit contenir 6 chiffres</string>
+    <string name="montantNegatif">le montant doit être supriéure à zero</string>
+    <string name="montantInvalide">Veuillez introduire un montant valide</string>
 
 
 </resources>

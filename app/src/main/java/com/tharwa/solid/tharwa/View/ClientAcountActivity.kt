@@ -85,7 +85,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
         nav_view.getHeaderView(0).user_name_view?.text = user.name
 
         loadImageTask(navigatorView?.getHeaderView(0)!!.user_photo!!).execute(user.photoPath)
-        id_count_view.text = user.currentAccount.accountCode
+        id_count_view.text = user.currentAccount.id.toString()
         //balance_count_view.text = "${user.currentAccount.balance} DZD"
         updateBalance()
 

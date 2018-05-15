@@ -1,6 +1,8 @@
 package com.tharwa.solid.tharwa.Remote
 import com.tharwa.solid.tharwa.Model.*
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import okhttp3.Call
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -67,7 +69,7 @@ interface UserApiService {
 
 
     @GET("accounts/type/{type}")
-    fun getAccountInfo(@Header("Authorization")token:String,@Path("type")type:Int):Observable<Response<AccountInfo>>
+    fun getAccountInfo(@Header("Authorization")token:String,@Path("type")type:Int):Observable<Response<Account>>
 
 
     @Multipart
@@ -78,9 +80,9 @@ interface UserApiService {
     //create the service
     companion object {
 
-        //private val URL="https://serene-retreat-29274.herokuapp.com/"
+        val URL="https://serene-retreat-29274.herokuapp.com/"
 
-        val URL="http://192.168.43.5/"
+        //val URL="http://192.168.43.5/"
 
         fun create(): UserApiService {
 
@@ -101,6 +103,11 @@ interface UserApiService {
             val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
             return Retrofit.Builder().baseUrl(URL).client(client).build().create(UserApiService::class.java)
+        }
+
+        fun <T> sendRequest(observable:Observable<T>,success:(T)->Unit,failure:(Throwable)->Unit)
+        {
+            observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(success,failure)
         }
     }
 }

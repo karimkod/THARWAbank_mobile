@@ -2,6 +2,7 @@ package com.tharwa.solid.tharwa.Presenter
 
 import android.util.Log
 import com.tharwa.solid.tharwa.Contract.SignUpContrat
+import com.tharwa.solid.tharwa.Model.CreateResponse
 import com.tharwa.solid.tharwa.Model.UserCreate
 import com.tharwa.solid.tharwa.Remote.UserApiService
 import com.tharwa.solid.tharwa.View.CodeReceptionMethodDialog
@@ -15,57 +16,53 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
+import retrofit2.Response
 import java.io.File
 
 /**
  * Created by LE on 12/03/2018.
  */
 class SignUpPresenter (val mView:SignUpContrat.View){
-    var disposable: Disposable? = null
 
     private val Service = Config.newService()
-    private var user_id: Int? = null
-    private val _method: String = "PUT"
 
     var picturePresenter: TakePicturePresenter? = null
 
 
+    fun onCreateCustomerSuccess(response: Response<CreateResponse>) {
 
 
-    fun createCustomer(usercr: UserCreate,image:File) {
-        disposable = Service.createCustomer(usercr)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { response ->
+        if (response.isSuccessful)
+        {
+            //mView.showSuccessDialog()
+            sendImage(picturePresenter!!.getImage,response.body()?.user_id)
+
+        } else //error 400-500
+        {
+            mView.hideProgressDialog()
+            val message:String
+            val title:String
+            when(response.code())
+            {
+                CodeStatus.err_400.status->{title = "Champs invalide";message="Un des champs que vous avez saisi est invalide."}
+                CodeStatus.err_422.status->{title = "Compte existe";message="Ces données sont déja associées à un compte."}
+                else->{title = "Oops";message="Erreur inattendue, veuillez réessayer plus tard."}
+
+            }
+            mView.showDialogMessage(title,message)
+        }
+
+    }
 
 
-                            if (response.isSuccessful)
-                            {
-                                //mView.showSuccessDialog()
-                                sendImage(image,response.body()?.user_id)
+    fun onCreateCustomerFail(error:Throwable) {
+        mView.hideProgressDialog()
+        Log.e("SignUpPrensenter", error.message.toString())
+    }
 
-                            } else //error 400-500
-                            {
-                                mView.hideProgressDialog()
-                                val message:String
-                                val title:String
-                                when(response.code())
-                                {
-                                    CodeStatus.err_400.status->{title = "Champs invalide";message="Un des champs que vous avez saisi est invalide."}
-                                    CodeStatus.err_422.status->{title = "Compte existe";message="Ces données sont déja associées à un compte."}
-                                    else->{title = "Oops";message="Erreur inattendue, veuillez réessayer plus tard."}
-
-                                }
-                                mView.showDialogMessage(title,message)
-                            }
-
-                        },
-                        { error ->
-                            mView.hideProgressDialog()
-                            Log.e("SignUpPrensenter", error.message.toString())
-                        }
-                )
+    fun createCustomer(usercr: UserCreate)
+    {
+        UserApiService.apply { sendRequest(create().createCustomer(usercr),::onCreateCustomerSuccess,::onCreateCustomerFail) }
     }
 
     fun onSignUpClicked() {
@@ -79,7 +76,7 @@ class SignUpPresenter (val mView:SignUpContrat.View){
                 val userCrt = UserCreate(activity.mail, activity.password, activity.phone_number,
                         "${activity.firstName} ${activity.lastName}", activity.adress,
                         activity.function, activity.wilaya, activity.commune, activity.type)
-                createCustomer(userCrt,image)
+                createCustomer(userCrt)
                 mView.showProgressDialog()
 
 
