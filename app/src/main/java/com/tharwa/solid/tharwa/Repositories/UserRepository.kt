@@ -5,8 +5,9 @@ import com.tharwa.solid.tharwa.Model.UserInfo
 
 class UserRepository
 {
-    private lateinit var accessInfor: AccesInfo
-    private lateinit var userInfo: UserInfo
+    lateinit var accessInfos: AccesInfo
+
+    lateinit var userInfo: UserInfo
 
 
 

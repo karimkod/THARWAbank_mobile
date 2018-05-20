@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.support.design.widget.TextInputLayout
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.ScrollView
 import com.tharwa.solid.tharwa.Bussiness.InputValidator
 import com.tharwa.solid.tharwa.enumration.InputType
@@ -47,6 +48,7 @@ interface FormInterface
         builder.setNeutralButton("Réessayer", null)
         builder.create().show()
     }
+
 
 }
 

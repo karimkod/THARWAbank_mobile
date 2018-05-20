@@ -70,7 +70,7 @@ class SignUpPresenter (val mView:SignUpContrat.View){
         val activity = mView
 
         try {
-            val image = picturePresenter!!.getImage
+            picturePresenter?.isImageValid()
             if (mView.isValidInputs())
             {
                 val userCrt = UserCreate(activity.mail, activity.password, activity.phone_number,

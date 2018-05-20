@@ -11,11 +11,9 @@ import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.BottomSheetBehavior
 import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import com.tharwa.solid.tharwa.Model.UserData
 import com.tharwa.solid.tharwa.R
 import kotlinx.android.synthetic.main.activity_client_acount.*
 import kotlinx.android.synthetic.main.nav_header.view.*
@@ -26,7 +24,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import com.tharwa.solid.tharwa.Remote.UserApiService
-import com.tharwa.solid.tharwa.enumration.CodeStatus
+import com.tharwa.solid.tharwa.Repositories.Injection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.net.URL
@@ -41,6 +39,14 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
 
     var transferDialog:AlertDialog? = null
+
+    val userRepository by lazy {
+        Injection.provideUserRepository()
+    }
+
+    val accountRepository by lazy{
+        Injection.provideAccountRepository()
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,7 +75,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
         //buttomNavigation?.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        Log.d("ClientAccountActivity",UserData.user.toString())
+        //Log.d("ClientAccountActivity",.user.toString())
 
         transfer_money.setOnClickListener{openTransferDialog()}
 
@@ -80,13 +86,13 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
     override fun onResume()
     {   super.onResume()
-        val user = if(UserData.user != null) UserData.user!! else return
+        val user = userRepository.userInfo
         navigatorView = nav_view
         nav_view.getHeaderView(0).user_name_view?.text = user.name
 
-        loadImageTask(navigatorView?.getHeaderView(0)!!.user_photo!!).execute(user.photoPath)
-        id_count_view.text = user.currentAccount.id.toString()
-        //balance_count_view.text = "${user.currentAccount.balance} DZD"
+        //loadImageTask(navigatorView?.getHeaderView(0)!!.user_photo!!).execute(user.photoPath)
+        id_count_view.text = accountRepository.getSelectedAccount().id.toString()
+        balance_count_view.text = "${accountRepository.getSelectedAccount().balance} DZD"
         updateBalance()
 
     }
@@ -139,7 +145,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
     }
 
 
-    class loadImageTask(val imageView:ImageView):AsyncTask<String,Unit,Bitmap>()
+    class loadImageTask( val imageView:ImageView):AsyncTask<String,Unit,Bitmap>()
     {
         override fun doInBackground(vararg params: String?): Bitmap
         {
@@ -161,8 +167,8 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val row = inflater.inflate(R.layout.dialog_listview,null,false)
         val lv = row.findViewById<ListView>(R.id.transfer_type_list)
-        Log.d("ClientAccountActivity",UserData.user!!.accountTypes.toString())
-        lv.adapter = TransferListAdapter(UserData.user!!.accountTypes,this)
+
+        lv.adapter = TransferListAdapter(accountRepository.availableAccountsType,this)
         lv.onItemClickListener = this
         dialogBuilder.setView(row)
         dialogBuilder.setTitle("Quel type de virement?")
@@ -189,7 +195,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
     fun updateBalance()
     {
 
-        val disposable = UserApiService.create().getAccountInfo(UserData.user!!.token,1)
+        val disposable = UserApiService.create().getAccountInfo(userRepository.accessInfos.token,1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -197,7 +203,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
                             if (response.isSuccessful) {
 
-                                balance_count_view.text = response.body()?.balance.toString() + response.body()?.currency
+                                balance_count_view.text = response.body()?.balance.toString() +" "+ response.body()?.currency
 
                             }
 

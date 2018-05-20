@@ -12,9 +12,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.tharwa.solid.tharwa.FormInterface
 import com.tharwa.solid.tharwa.InvalideInputException
-import com.tharwa.solid.tharwa.Model.UserClass
-import com.tharwa.solid.tharwa.Model.UserCode
-import com.tharwa.solid.tharwa.Model.UserData
+import com.tharwa.solid.tharwa.Model.*
 import com.tharwa.solid.tharwa.R
 import com.tharwa.solid.tharwa.Remote.UserApiService
 import com.tharwa.solid.tharwa.enumration.CodeStatus
@@ -23,6 +21,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.code_introduction_activity.*
 import com.tharwa.solid.tharwa.R.string.*
+import com.tharwa.solid.tharwa.Repositories.Injection
 import com.tharwa.solid.tharwa.View.ClientAcountActivity
 import com.tharwa.solid.tharwa.enumration.InputType
 
@@ -72,23 +71,35 @@ class CodeIntroductionActivity : AppCompatActivity(),FormInterface
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
 
-                        { usercd ->
+                        { response ->
                             hideProgressDialog()
-                            if (usercd.isSuccessful)
+                            if (response.isSuccessful)
                             {
                                 // get the token
                                 //open the Acceuil activity
                                 //Toast.makeText(this@CodeIntroductionActivity,usercd.message(),Toast.LENGTH_LONG).show()
-                                Log.d(TAG,usercd.body()?.toString())
+                                Log.d(TAG,response.body()?.toString())
                                 val intent =Intent(applicationContext, ClientAcountActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                                UserData.user = usercd.body()
+                                val body = response.body()!!
+
+                                Injection.apply {
+                                    provideUserRepository().apply {
+                                        accessInfos = AccesInfo(body.userId, body.token, body.expiresIn, body.type)
+                                        userInfo = UserInfo(body.name, body.photoPath)
+                                    }
+                                    provideAccountRepository().apply {
+                                        cachedAccounts[1] = body.currentAccount
+                                        availableAccountsType = body.accountTypes
+                                    }
+                                }
+
                                 startActivity(intent)
                             }
                             else
                             {
                                 // display messages acording to the recieved code
-                                when(usercd.code())
+                                when(response.code())
                                 {
                                     CodeStatus.err_401.status->
                                         showDialogMessage(this,"Code invalide", "Le code que vous avez saisi est invalide")
