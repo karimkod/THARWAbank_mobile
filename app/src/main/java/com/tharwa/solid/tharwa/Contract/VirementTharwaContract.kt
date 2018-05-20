@@ -12,7 +12,7 @@ interface VirementTharwaContract
         fun showConfirmationMethod(name:String,wilaya:String,commune:String)
         fun isValidInputs():Boolean
         fun showPicturePlace()
-        fun hidePicturePlase()
+        fun hidePicturePlace()
         fun showProgressDialog()
         fun hideProgressDialog()
         fun finish()

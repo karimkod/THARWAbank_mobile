@@ -63,7 +63,7 @@ dependencies {
 
     // Dependencies for Android unit tests
     androidTestCompile "junit:junit:$rootProject.ext.junitVersion"
-    androidTestCompile "org.mockito:mockito-android:$rootProject.ext.mockitoVersion"
+    //androidTestCompile "org.mockito:mockito-android:$rootProject.ext.mockitoVersion"
 
     // Espresso UI Testing
     androidTestCompile "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
