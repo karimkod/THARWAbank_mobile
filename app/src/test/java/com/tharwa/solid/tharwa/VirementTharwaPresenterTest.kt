@@ -10,11 +10,8 @@ import okhttp3.ResponseBody
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
-import org.mockito.ArgumentCaptor
-import org.mockito.Captor
-import org.mockito.Mock
+import org.mockito.*
 import org.mockito.Mockito.*
-import org.mockito.MockitoAnnotations
 import org.mockito.internal.matchers.CapturesArguments
 import retrofit2.Callback
 import retrofit2.Response
@@ -100,9 +97,9 @@ class VirementTharwaPresenterTest
          `when`(responseMock.body()).thenReturn(destinationAccount )
 
         virementTharwaPresenter.onDestinationInfosResult(responseMock)
-
-        verify(view,times(1)).hideProgressDialog()
-        verify(view,times(1)).showConfirmationMethod(destinationAccount.name,destinationAccount.wilaya,destinationAccount.commune)
+        val inOrder = inOrder(view)
+        inOrder.verify(view,times(1)).hideProgressDialog()
+        inOrder.verify(view,times(1)).showConfirmationMethod(destinationAccount.name,destinationAccount.wilaya,destinationAccount.commune)
 
     }
 
