@@ -66,4 +66,9 @@ class TakePicturePresenter(val view:addPictureContract.View) {
         image = File(filePath)
         view.setImage(filePath as String)
     }
+
+    fun isImageValid()
+    {
+        if (image == null) throw  MissingPicture()
+    }
 }

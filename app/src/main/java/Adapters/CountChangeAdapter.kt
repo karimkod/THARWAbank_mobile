@@ -31,9 +31,11 @@ class CountChangeAdapter (val accounts:Array<Int>,val context: Context): BaseAda
 
     fun createCounts():Array<String> = when(accounts.size)
     {
-        1-> arrayOf("EPARGNE","USD","EURO")
-        2,3,4-> arrayOf("Change vers compte Epargne"," Changer vers compte USD","Cahnger vers compte EURO")
+        4-> {
+            arrayOf("Mon compte courant", "Mon compte Epargne", " Changer vers compte USD", "Cahnger vers compte EURO")
+        }
 
+        1->arrayOf("Error")
         else -> arrayOf("Error")
     }
 }

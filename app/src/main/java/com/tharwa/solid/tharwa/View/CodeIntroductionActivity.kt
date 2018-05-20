@@ -10,8 +10,9 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.tharwa.solid.tharwa.FormInterface
 import com.tharwa.solid.tharwa.InvalideInputException
+
 import com.tharwa.solid.tharwa.Model.UserCode
-import com.tharwa.solid.tharwa.Model.UserData
+import com.tharwa.solid.tharwa.Model.*
 import com.tharwa.solid.tharwa.R
 import com.tharwa.solid.tharwa.Remote.UserApiService
 import com.tharwa.solid.tharwa.enumration.CodeStatus
@@ -19,6 +20,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.code_introduction_activity.*
+
+import com.tharwa.solid.tharwa.R.string.*
+import com.tharwa.solid.tharwa.Repositories.Injection
 import com.tharwa.solid.tharwa.View.ClientAcountActivity
 import com.tharwa.solid.tharwa.enumration.InputType
 
@@ -51,7 +55,7 @@ class CodeIntroductionActivity : AppCompatActivity(),FormInterface
             verifyField(nonce,code,InputType.CODE,true,this)
             val usercode = UserCode(mail.toString(), passwd.toString(), nonce)
             loginCode(usercode)
-            Log.e("errlogin", UserData.user.toString())
+
         }catch  (e:InvalideInputException)
         {
 
@@ -68,20 +72,36 @@ class CodeIntroductionActivity : AppCompatActivity(),FormInterface
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
 
-                        { usercd ->
-                            Log.e("errlogin",usercd.body().toString())
+
+                        { response ->
                             hideProgressDialog()
-                            if (usercd.isSuccessful)
+                            if (response.isSuccessful)
                             {
-                                UserData.user = usercd.body()
+                                // get the token
+                                //open the Acceuil activity
+                                //Toast.makeText(this@CodeIntroductionActivity,usercd.message(),Toast.LENGTH_LONG).show()
+                                Log.d(TAG,response.body()?.toString())
                                 val intent =Intent(applicationContext, ClientAcountActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                                val body = response.body()!!
+
+                                Injection.apply {
+                                    provideUserRepository().apply {
+                                        accessInfos = AccesInfo(body.userId, body.token, body.expiresIn, body.type)
+                                        userInfo = UserInfo(body.name, body.photoPath)
+                                    }
+                                    provideAccountRepository().apply {
+                                        cachedAccounts[1] = body.currentAccount
+                                        availableAccountsType = body.accountTypes
+                                    }
+                                }
+
                                 startActivity(intent)
                             }
                             else
                             {
                                 // display messages acording to the recieved code
-                                when(usercd.code())
+                                when(response.code())
                                 {
                                     CodeStatus.err_401.status->
                                         showDialogMessage(this,"Code invalide", "Le code que vous avez saisi est invalide")
@@ -94,8 +114,10 @@ class CodeIntroductionActivity : AppCompatActivity(),FormInterface
                         },
                         { error->
                             hideProgressDialog()
-                            Log.e("errlogin",error.message.toString())
-                           Toast.makeText(this@CodeIntroductionActivity,error.message,Toast.LENGTH_LONG).show()
+
+                            showDialogMessage(this,"Oops", error.message.toString())//"Une erreur c'est produite, veuillez reéssayer plus tard")
+                            Toast.makeText(this@CodeIntroductionActivity,"Hello someone",Toast.LENGTH_LONG).show()
+
                         }
                 )
     }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nom_prenom"/>
+        <TextView
+            android:id="@+id/nom_prenom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bournane Abdelkrim"
+            android:layout_marginStart="5dp"/>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wilaya_label"/>
+        <TextView
+            android:id="@+id/wilaya"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="El bayadh"
+            android:layout_marginStart="5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/commune_label"
+            android:layout_marginStart="10dp"/>
+        <TextView
+            android:id="@+id/commune"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Brizina"
+            android:layout_marginStart="5dp"/>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+</android.support.v7.widget.LinearLayoutCompat>

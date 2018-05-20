@@ -118,7 +118,8 @@
             android:id="@+id/exchange_rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:rippleColor="@color/white"
+            app:rippleColor="@color/colorAccent"
+            android:clickable="true"
             app:backgroundTint="@color/white"
             app:background="@color/white"
             app:fabSize="normal"
@@ -126,66 +127,70 @@
             app:layout_anchorGravity="left|top"
             android:layout_marginLeft="30dp"
             android:src="@drawable/ic_exchange_rate"
-            />
+            android:focusable="true"
+            android:layout_marginStart="30dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Taux de change"
+            android:text="@string/taux_de_change"
             app:layout_anchor="@id/floatingButtons"
             app:layout_anchorGravity="left|bottom"
             android:textColor="@color/white"
             android:layout_marginLeft="15dp"
-            />
+            android:layout_marginStart="15dp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/transfer_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:rippleColor="@color/white"
+            app:rippleColor="@color/colorAccent"
             app:backgroundTint="@color/white"
             app:background="@color/white"
             app:fabSize="normal"
             app:layout_anchor="@id/floatingButtons"
             app:layout_anchorGravity="center|top"
             android:src="@drawable/ic_transfer_money"
-            />
+            android:clickable="true"
+            android:focusable="true" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Virement"
+            android:text="@string/virement"
             app:layout_anchor="@id/floatingButtons"
             app:layout_anchorGravity="center|bottom"
             android:textColor="@color/white"
             android:layout_marginLeft="15dp"
-            />
+            android:layout_marginStart="15dp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/change_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:rippleColor="@color/white"
+            app:rippleColor="@color/colorAccent"
             app:backgroundTint="@color/white"
             app:background="@color/white"
             app:fabSize="normal"
             app:layout_anchor="@id/floatingButtons"
             app:layout_anchorGravity="right|top"
+            android:clickable="true"
             android:layout_marginRight="30dp"
             android:src="@drawable/ic_change_account"
-            />
+            android:focusable="true"
+            android:layout_marginEnd="30dp" />
 
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Changer compte"
+            android:text="@string/changer_compte"
             app:layout_anchor="@id/floatingButtons"
             app:layout_anchorGravity="right|bottom"
             android:textColor="@color/white"
             android:layout_marginRight="10dp"
-            />
+            android:layout_marginEnd="10dp" />
 
 
 

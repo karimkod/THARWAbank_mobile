@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.VirementTharwaActivity"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/virement_tharwa_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:titleTextColor="@color/white"
+        android:theme="@style/actionBarStyle"
+        android:layout_marginBottom="10dp"
+        android:elevation="4dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/compte_destinataire"
+        android:layout_gravity="center"/>
+
+    <android.support.design.widget.TextInputLayout
+
+        android:id="@+id/numero_compte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true"
+        android:layout_marginRight="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center"
+
+        >
+
+
+
+        <android.support.v7.widget.AppCompatEditText
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:nextFocusForward="@id/montant_virement"
+            android:drawableLeft="@drawable/left_drawable_thr"
+            android:drawablePadding="3dp"
+            android:maxLength="6"
+            android:drawableRight="@drawable/right_drawable_dzd"
+            android:ems="7"
+            android:layout_gravity="center"
+            android:drawableStart="@drawable/left_drawable_thr"
+            android:drawableEnd="@drawable/right_drawable_dzd" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+
+        android:id="@+id/montant_virement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_gravity="center"
+        >
+
+        <android.support.design.widget.TextInputEditText
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/montant_virement"
+            android:imeOptions="actionNext"
+            android:inputType="numberDecimal"
+            android:drawableRight="@drawable/right_drawable_dzd"
+            android:ems="11"
+            android:layout_gravity="center"
+            android:drawablePadding="2dp"
+            android:drawableEnd="@drawable/right_drawable_dzd" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/motif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/motif_virement"
+            />
+
+        <fragment
+            android:id="@+id/headlines_fragment"
+            android:name="com.tharwa.solid.tharwa.View.TakePictureFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            tools:layout="@layout/take_picture_fragment" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    
+    
+    <android.support.v7.widget.AppCompatButton
+        style="@style/ColoredButtonStyle"
+        android:id="@+id/virer"
+        android:text="@string/termine"/>
+
+</LinearLayout>

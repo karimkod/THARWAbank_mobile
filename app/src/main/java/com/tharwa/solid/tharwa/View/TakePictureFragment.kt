@@ -171,9 +171,8 @@ class TakePictureFragment : Fragment(), addPictureContract.View {
 
     override fun signalMissingImage()
     {
-        imageLayout.error = "Veuillez séléctionner une photo de vous"
+        imageLayout.error = getString(R.string.photo_missing)
         mListener?.scrollToImage(view)
-        Toast.makeText(context,"Hello",Toast.LENGTH_LONG).show()
 
     }
 

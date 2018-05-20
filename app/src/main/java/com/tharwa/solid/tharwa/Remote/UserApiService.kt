@@ -1,14 +1,14 @@
 package com.tharwa.solid.tharwa.Remote
 import com.tharwa.solid.tharwa.Model.*
 import io.reactivex.Observable
-import okhttp3.Call
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
-import okhttp3.RequestBody
-import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 
 import okhttp3.OkHttpClient
@@ -60,13 +60,33 @@ interface UserApiService {
     @Headers("Accept:application/json")
     @POST("/virements_internes")
     fun virToMe(@Header("Authorization")token:String,
-                @Body virment: VirToMe):Observable<Response<com.tharwa.solid.tharwa.Model.Response>>
+                @Body virment: VirToMe):Observable<Response<com.tharwa.solid.tharwa.Model.ResponseVirme>>
 
+    @Headers("Accept:application/json")
+    @POST("virements_internes_thw")
+    fun virementToTharwa(@Header("Authorization")token:String,@Body virementTharwa: VirementTharwa):Observable<Response<ResponseBody>>
+
+
+    @GET("accounts/name/{id}")
+    fun getDestinationAccountInfo(@Header("Authorization")token:String, @Path("id")id:Int):Observable<Response<DestinationAccoutInfo>>
+
+
+    @GET("accounts/type/{type}")
+    fun getAccountInfo(@Header("Authorization")token:String,@Path("type")type:Int):Observable<Response<Account>>
+
+
+    @Multipart
+    @Headers("Accept:multipart/form-data")
+    @POST("virements_internes_thw")
+    fun VirementToTharwa(@Header("Authorization")token:String,@Part image: okhttp3.MultipartBody.Part ,@Part("num_acc_receiver") destination:okhttp3.RequestBody,@Part("montant_virement") montant:okhttp3.RequestBody,@Part("type") type:okhttp3.RequestBody):retrofit2.Call<okhttp3.ResponseBody>
 
     //create the service
     companion object {
-        // val URL="https://serene-retreat-29274.herokuapp.com/"
-        val URL="http://192.168.43.5/"
+
+        val URL="https://serene-retreat-29274.herokuapp.com/"
+
+        //val URL="http://192.168.43.5/"
+
         fun create(): UserApiService {
 
             val retrofit = Retrofit.Builder()
@@ -86,6 +106,11 @@ interface UserApiService {
             val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
             return Retrofit.Builder().baseUrl(URL).client(client).build().create(UserApiService::class.java)
+        }
+
+        fun <T> sendRequest(observable:Observable<T>,success:(T)->Unit,failure:(Throwable)->Unit)
+        {
+            observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(success,failure)
         }
     }
 }

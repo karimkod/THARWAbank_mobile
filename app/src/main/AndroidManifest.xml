@@ -52,12 +52,20 @@
         <activity android:name=".Controller.CodeIntroductionActivity" />
         <activity
             android:name=".View.ClientAcountActivity"
+
+            android:exported="true" />
+
+
+        <activity android:name=".View.VirementTharwaActivity"
+            android:parentActivityName=".View.ClientAcountActivity"
             android:exported="true">
 
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.ClientAcountActivity" />
         </activity>
         <activity android:name=".View.ExchangeRateActivity"></activity>
 
-        <activity android:name=".View.Virment.VirToMeActivity" android:windowSoftInputMode="stateHidden">
-        </activity>
     </application>
 </manifest>

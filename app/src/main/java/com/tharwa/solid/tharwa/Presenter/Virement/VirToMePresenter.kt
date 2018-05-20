@@ -1,22 +1,15 @@
 package com.tharwa.solid.tharwa.Presenter.Virement
 
+import android.util.Log
 import com.tharwa.solid.tharwa.Contract.VirToMeContract
-
-import com.tharwa.solid.tharwa.Model.UserData
+import com.tharwa.solid.tharwa.Model.ResponseVirme
 import com.tharwa.solid.tharwa.Model.VirToMe
+import com.tharwa.solid.tharwa.Remote.UserApiService
+import com.tharwa.solid.tharwa.Repositories.Injection
 import com.tharwa.solid.tharwa.View.Virment.VirToMeFragment
 import com.tharwa.solid.tharwa.util.Config
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-
-import io.reactivex.schedulers.Schedulers
-
-
-
-/**
- * Created by LE on 23/04/2018.
- */
-
+import retrofit2.Response
 class VirToMePresenter(val view:VirToMeContract.View):VirToMeFragment.InterfaceDataVirMe
 {
 
@@ -24,35 +17,32 @@ class VirToMePresenter(val view:VirToMeContract.View):VirToMeFragment.InterfaceD
     var disposable: Disposable? = null
     private val Service = Config.newService()
 
-
-
    private lateinit var virement: VirToMe
     private lateinit var token:String
 
-    fun transfer(token:String,virement: VirToMe)
-    {
-        disposable = Service.virToMe(token ,virement)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { result ->
-                            if (result.isSuccessful) {
-                                view.showTag("ok succ","in transfert"+result.body()!!.message)
-                                view.showResultDialog(  "Votre transaction est effectuer avec succssès")
-                            } else //error 400-500
-                            {
-                               view.showResultDialog(""+result.errorBody().toString())
-                               // view.showTag("errtag",result.errorBody().toString())
-                            }
-                        },
-                        {error ->
-                            view.showTag("ok err",error.message.toString())
-                        }
 
-                )
+      fun transfer( token:String,virement: VirToMe)
+    {
+        view.showProgressDialog()
+        UserApiService.apply { sendRequest(create().virToMe(token ,virement),::onCreateVirementSuccess,::onCreateVirementFail) }
     }
+
+    fun onCreateVirementSuccess(result: Response<ResponseVirme>)
+    {
+        view.hideProgressDialog()
+        if (result.isSuccessful) {
+            view.showResultDialog(result.code(),result.body()!!.balance)
+        } else //error 400-500
+        {
+            view.showResultDialog(result.code(),result.message())
+        }
+
+    }
+    fun onCreateVirementFail(error:Throwable) {
+        view.hideProgressDialog()
+        Log.e("VirToMePresenter", error.message.toString())
+    }
+
 
 
     fun on_confirmClick(type_acc_sender:Int,type_acc_receiver:Int,montant_virement:Double)
@@ -63,15 +53,11 @@ class VirToMePresenter(val view:VirToMeContract.View):VirToMeFragment.InterfaceD
     fun onResultDialogEnded() {
         view.closeDialog()
     }
-
-
     fun initData(type_acc_sender:Int,type_acc_receiver:Int,montant_virement:Double)
     {
         virement=VirToMe(type_acc_sender,type_acc_receiver,montant_virement,0)
-        token=UserData.user!!.token
+        token=Injection.provideUserRepository().accessInfos.token
     }
-
-
 
 
     override fun CountVirMe(item: String): ArrayList<String> {
@@ -98,8 +84,9 @@ class VirToMePresenter(val view:VirToMeContract.View):VirToMeFragment.InterfaceD
     fun listDisp():ArrayList<String>
     {
         var  list=ArrayList<String>()
-        var listUser=UserData.user!!.accountTypes
-        for (i in listUser)
+       // var countTypr=UserData.user!!.accountTypes
+        var countTypr=Injection.provideAccountRepository().availableAccountsType
+        for (i in countTypr)
         {
             when(i)
             {
@@ -111,29 +98,6 @@ class VirToMePresenter(val view:VirToMeContract.View):VirToMeFragment.InterfaceD
         }
         return list
     }
-
-
-    override fun dataVirMe(item:String):ArrayList<String>
-    {
-        var  list=ArrayList<String>()
-        when(item)
-        {
-            "COURANT"-> {
-                list.add("EPARGNE")
-                list.add("EURO")
-                list.add("USD")
-            }
-            "EPARGNE","USD","EURO"-> list.add("COURANT")
-            else -> {
-                list.add("COURANT")
-                list.add("EPARGNE")
-                list.add("EURO")
-                list.add("USD")
-            }
-        }
-        return list
-    }
-
 }
 
 

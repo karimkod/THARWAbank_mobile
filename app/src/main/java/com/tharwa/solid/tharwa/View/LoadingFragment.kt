@@ -19,7 +19,7 @@ class LoadingFragment : DialogFragment()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val progressDialog = ProgressDialog(getActivity(), getTheme())
-        progressDialog.setTitle(R.string.inscription)
+        progressDialog.setTitle(getString(R.string.proceding))
         progressDialog.setMessage(getString(R.string.inscription_msg))
         progressDialog.isIndeterminate = true
         progressDialog.progress = ProgressDialog.STYLE_SPINNER

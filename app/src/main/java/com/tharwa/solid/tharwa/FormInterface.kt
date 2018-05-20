@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.support.design.widget.TextInputLayout
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.ScrollView
 import com.tharwa.solid.tharwa.Bussiness.InputValidator
 import com.tharwa.solid.tharwa.enumration.InputType
@@ -19,7 +20,7 @@ interface FormInterface
     @Throws(InvalideInputException::class)
     fun verifyField(text:String, input: TextInputLayout, type: InputType, required:Boolean,context: Context)
     {
-        val error = InputValidator.checkInput(text,context,type,required)
+        val error = InputValidator.checkInput(text,context.resources,type,required)
         if(error != null)
         {
             input.error = error
@@ -33,7 +34,7 @@ interface FormInterface
         }
     }
 
-    fun clearErrors(inputs:Array<TextInputLayout>)
+    fun clearErrors(vararg inputs:TextInputLayout)
     {
         for(i in inputs)
             i.error = ""
@@ -47,6 +48,7 @@ interface FormInterface
         builder.setNeutralButton("Réessayer", null)
         builder.create().show()
     }
+
 
 }
 

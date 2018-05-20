@@ -1,24 +1,20 @@
 package com.tharwa.solid.tharwa.View.Virment
 import android.app.AlertDialog
 import android.content.DialogInterface
-import android.content.Intent
-import android.content.Intent.getIntent
-import android.nfc.Tag
 import android.os.Bundle
 import android.view.View
 import com.tharwa.solid.tharwa.R
 import android.support.v4.app.DialogFragment
-import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.ViewGroup
 import android.view.LayoutInflater
+import android.view.WindowManager
 import android.widget.*
 import com.tharwa.solid.tharwa.Contract.VirToMeContract
-import com.tharwa.solid.tharwa.Model.UserData
 import com.tharwa.solid.tharwa.Presenter.Virement.VirToMePresenter
-import com.tharwa.solid.tharwa.View.ClientAcountActivity
+import com.tharwa.solid.tharwa.View.LoadingFragment
 import com.tharwa.solid.tharwa.util.BaseActivity
-import kotlinx.android.synthetic.main.activity_client_acount.*
 import kotlinx.android.synthetic.main.vrintern_to_me_fragment.*
 
 
@@ -35,7 +31,7 @@ class VirToMeFragment :DialogFragment (),VirToMeContract.View,BaseActivity<VirTo
     var type_acc_receiver:Int=0
     var montant_virement:Double=0.0
 
-
+    val loadingFragment by lazy { LoadingFragment() }
 
 
     val TAG = "FullScreenDialog"
@@ -108,22 +104,22 @@ class VirToMeFragment :DialogFragment (),VirToMeContract.View,BaseActivity<VirTo
 
     fun showMoneyText(item:String,view:View)
     {
-        val money_txt=view!!.findViewById<View>(R.id.money_txt) as TextView
+        val money_txt=view.findViewById<View>(R.id.money_txt) as TextView
         when(item)
         {
-            "COURANT","EPARGNE"-> money_txt.text="DZD"
-            "USD"->money_txt.text="USD"
-            "EURO"->money_txt.text="EURO"
+            resources.getString(R.string.current),resources.getString(R.string.saving)-> money_txt.text=resources.getString(R.string.dzd)
+            resources.getString(R.string.usd)->money_txt.text= resources.getString(R.string.usd)
+            resources.getString(R.string.euro)->money_txt.text=resources.getString(R.string.euro)
         }
     }
     fun setViremntData(item:String):Int
     {
         when(item)
         {
-            "COURANT"-> return 1
-            "EPARGNE"->  return 2
-            "EURO"-> return 3
-            "USD"-> return 4
+            resources.getString(R.string.current)-> return 1
+            resources.getString(R.string.saving)->  return 2
+            resources.getString(R.string.euro)-> return 3
+            resources.getString(R.string.usd)-> return 4
             else-> return 1
         }
     }
@@ -147,12 +143,18 @@ class VirToMeFragment :DialogFragment (),VirToMeContract.View,BaseActivity<VirTo
     override fun showTag(tag:String, message: String) {
         Log.e(tag,message)
     }
-    override fun showResultDialog(message:String) {
+    override fun showResultDialog(code:Int,message: String) {
         val builder = AlertDialog.Builder(activity)
-        builder.setTitle("Transaction")
-       /// builder.setMessage("Votre transaction est effectuer avec succssès")
-        builder.setMessage(message)
-        builder.setNeutralButton("Terminer", DialogInterface.OnClickListener {
+        builder.setTitle(resources.getString(R.string.transactoin))
+        when(code )
+        {
+            200,201-> builder.setMessage(resources.getString(R.string.virme_201)
+                    +message+ " " +resources.getString(R.string.virme_201_suite))
+            400->builder.setMessage(resources.getString(R.string.virme_400))
+            404->builder.setMessage(resources.getString(R.string.virme_400))
+            500->builder.setMessage(resources.getString(R.string.err_500))
+        }
+        builder.setNeutralButton(resources.getString(R.string.terminer), DialogInterface.OnClickListener {
             _,_ ->
             presenter.onResultDialogEnded()
             dismiss()
@@ -161,16 +163,22 @@ class VirToMeFragment :DialogFragment (),VirToMeContract.View,BaseActivity<VirTo
              }
        val  dialogResult = builder.create()
         dialogResult.show()
+        presenter.onResultDialogEnded()
     }
-
-
 
     interface InterfaceDataVirMe
     {
-        fun dataVirMe(item:String):ArrayList<String>
         fun CountVirMe(item:String):ArrayList<String>
     }
+    override fun showProgressDialog() {
+       loadingFragment.show((context as AppCompatActivity).supportFragmentManager.beginTransaction(), "loadingFrag")
+        (context as AppCompatActivity).window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+    }
 
-
+    override fun hideProgressDialog() {
+        (context as AppCompatActivity).supportFragmentManager.beginTransaction().remove(loadingFragment).commit()
+        (context as AppCompatActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+    }
 }
 
