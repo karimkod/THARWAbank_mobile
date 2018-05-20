@@ -108,7 +108,7 @@ data class VirToMe
 (
         @SerializedName("type_acc_sender") val type_acc_sender:Int,
         @SerializedName("type_acc_receiver") val type_acc_receiver:Int,
-        @SerializedName("montant_virement") val montant_virement:Int,
+        @SerializedName("montant_virement") val montant_virement:Double,
         @SerializedName("type") val type:Int
 )
 

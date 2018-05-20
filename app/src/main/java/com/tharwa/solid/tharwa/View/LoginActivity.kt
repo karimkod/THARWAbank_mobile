@@ -182,9 +182,4 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
        }
 
     }
-
-
-
-
-
 }

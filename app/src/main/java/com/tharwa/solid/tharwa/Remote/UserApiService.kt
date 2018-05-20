@@ -65,8 +65,8 @@ interface UserApiService {
 
     //create the service
     companion object {
-        private val URL="https://serene-retreat-29274.herokuapp.com/"
-        //private val URL="http://192.168.1.10/"
+        // val URL="https://serene-retreat-29274.herokuapp.com/"
+        val URL="http://192.168.43.5/"
         fun create(): UserApiService {
 
             val retrofit = Retrofit.Builder()

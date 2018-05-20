@@ -26,16 +26,16 @@ import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
-import com.tharwa.solid.tharwa.View.Virment.VirToMeActivity
+import com.tharwa.solid.tharwa.Model.UserData.user
+import com.tharwa.solid.tharwa.Remote.UserApiService
 import com.tharwa.solid.tharwa.View.Virment.VirToMeFragment
-import java.net.MalformedURLException
 import java.net.URL
 
 
-class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener {
+class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener{
     private var pageAdapter: CostomPagerAdapter? = null
     private var pager: ViewPager? = null
-    protected var navigatorView:NavigationView? = null
+    protected var navigatorView: NavigationView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,21 +48,21 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
             setTitle("THARWA")
         }
 
-       // buttomNavigation = findViewById(R.id.bottom_navigation)
+        // buttomNavigation = findViewById(R.id.bottom_navigation)
         BottomSheetBehavior.from(floatingButtons)
 
         //buttomNavigation?.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        Log.d("ClientAccountActivity",UserData.user.toString())
+        Log.d("ClientAccountActivity", UserData.user.toString())
 
-        transfer_money.setOnClickListener{openTransferDialog()}
+        transfer_money.setOnClickListener { openTransferDialog() }
 
     }
 
 
-    override fun onResume()
-    {   super.onResume()
-        val user = if(UserData.user != null) UserData.user!! else return
+    override fun onResume() {
+        super.onResume()
+        val user = if (UserData.user != null) UserData.user!! else return
         navigatorView = nav_view
         nav_view.getHeaderView(0).user_name_view?.text = user.name
 
@@ -82,17 +82,17 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
         when (item.itemId) {
             R.id.buttom_navigation_comptes -> {
                 //"Mes comptes" clicked
-                Toast.makeText(this@ClientAcountActivity,"MES COMTES",Toast.LENGTH_LONG).show()
+                Toast.makeText(this@ClientAcountActivity, "MES COMTES", Toast.LENGTH_LONG).show()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.buttom_navigation_taux_changes -> {
                 // "Taux de changes"  clicked
-                Toast.makeText(this@ClientAcountActivity,"TAUX DE CHANGES",Toast.LENGTH_LONG).show()
+                Toast.makeText(this@ClientAcountActivity, "TAUX DE CHANGES", Toast.LENGTH_LONG).show()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.buttom_navigation_virements -> {
                 // "virements clicked"  clicked
-                Toast.makeText(this@ClientAcountActivity,"VIREMENTS",Toast.LENGTH_LONG).show()
+                Toast.makeText(this@ClientAcountActivity, "VIREMENTS", Toast.LENGTH_LONG).show()
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -102,10 +102,8 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
-        when(item?.itemId)
-        {
-            android.R.id.home ->
-            {
+        when (item?.itemId) {
+            android.R.id.home -> {
                 drawer_layout.openDrawer(GravityCompat.START)
                 return true
             }
@@ -116,13 +114,11 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
     }
 
 
-    class loadImageTask(val imageView:ImageView):AsyncTask<String,Unit,Bitmap>()
-    {
-        override fun doInBackground(vararg params: String?): Bitmap
-        {
+    class loadImageTask(val imageView: ImageView) : AsyncTask<String, Unit, Bitmap>() {
+        override fun doInBackground(vararg params: String?): Bitmap {
 
-          val inputStream = URL("http://192.168.43.5/images/customer/${params[0]}").openStream()
-            Log.d("ClientAccountActivity","https://serene-retreat-29274.herokuapp.com/images/customer/${params[0]}")
+            val inputStream = URL("${UserApiService.URL}images/customer/${params[0]}").openStream()
+
             return BitmapFactory.decodeStream(inputStream)
 
         }
@@ -133,45 +129,56 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
     }
 
-    fun openTransferDialog()
-    {
-       val dialogBuilder = AlertDialog.Builder(this)
+    fun openTransferDialog() {
+        val dialogBuilder = AlertDialog.Builder(this)
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val row = inflater.inflate(R.layout.dialog_listview,null,false)
+        val row = inflater.inflate(R.layout.dialog_listview, null, false)
         val lv = row.findViewById<ListView>(R.id.transfer_type_list)
-
-            lv.adapter = TransferListAdapter(UserData.user!!.accountTypes,this)
-            lv.onItemClickListener = this
-            dialogBuilder.setView(row)
-            dialogBuilder.setTitle("Quel type de virement?")
-            val dialog = dialogBuilder.create()
-            dialog.show()
-
-
-
+        lv.adapter = TransferListAdapter(UserData.user!!.accountTypes, this)
+        lv.onItemClickListener = this
+        dialogBuilder.setView(row)
+        dialogBuilder.setTitle("Quel type de virement?")
+        val dialog = dialogBuilder.create()
+        dialog.show()
     }
-    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
+    fun openChangeCompte()
     {
-        when(position)
-        {
-            0->Toast.makeText(this,"Virrerrr",Toast.LENGTH_SHORT).show()
-            1->{
-                Toast.makeText(this,"Pas implémenté",Toast.LENGTH_SHORT).show()
-                Toast.makeText(this,UserData.user!!.accountTypes.toString(),Toast.LENGTH_LONG).show()
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val row = inflater.inflate(R.layout.dialog_listview, null, false)
+        val lv = row.findViewById<ListView>(R.id.transfer_type_list)
+        Log.d("ClientAccountActivity", UserData.user!!.accountTypes.toString())
+        lv.adapter = TransferListAdapter(UserData.user!!.accountTypes, this)
+        lv.onItemClickListener = this
+        dialogBuilder.setView(row)
+        dialogBuilder.setTitle("Quel compte voulez vous choisir?")
+        val dialog = dialogBuilder.create()
+        dialog.show()
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        when (position) {
+
+            0 -> Toast.makeText(this, "Virrerrr", Toast.LENGTH_SHORT).show()
+            1 -> {
+                Toast.makeText(this, "Pas implémenté", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, UserData.user!!.accountTypes.toString(), Toast.LENGTH_LONG).show()
             }
-            2->{
-                if (UserData.user!!.accountTypes.size==1)
-                    Toast.makeText(this,"Vous avez uniquemetent le compte courant" +
-                            "veuillez créer un autre compte",Toast.LENGTH_SHORT).show()
-                else
-                {
+            2 -> {
+                if (UserData.user!!.accountTypes.size == 1)
+                    Toast.makeText(this, "Vous avez uniquemetent le compte courant" +
+                            "veuillez créer un autre compte", Toast.LENGTH_SHORT).show()
+                else {
                     val dialog = VirToMeFragment()
                     val ft = supportFragmentManager.beginTransaction()
                     dialog.show(ft, ContentValues.TAG)
+
                 }
             }
-            else->{}
-        }
+            else -> {
+            }
 
+        }
     }
+
 }

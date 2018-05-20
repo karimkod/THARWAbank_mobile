@@ -24,7 +24,5 @@ class LoadingFragment : DialogFragment()
         progressDialog.isIndeterminate = true
         progressDialog.progress = ProgressDialog.STYLE_SPINNER
         return progressDialog
-
     }
-
 }

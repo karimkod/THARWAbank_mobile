@@ -12,6 +12,7 @@ interface VirToMeContract
     interface  View: BaseActivity<VirToMePresenter>
     {
         fun closeDialog()
-        fun relodeActivity()
+        fun showResultDialog(message:String)
+
     }
 }

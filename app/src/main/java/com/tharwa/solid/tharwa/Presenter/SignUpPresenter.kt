@@ -92,7 +92,7 @@ class SignUpPresenter (val mView:SignUpContrat.View){
 
     }
 
-    fun onSuccessDialogEnded() {
+     fun onSuccessDialogEnded() {
         mView.finish()
     }
 

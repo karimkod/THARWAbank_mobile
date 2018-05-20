@@ -1,4 +1,6 @@
 package com.tharwa.solid.tharwa.View.Virment
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.Intent.getIntent
 import android.nfc.Tag
@@ -12,9 +14,11 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.widget.*
 import com.tharwa.solid.tharwa.Contract.VirToMeContract
+import com.tharwa.solid.tharwa.Model.UserData
 import com.tharwa.solid.tharwa.Presenter.Virement.VirToMePresenter
 import com.tharwa.solid.tharwa.View.ClientAcountActivity
 import com.tharwa.solid.tharwa.util.BaseActivity
+import kotlinx.android.synthetic.main.activity_client_acount.*
 import kotlinx.android.synthetic.main.vrintern_to_me_fragment.*
 
 
@@ -29,7 +33,7 @@ class VirToMeFragment :DialogFragment (),VirToMeContract.View,BaseActivity<VirTo
 
     var type_acc_sender:Int=0
     var type_acc_receiver:Int=0
-    var montant_virement=0
+    var montant_virement:Double=0.0
 
 
 
@@ -69,7 +73,7 @@ class VirToMeFragment :DialogFragment (),VirToMeContract.View,BaseActivity<VirTo
 
     fun  on_confirmClick()
     {
-       montant_virement=  montant_virme.text.toString().toInt()
+       montant_virement=  montant_virme.text.toString().toDouble()
         presenter.on_confirmClick(type_acc_sender,type_acc_receiver,montant_virement)
     }
 
@@ -129,27 +133,44 @@ class VirToMeFragment :DialogFragment (),VirToMeContract.View,BaseActivity<VirTo
         super.onResume()
         this.onCreate(null)
     }
-    override fun relodeActivity()
-    {
 
-    }
     override fun closeDialog()
     {
         dismiss()
     }
     override fun showMessage(message: String) {
         Toast.makeText(context,message,Toast.LENGTH_LONG).show()
+
     }
+
 
     override fun showTag(tag:String, message: String) {
         Log.e(tag,message)
     }
+    override fun showResultDialog(message:String) {
+        val builder = AlertDialog.Builder(activity)
+        builder.setTitle("Transaction")
+       /// builder.setMessage("Votre transaction est effectuer avec succssès")
+        builder.setMessage(message)
+        builder.setNeutralButton("Terminer", DialogInterface.OnClickListener {
+            _,_ ->
+            presenter.onResultDialogEnded()
+            dismiss()
+        })
+        builder.setOnCancelListener{presenter.onResultDialogEnded()
+             }
+       val  dialogResult = builder.create()
+        dialogResult.show()
+    }
+
+
 
     interface InterfaceDataVirMe
     {
         fun dataVirMe(item:String):ArrayList<String>
         fun CountVirMe(item:String):ArrayList<String>
     }
+
 
 }
 

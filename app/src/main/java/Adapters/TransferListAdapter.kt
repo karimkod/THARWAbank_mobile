@@ -1,9 +1,6 @@
 package Adapters
 
 import android.content.Context
-import android.support.v4.widget.TextViewCompat
-import android.text.Layout
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +11,7 @@ import com.tharwa.solid.tharwa.R
 /**
  * Created by thinkpad on 16/04/2018.
  */
-class TransferListAdapter(val accounts:Array<Int>,val context:Context):BaseAdapter()
+class TransferListAdapter(val accounts:Array<Int>,val context: Context):BaseAdapter()
 {
 
     val transferTypesArrays: Array<String> by lazy { createTransferType()}

@@ -52,10 +52,7 @@ class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentIntera
         supportActionBar?.title = "Inscription"
         setUpWilayaSpinner()
         setUpCommuneSpinner(0)
-
         sign_up.setOnClickListener({presenter.onSignUpClicked()})
-
-
     }
 
     fun setUpWilayaSpinner() {

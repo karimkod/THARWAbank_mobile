@@ -1,6 +1,7 @@
 package com.tharwa.solid.tharwa
 import android.arch.core.executor.testing.InstantTaskExecutorRule
-import com.tharwa.solid.tharwa.View.LoginActivity
+import com.tharwa.solid.tharwa.Controller.LoginActivity
+
 import com.tharwa.solid.tharwa.Model.User
 import com.tharwa.solid.tharwa.Remote.UserApiService
 import com.tharwa.solid.tharwa.enumration.CodeStatus
@@ -59,7 +60,7 @@ class LoginActivityTest
         val user = User("ez_taklit@esi.dz","password",0)
 
         // make the UserApiService api to return mock data
-       Mockito.`when`(userApiService!!.login(user))
+       Mockito.`when`(userApiService.login(user))
                .thenReturn(Observable.just(Response.success(user)))
 
         // assert that the code matches
