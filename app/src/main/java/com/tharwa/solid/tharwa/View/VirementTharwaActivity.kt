@@ -17,6 +17,7 @@ import com.tharwa.solid.tharwa.InvalideInputException
 import com.tharwa.solid.tharwa.Presenter.TakePicturePresenter
 import com.tharwa.solid.tharwa.Presenter.VirementTharwaPresenter
 import com.tharwa.solid.tharwa.R
+import com.tharwa.solid.tharwa.Repositories.Injection
 import com.tharwa.solid.tharwa.enumration.InputType
 import kotlinx.android.synthetic.main.activity_virement_tharwa.*
 
@@ -37,7 +38,7 @@ class VirementTharwaActivity : AppCompatActivity(),FormInterface,VirementTharwaC
 
     val loadingFragment by lazy {LoadingFragment()}
 
-    override val presenter: VirementTharwaPresenter by lazy {VirementTharwaPresenter(this)}
+    override val presenter: VirementTharwaPresenter by lazy {VirementTharwaPresenter(this, Injection.provideUserRepository())}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -119,7 +120,7 @@ class VirementTharwaActivity : AppCompatActivity(),FormInterface,VirementTharwaC
         motif.visibility = View.VISIBLE
     }
 
-    override fun hidePicturePlase() {
+    override fun hidePicturePlace() {
         motif.visibility = View.GONE
     }
 

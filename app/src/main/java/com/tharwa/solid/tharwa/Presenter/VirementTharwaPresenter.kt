@@ -5,7 +5,7 @@ import com.tharwa.solid.tharwa.Contract.VirementTharwaContract
 import com.tharwa.solid.tharwa.Model.DestinationAccoutInfo
 import com.tharwa.solid.tharwa.Model.VirementTharwa
 import com.tharwa.solid.tharwa.Remote.UserApiService
-import com.tharwa.solid.tharwa.Repositories.Injection
+import com.tharwa.solid.tharwa.Repositories.UserRepository
 import com.tharwa.solid.tharwa.enumration.CodeStatus
 
 import okhttp3.MediaType
@@ -14,12 +14,13 @@ import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Response
 
-class VirementTharwaPresenter(val mView:VirementTharwaContract.View)
+class VirementTharwaPresenter(val mView:VirementTharwaContract.View, val userRepository: UserRepository)
 {
     var takePicturePresenter:TakePicturePresenter? = null
     val MAXIMUM_SANS_MOTIF =  200000.0f
 
-    private var needMotif = false
+
+    var needMotif = false
 
 
 
@@ -33,13 +34,13 @@ class VirementTharwaPresenter(val mView:VirementTharwaContract.View)
                 true
             }else if (montantFloat <= MAXIMUM_SANS_MOTIF && needMotif)
             {
-                mView.hidePicturePlase()
+                mView.hidePicturePlace()
                 false
             }else
                 needMotif
         }catch (e:NumberFormatException)
         {
-            mView.hidePicturePlase()
+            mView.hidePicturePlace()
             needMotif = false
         }
     }
@@ -66,40 +67,43 @@ class VirementTharwaPresenter(val mView:VirementTharwaContract.View)
 
         mView.hideProgressDialog()
         mView.showDialogMessage("Oops..","Erreur, veuillez réessayer plus tard")
-        Log.e("SignUpPrensenter", error.message.toString())
+        //Log.e("SignUpPrensenter", error.message.toString())
+    }
+
+
+    fun onDestinationInfosResult(response: Response<DestinationAccoutInfo>)
+    {
+        mView.hideProgressDialog()
+        if (response.isSuccessful)
+        {
+            mView.showConfirmationMethod(response.body()!!.name, response.body()!!.wilaya, response.body()!!.commune)
+
+        } else //error 400-500
+        {
+            val message:String
+            val title:String
+            when(response.code())
+            {
+                CodeStatus.err_404.status->{title = "Compte Inexistant";message="Le numéro de compte que vous avez saisi n\'appartient à personne"}
+                else->{title = "Oops ${response.code()}";message="Erreur inattendue, veuillez réessayer plus tard."}
+
+            }
+            mView.showDialogMessage(title,message)
+        }
+
     }
 
     fun getDestinationInfos()
     {
 
-
-        fun onDestinationInfosResult(response: Response<DestinationAccoutInfo>)
-        {
-            mView.hideProgressDialog()
-            if (response.isSuccessful)
-            {
-                mView.showConfirmationMethod(response.body()!!.name, response.body()!!.wilaya, response.body()!!.commune)
-
-            } else //error 400-500
-            {
-                val message:String
-                val title:String
-                when(response.code())
-                {
-                    CodeStatus.err_404.status->{title = "Compte Inexistant";message="Le numéro de compte que vous avez saisi n\'appartient à personne"}
-                    else->{title = "Oops ${response.code()}";message="Erreur inattendue, veuillez réessayer plus tard."}
-
-                }
-                mView.showDialogMessage(title,message)
-            }
-
-        }
-
-
          UserApiService.apply {
              sendRequest(
-             create().getDestinationAccountInfo(Injection.provideUserRepository().accessInfos.token, mView.destinationAccount.toInt()),
-                     ::onDestinationInfosResult, ::onRequestFailed)
+             create()
+                     .getDestinationAccountInfo(
+                             userRepository.accessInfos.token,
+                             mView.destinationAccount.toInt()),
+                     ::onDestinationInfosResult,
+                     ::onRequestFailed)
          }
 
     }
@@ -107,43 +111,45 @@ class VirementTharwaPresenter(val mView:VirementTharwaContract.View)
 
 
 
-    fun makeVirement() {
-        if (!needMotif) {
-            mView.showProgressDialog()
-            fun onVirementSuccess(response:Response<ResponseBody>)
-            {
-                mView.hideProgressDialog()
-                if (response.isSuccessful) {
+    fun onVirementSuccess(response:Response<ResponseBody>)
+    {
+        mView.hideProgressDialog()
+        if (response.isSuccessful) {
 
-                    mView.showSuccessDialog("Virement effectué","Le virement a été effectué avec success")
+            mView.showSuccessDialog("Virement effectué","Le virement a été effectué avec success")
 
 
-                } else //error 400-500
-                {
-                    val message: String
-                    val title: String
-                    when (response.code()) {
-                        CodeStatus.err_400.status -> {
-                            title = "Champs invalide";message = "Un des champs que vous avez saisi est invalide."
-                        }
-                        CodeStatus.err_422.status -> {
-                            title = "Montant insuffisant";message = "Votre montant est insuffisant."
-                        }
-                        CodeStatus.err_403.status -> {
-                            title = "Motif du virement manquant";message = "Vous avez dépassé permet sans justification, veuillez attaché un justificatif"
-                        }
-                        else -> {
-                            title = "Oops ${response.code()}";message = "Erreur inattendue, veuillez réessayer plus tard."
-                        }
-
-                    }
-                    mView.showDialogMessage(title, message)
+        } else //error 400-500
+        {
+            val message: String
+            val title: String
+            when (response.code()) {
+                CodeStatus.err_400.status -> {
+                    title = "Champs invalide";message = "Un des champs que vous avez saisi est invalide."
+                }
+                CodeStatus.err_422.status -> {
+                    title = "Montant insuffisant";message = "Votre montant est insuffisant."
+                }
+                CodeStatus.err_403.status -> {
+                    title = "Motif du virement manquant";message = "Vous avez dépassé permet sans justification, veuillez attaché un justificatif"
+                }
+                else -> {
+                    title = "Oops ${response.code()}";message = "Erreur inattendue, veuillez réessayer plus tard."
                 }
 
             }
+            mView.showDialogMessage(title, message)
+        }
+
+    }
+
+    fun makeVirement() {
+        if (!needMotif) {
+            mView.showProgressDialog()
+
 
             UserApiService.apply{
-                sendRequest(create().virementToTharwa(Injection.provideUserRepository().accessInfos.token, VirementTharwa(mView.destinationAccount.toInt(), mView.montant.toFloat()))
+                sendRequest(create().virementToTharwa(userRepository.accessInfos.token, VirementTharwa(mView.destinationAccount.toInt(), mView.montant.toFloat()))
             ,::onVirementSuccess,::onRequestFailed)}
 
         }else
@@ -204,7 +210,7 @@ class VirementTharwaPresenter(val mView:VirementTharwaContract.View)
         val mont= RequestBody.create(okhttp3.MultipartBody.FORM,mView.montant)
         val type= RequestBody.create(okhttp3.MultipartBody.FORM,"0")
 
-        val req = UserApiService.createServiceForImage().VirementToTharwa(Injection.provideUserRepository().accessInfos.token,body,dest,mont,type)
+        val req = UserApiService.createServiceForImage().VirementToTharwa(userRepository.accessInfos.token,body,dest,mont,type)
         req.enqueue(callback)
 
     }
