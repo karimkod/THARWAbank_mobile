@@ -56,8 +56,8 @@ class VirementVersTharwaScreenTest
                 .check(matches(isDisplayed())).perform(typeText(balance_big), ViewActions.closeSoftKeyboard())
         onView(withId(R.id.motif)).check(matches(isDisplayed()))
 
-        //val motif = mActivityRule.activity.findViewById<LinearLayoutCompat>(R.id.motif)
-        //assertEquals(motif.visibility,VISIBLE)
+        val motif = mActivityRule.activity.findViewById<LinearLayoutCompat>(R.id.motif)
+        assertEquals(motif.visibility,VISIBLE)
     }
 
 
