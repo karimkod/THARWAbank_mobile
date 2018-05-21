@@ -35,10 +35,8 @@
         <activity android:name=".View.LandingPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
 
         </activity>
 
@@ -63,10 +61,9 @@
 
 
         <activity android:name=".View.ExchangeRateActivity"></activity>
-        <activity android:name=".View.VirementInterneTh" />
 
 
-        <activity android:name=".View.VirementTharwaActivity"
+        <activity android:name=".View.Virment.VirementTharwaActivity"
             android:parentActivityName=".View.ClientAcountActivity"
             android:exported="true">
 
@@ -75,6 +72,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".View.ClientAcountActivity" />
         </activity>
-    </application>
 
+    </application>
 </manifest>

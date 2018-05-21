@@ -23,11 +23,11 @@ import kotlinx.android.synthetic.main.sign_up_activity.*
 
 
 class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentInteractionListener, AdapterView.OnItemSelectedListener,
-        FormInterface,SignUpContrat.View{
+        FormInterface,SignUpContrat.View {
 
     override val presenter: SignUpPresenter by lazy { SignUpPresenter(this) }
     override val mail get() = email.editText?.text.toString()
-    override val password get() =  motdepasse.editText?.text.toString()
+    override val password get() = motdepasse.editText?.text.toString()
     override val phone_number get() = phone.editText?.text.toString()
     override val lastName get() = nom.editText?.text.toString()
     override val firstName get() = prenom.editText?.text.toString()
@@ -38,7 +38,7 @@ class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentIntera
     override val type get() = if (simple.isChecked) 0 else 1
 
 
-    val loadingFragment by lazy {LoadingFragment()}
+    val loadingFragment by lazy { LoadingFragment() }
 
     val communeIdArray by lazy { resources.obtainTypedArray(R.array.wilaya_commune) }
 
@@ -52,10 +52,7 @@ class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentIntera
         supportActionBar?.title = "Inscription"
         setUpWilayaSpinner()
         setUpCommuneSpinner(0)
-
-        sign_up.setOnClickListener({presenter.onSignUpClicked()})
-
-
+        sign_up.setOnClickListener({ presenter.onSignUpClicked() })
     }
 
     fun setUpWilayaSpinner() {
@@ -80,9 +77,8 @@ class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentIntera
             setUpCommuneSpinner(position)
     }
 
-    override fun isValidInputs(): Boolean
-    {
-        clearErrors(nom,prenom,email,motdepasse,phone,fonction,wilayaTextInput,adresse)
+    override fun isValidInputs(): Boolean {
+        clearErrors(nom, prenom, email, motdepasse, phone, fonction, wilayaTextInput, adresse)
         try {
             verifyField(lastName, nom, InputType.NAME, true, this)
             verifyField(firstName, prenom, InputType.NAME, true, this)
@@ -100,55 +96,48 @@ class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentIntera
 
     }
 
-    override fun showProgressDialog()
-    {
-        loadingFragment.show(supportFragmentManager.beginTransaction(),"loadingFrag")
+    override fun showProgressDialog() {
+        loadingFragment.show(supportFragmentManager.beginTransaction(), "loadingFrag")
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
     }
 
-    override fun hideProgressDialog()
-    {
+    override fun hideProgressDialog() {
         supportFragmentManager.beginTransaction().remove(loadingFragment).commit()
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
     }
 
-    override fun showSuccessDialog()
-    {
-        val builder =AlertDialog.Builder(this)
+    override fun showSuccessDialog() {
+        val builder = AlertDialog.Builder(this)
         builder.setTitle("Inscription réussie")
         builder.setMessage("Votre compte est en phase de validation, cela prendra " +
                 "moins de 24hrs")
-        builder.setNeutralButton("Terminé",DialogInterface.OnClickListener {
-            _,_ ->
+        builder.setNeutralButton("Terminé", DialogInterface.OnClickListener { _, _ ->
             presenter.onSuccessDialogEnded()
         })
-        builder.setOnCancelListener{presenter.onSuccessDialogEnded() }
+        builder.setOnCancelListener { presenter.onSuccessDialogEnded() }
 
         val dialog = builder.create()
         dialog.show()
     }
 
-    override  fun showMessage(message:String)
-    {
-
+    override fun showMessage(message: String) {
         this.showMessage(message)
     }
 
+    override fun showTag(tag: String, message: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
-    override fun setTakePicturePresenter(picturePresenter: TakePicturePresenter)
-    {
+
+    override fun setTakePicturePresenter(picturePresenter: TakePicturePresenter) {
         presenter.picturePresenter = picturePresenter
     }
 
-    override fun showDialogMessage(title: String, message: String)
-    {
-        showDialogMessage(this,title,message)
+    override fun showDialogMessage(title: String, message: String) {
+        showDialogMessage(this, title, message)
     }
-
-
-
 
 }

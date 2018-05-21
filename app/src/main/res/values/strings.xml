@@ -34,8 +34,34 @@
     <string name="nom_prenom"><![CDATA[Nom & Prénom :]]></string>
     <string name="wilaya_label">Wilaya :</string>
     <string name="commune_label">Commune :</string>
-    <string name="proceding">Procédant</string>
     <string name="err_connx"> Erreure de connexion</string>
+    <string name="proceding">En cours</string>
+    <string name="accountNumberInvalide">Le numéro de compte doit contenir 6 chiffres</string>
+    <string name="montantNegatif">le montant doit être supriéure à zero</string>
+    <string name="montantInvalide">Veuillez introduire un montant valide</string>
+
+
+    <string name="compte_from">Sélectionner votre compte source:</string>
+    <string name="compte_to">Sélectionner le compte de destination:</string>
+    <string name="montant">Montant:</string>
+    <string name="confirme_virme">Confirmer</string>
+
+    <string name="new_vir">Nouveau Virement</string>
+
+   <string name="curr_only">Vous avez uniquemetent le compte courant veuillez créer un autre compte </string>
+    <string name="dzd">DZD</string>
+   <string name="current">COURANT</string>
+    <string name="saving">EPARGNE</string>
+    <string name="usd">USD</string>
+    <string name="euro">EURO</string>
+    <string name="transactoin">Transaction</string>
+    <string name="terminer">Terminer</string>
+    <string name="virme_201">Votre transaction est effectuer avec succssès vous avez: </string>
+    <string name="virme_201_suite">dans votre compte.</string>
+    <string name="virme_404">Erreur 404: récepteur non trouvé</string>
+    <string name="virme_400_2">Erreur 400: Input non valide</string>
+    <string name="virme_400">Erreur 400: Balance insufisante</string>
+
 
 
 </resources>

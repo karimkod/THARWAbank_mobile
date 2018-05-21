@@ -1,7 +1,10 @@
 package com.tharwa.solid.tharwa.View
 
 import Adapters.ListTransactionAdapter
+
+import Adapters.CountChangeAdapter
 import Adapters.TransferListAdapter
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -13,11 +16,9 @@ import android.support.design.widget.BottomSheetBehavior
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v4.view.ViewPager
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import com.tharwa.solid.tharwa.Model.UserData
 import com.tharwa.solid.tharwa.R
 import kotlinx.android.synthetic.main.activity_client_acount.*
 import kotlinx.android.synthetic.main.nav_header.view.*
@@ -26,25 +27,25 @@ import android.support.design.widget.NavigationView
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import com.tharwa.solid.tharwa.Model.TokenResponse
 import com.tharwa.solid.tharwa.Model.Transaction
-import com.tharwa.solid.tharwa.Model.currentAccountDetail
 import com.tharwa.solid.tharwa.Remote.UserApiService
-import com.tharwa.solid.tharwa.enumration.CodeStatus
+import com.tharwa.solid.tharwa.View.Virment.VirToMeFragment
+import com.tharwa.solid.tharwa.Repositories.Injection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import java.net.URL
+import java.text.NumberFormat
 
 
 class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener,SwipeRefreshLayout.OnRefreshListener {
 
 
-    private var pageAdapter: CostomPagerAdapter? = null
-    private var pager: ViewPager? = null
     protected var navigatorView:NavigationView? = null
     private  var ListTransaction=  ArrayList<Transaction>()
     private  var recyclerView: RecyclerView? = null
@@ -53,6 +54,13 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
 
     var transferDialog:AlertDialog? = null
+    var changeAccountDialog:AlertDialog? = null
+    val userRepository by lazy {
+        Injection.provideUserRepository()
+    }
+    val accountRepository by lazy{
+        Injection.provideAccountRepository()
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,37 +81,18 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
                 ,"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjkyNDhhNTU2NDlhMjA4ZDI4MGZmZTQyNTk2MmZhNzIzODJlMGIwYTM4MTYyNDZlNTU2Y2FmM2VjNWViMGRkMzNlOWJkMDNmMGM2M2NiOWEzIn0.eyJhdWQiOiIyIiwianRpIjoiOTI0OGE1NTY0OWEyMDhkMjgwZmZlNDI1OTYyZmE3MjM4MmUwYjBhMzgxNjI0NmU1NTZjYWYzZWM1ZWIwZGQzM2U5YmQwM2YwYzYzY2I5YTMiLCJpYXQiOjE1MjY3NTExMjgsIm5iZiI6MTUyNjc1MTEyOCwiZXhwIjoxNTI2NzU4MzI3LCJzdWIiOiI1Iiwic2NvcGVzIjpbImN1c3RvbWVyIl19.yndwK-GWpmC64-Wpk41IXdCaoA5cMcByBaogh2jH_1ry8nHi_9rd-W6XORx4iT3FirGRaYl6B6u1uZ8UoHl5PEt1VeP1UaD6Ml9i6bKLrk5Z7irKBAYV_KVgSKdM_YpwkNJeETh_6__C7Vgx5YOwxIusHFATQDq1SUORbLisjcWk3YwqvZ8s66TPxM2iFtUVV8GIZmLPpqk03Jc2L1br5EMWbNy-SrBCyxO6Uw8P2UuuxuT0g1zn1C8pTT9bM7V6uE9Mjb_KIzpnUBc4Bo95r3ASIqcl9e71X-bHYF1BswbNxrGBsp-4eXwPJEWTd3NlBJSOQXFQw5kotyNRwOFEtCQc4Z4VnCDB-d91eAAgVbwtD2XcCPnK_5IxWOpJ8KirS18_kztzB701rJGusqGwiHPQAHhcgBfzqC9NQTWLDb6F1Lc7kSvpZn6IFaQojJE4lwHAuBHioVvvvtqLiaZHOU75oByCk_hLQojeUQuW1PFm5IrA3Z3a9qprpvwAXYlOGTrgGwBYDof12goG6ZuUAdYDNloSStbRcFhdHF9JGQuaCDMZBdGdQSec4XEB8yORNVPZviH-QdfUZjaJiLsD2gloG-rb7Fx0-WG2cEeZ0t7OPokByMBcJ3VX6yzwbt2bO9qvbSlVd5PvqWAHL0oSVBjRazU7eSdIhUdLuf6S2IM"
                 ,"7199")
 */
-        // les fragments de la tab Barre
-        pageAdapter = CostomPagerAdapter(supportFragmentManager)
-        //pager = findViewById<ViewPager>(R.id.homeViewPager)
 
-        pageAdapter?.addFragment(VirementsFragment(), "Virements")
-        pageAdapter?.addFragment(CommissionFragment(), "Commissions")
-
-        pager?.adapter = pageAdapter
-        //homeTabBarre.setupWithViewPager(pager)
-
-       // buttomNavigation = findViewById(R.id.bottom_navigation)
         BottomSheetBehavior.from(floatingButtons)
-
-        //buttomNavigation?.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
-        Log.d("ClientAccountActivity",UserData.user.toString())
 
         transfer_money.setOnClickListener{openTransferDialog()}
 
         exchange_rate.setOnClickListener{  openExchangeRate()}
 
+        change_account.setOnClickListener{openChangeCompte()}
+
         recyclerView = findViewById(R.id.recycle_view_historique)
         swipeRefreshLayout =  findViewById(R.id.swipe_refresh_layout)
-
         swipeRefreshLayout!!.setOnRefreshListener(this)
-        
-        recyclerView!!.setOnClickListener{
-
-
-        }
-
         swipeRefreshLayout!!.post(
                  { getNewTransaction() }
         )
@@ -112,7 +101,6 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
     override fun onRefresh() {
         getNewTransaction()
     }
-
 
 
     fun getNewTransaction(){
@@ -128,15 +116,15 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
     }
 
+
     override fun onResume()
     {   super.onResume()
-        val user = if(UserData.user != null) UserData.user!! else return
+        val user = userRepository.userInfo
         navigatorView = nav_view
         nav_view.getHeaderView(0).user_name_view?.text = user.name
 
         //loadImageTask(navigatorView?.getHeaderView(0)!!.user_photo!!).execute(user.photoPath)
-        id_count_view.text = user.currentAccount.accountCode
-        //balance_count_view.text = "${user.currentAccount.balance} DZD"
+
         updateBalance()
         updateHistory()
 
@@ -149,13 +137,10 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
 
 
-
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
-        when(item?.itemId)
-        {
-            android.R.id.home ->
-            {
+        when (item?.itemId) {
+            android.R.id.home -> {
                 drawer_layout.openDrawer(GravityCompat.START)
                 return true
             }
@@ -170,12 +155,14 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
     }
 
 
-    class loadImageTask(val imageView:ImageView):AsyncTask<String,Unit,Bitmap>()
+
+    class loadImageTask( val imageView:ImageView):AsyncTask<String,Unit,Bitmap>()
     {
         override fun doInBackground(vararg params: String?): Bitmap
         {
 
             val inputStream = URL("${UserApiService.URL}images/customer/${params[0]}").openStream()
+
             return BitmapFactory.decodeStream(inputStream)
 
         }
@@ -186,14 +173,13 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
     }
 
-    fun openTransferDialog()
-    {
+    fun openTransferDialog() {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val row = inflater.inflate(R.layout.dialog_listview,null,false)
+        val row = inflater.inflate(R.layout.dialog_listview, null, false)
         val lv = row.findViewById<ListView>(R.id.transfer_type_list)
-        Log.d("ClientAccountActivity",UserData.user!!.accountTypes.toString())
-        lv.adapter = TransferListAdapter(UserData.user!!.accountTypes,this)
+
+        lv.adapter = TransferListAdapter(accountRepository.availableAccountsType,this)
         lv.onItemClickListener = this
         dialogBuilder.setView(row)
         dialogBuilder.setTitle("Quel type de virement?")
@@ -201,26 +187,57 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
     }
 
-    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
+
+    fun openChangeCompte()
     {
-        if(position == 0)
-        {
-            val intent = Intent(this,VirementTharwaActivity::class.java)
-            startActivity(intent)
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val row = inflater.inflate(R.layout.dialog_listview, null, false)
+        val lv = row.findViewById<ListView>(R.id.transfer_type_list)
+        Log.d("ClientAccountActivity", Injection.provideAccountRepository().availableAccountsType.toString())
+        lv.adapter = CountChangeAdapter(Injection.provideAccountRepository().availableAccountsType, this)
+        lv.setOnItemClickListener{parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
 
-        }else if(position == 1)
-        {
-            Toast.makeText(this ,"Pas implémenté",Toast.LENGTH_SHORT).show()
+            Injection.provideAccountRepository().selectedAccount = id.toInt()
+            updateBalance()
+            changeAccountDialog!!.dismiss()
+
         }
+        dialogBuilder.setView(row)
+        dialogBuilder.setTitle("Quel compte voulez vous choisir?")
+        changeAccountDialog = dialogBuilder.create()
+        changeAccountDialog!!.show()
 
-        transferDialog?.dismiss()
     }
 
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        when (position) {
+
+            0 -> Toast.makeText(this, "Virrerrr", Toast.LENGTH_SHORT).show()
+            1 -> {
+                Toast.makeText(this, "Pas implémenté", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, Injection.provideAccountRepository().availableAccountsType.toString(), Toast.LENGTH_LONG).show()
+            }
+            2 -> {
+                if (Injection.provideAccountRepository().availableAccountsType.size == 1)
+                    Toast.makeText(this, resources.getString(R.string.curr_only), Toast.LENGTH_SHORT).show()
+                else {
+                    transferDialog?.dismiss()
+                    val dialog = VirToMeFragment()
+                    val ft = supportFragmentManager.beginTransaction()
+                    dialog.show(ft, ContentValues.TAG)
+                }
+            }
+            else -> {
+            }
+
+        }
+    }
 
     fun updateBalance()
     {
 
-        val disposable = UserApiService.create().getAccountInfo(UserData.user!!.token,1)
+        val disposable = UserApiService.create().getAccountInfo(userRepository.accessInfos.token,Injection.provideAccountRepository().selectedAccount)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -228,13 +245,28 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
                             if (response.isSuccessful) {
 
-                                balance_count_view.text = response.body()?.balance.toString() + response.body()?.currency
+                                val money = response.body()?.balance
+                                val formatter = NumberFormat.getCurrencyInstance()
+                                val moneyString = formatter.format(money).removePrefix("$")
 
+                                balance_count_view.text =  moneyString+" "+ response.body()?.currency
+                                id_count_view.text = response.body()?.id
+                                count_type_view.text = when (response.body()?.type)
+                                                        {
+                                                            1-> "Compte courant"
+                                                            2 -> "Compte epargne"
+                                                            3 -> "Compte Euro"
+                                                            4-> "Compte Dollars"
+                                                            else -> "Erreur"
+                                                        }
+                            }else
+                            {
+                                Log.e("ClientAccoutActivity",response.toString())
                             }
 
                         },
                         { error ->
-
+                            Log.e("ClientAccoutActivity","Error ")
                         }
                 )
     }
@@ -242,9 +274,9 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
     fun updateHistory(){
 
-        val id:Int = (UserData.user!!.currentAccount.accountCode.subSequence(3,9)).toString().toInt()
+        val id:Int = (Injection.provideAccountRepository().getSelectedAccount().id.subSequence(3,9)).toString().toInt()
 
-        val disposabl: Disposable = UserApiService.create().getHistory(UserData.user!!.token,id,1)
+        val disposabl: Disposable = UserApiService.create().getHistory(Injection.provideUserRepository().accessInfos.token,id,1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -270,7 +302,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
                                     var externAccount = " "
                                     var E_S = 0
 
-                                    if(UserData.user!!.currentAccount.accountCode == acount1){
+                                    if(Injection.provideAccountRepository().getSelectedAccount().id == acount1){
                                         externAccount=acount2
                                         E_S = 1
 

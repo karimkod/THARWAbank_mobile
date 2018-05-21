@@ -1,14 +1,14 @@
 package com.tharwa.solid.tharwa.Remote
 import com.tharwa.solid.tharwa.Model.*
 import io.reactivex.Observable
-import okhttp3.Call
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
-import okhttp3.RequestBody
-import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 
 import okhttp3.OkHttpClient
@@ -56,6 +56,11 @@ interface UserApiService {
     fun virementInterne(@Header("Authorization")token:String,
                         @Body virement:VirmentInterne): Observable<Response<com.tharwa.solid.tharwa.Model.Response>>
 
+    //virement interne to same user
+    @Headers("Accept:application/json")
+    @POST("/virements_internes")
+    fun virToMe(@Header("Authorization")token:String,
+                @Body virment: VirToMe):Observable<Response<com.tharwa.solid.tharwa.Model.ResponseVirme>>
 
     @Headers("Accept:application/json")
     @POST("virements_internes_thw")
@@ -67,7 +72,7 @@ interface UserApiService {
 
 
     @GET("accounts/type/{type}")
-    fun getAccountInfo(@Header("Authorization")token:String,@Path("type")type:Int):Observable<Response<AccountInfo>>
+    fun getAccountInfo(@Header("Authorization")token:String,@Path("type")type:Int):Observable<Response<Account>>
 
 
     @GET("/currency")
@@ -89,20 +94,27 @@ interface UserApiService {
     //create the service
     companion object {
 
-        //val URL="https://serene-retreat-29274.herokuapp.com/"
+        val URL="https://serene-retreat-29274.herokuapp.com/"
 
-        val URL="http://192.168.43.5/"
+        //val URL="http://192.168.43.5/"
+
+        var instance:UserApiService? = null
 
         fun create(): UserApiService {
 
-            val retrofit = Retrofit.Builder()
-                    .addCallAdapterFactory(
-                            RxJava2CallAdapterFactory.create())
-                    .addConverterFactory(
-                            GsonConverterFactory.create())
-                    .baseUrl(URL)
-                    .build()
-            return retrofit.create(UserApiService::class.java)
+            if (instance == null)
+            {
+                val retrofit = Retrofit.Builder()
+                        .addCallAdapterFactory(
+                                RxJava2CallAdapterFactory.create())
+                        .addConverterFactory(
+                                GsonConverterFactory.create())
+                        .baseUrl(URL)
+                        .build()
+                instance = retrofit.create(UserApiService::class.java)
+            }
+            return instance!!
+
         }
 
         fun createServiceForImage():UserApiService
@@ -112,6 +124,11 @@ interface UserApiService {
             val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
             return Retrofit.Builder().baseUrl(URL).client(client).build().create(UserApiService::class.java)
+        }
+
+        fun <T> sendRequest(observable:Observable<T>,success:(T)->Unit,failure:(Throwable)->Unit)
+        {
+            observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(success,failure)
         }
     }
 }

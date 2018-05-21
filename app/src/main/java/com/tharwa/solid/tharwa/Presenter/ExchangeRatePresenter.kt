@@ -30,7 +30,7 @@ class ExchangeRatePresenter ( val view: ExchangeRateActivity){
 
     private val Service = Config.newService()
 
-
+/*
     fun getExchangeRate(token:String){
 
         view.showProgressDialog()
@@ -111,6 +111,6 @@ class ExchangeRatePresenter ( val view: ExchangeRateActivity){
 
     }
 
-
+*/
 
 }

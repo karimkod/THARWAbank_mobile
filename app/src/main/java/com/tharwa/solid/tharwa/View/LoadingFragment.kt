@@ -25,5 +25,4 @@ class LoadingFragment : DialogFragment()
         progressDialog.progress = ProgressDialog.STYLE_SPINNER
         return progressDialog
     }
-
 }

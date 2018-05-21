@@ -1,11 +1,13 @@
-package com.tharwa.solid.tharwa.View
+package com.tharwa.solid.tharwa.View.Virment
 
 
+import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
@@ -13,8 +15,11 @@ import com.tharwa.solid.tharwa.Contract.VirementTharwaContract
 import com.tharwa.solid.tharwa.FormInterface
 import com.tharwa.solid.tharwa.InvalideInputException
 import com.tharwa.solid.tharwa.Presenter.TakePicturePresenter
-import com.tharwa.solid.tharwa.Presenter.VirementTharwaPresenter
+import com.tharwa.solid.tharwa.Presenter.Virement.VirementTharwaPresenter
 import com.tharwa.solid.tharwa.R
+import com.tharwa.solid.tharwa.Repositories.Injection
+import com.tharwa.solid.tharwa.View.LoadingFragment
+import com.tharwa.solid.tharwa.View.TakePictureFragment
 import com.tharwa.solid.tharwa.enumration.InputType
 import kotlinx.android.synthetic.main.activity_virement_tharwa.*
 
@@ -33,9 +38,9 @@ class VirementTharwaActivity : AppCompatActivity(),FormInterface,VirementTharwaC
     override val montant: String
         get() = montant_virement.editText?.text.toString()
 
-    val loadingFragment by lazy {LoadingFragment()}
+    val loadingFragment by lazy { LoadingFragment() }
 
-    override val presenter: VirementTharwaPresenter by lazy {VirementTharwaPresenter(this)}
+    override val presenter: VirementTharwaPresenter by lazy { VirementTharwaPresenter(this, Injection.provideUserRepository()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +79,8 @@ class VirementTharwaActivity : AppCompatActivity(),FormInterface,VirementTharwaC
         showDialogMessage(this,title,message)
     }
 
-    override fun showConfirmationMethod(name:String,wilaya:String,commune:String)
+    @SuppressLint("WrongViewCast")
+    override fun showConfirmationMethod(name:String, wilaya:String, commune:String)
     {
         val alertBuilder = AlertDialog.Builder(this)
         val layout = layoutInflater.inflate(R.layout.confirm_distination_dialog,null)
@@ -116,7 +122,7 @@ class VirementTharwaActivity : AppCompatActivity(),FormInterface,VirementTharwaC
         motif.visibility = View.VISIBLE
     }
 
-    override fun hidePicturePlase() {
+    override fun hidePicturePlace() {
         motif.visibility = View.GONE
     }
 
@@ -146,6 +152,8 @@ class VirementTharwaActivity : AppCompatActivity(),FormInterface,VirementTharwaC
         alertBuilder.create().show()
     }
 
-
+    override fun showTag(tag: String, message: String) {
+        Log.e(tag,message)
+    }
 
 }

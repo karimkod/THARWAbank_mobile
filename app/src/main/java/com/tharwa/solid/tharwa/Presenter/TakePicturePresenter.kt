@@ -12,7 +12,6 @@ import java.util.*
  */
 
 class MissingPicture : Exception()
-
 class TakePicturePresenter(val view:addPictureContract.View) {
     private var image: File? = null
 
@@ -66,5 +65,10 @@ class TakePicturePresenter(val view:addPictureContract.View) {
         Log.d("Presenter", filePath)
         image = File(filePath)
         view.setImage(filePath as String)
+    }
+
+    fun isImageValid()
+    {
+        if (image == null) throw  MissingPicture()
     }
 }
