@@ -11,7 +11,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.tharwa.solid.tharwa"
-        minSdkVersion 19
+        minSdkVersion 16
         targetSdkVersion 26
         multiDexEnabled true
         versionCode 1

@@ -1,5 +1,6 @@
 package com.tharwa.solid.tharwa.View
 
+import Adapters.CountChangeAdapter
 import Adapters.TransferListAdapter
 import android.content.ContentValues
 import android.content.Context
@@ -31,6 +32,7 @@ import com.tharwa.solid.tharwa.Repositories.Injection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.net.URL
+import java.text.NumberFormat
 
 
 class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener{
@@ -40,6 +42,8 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
 
     var transferDialog:AlertDialog? = null
+
+    var changeAccountDialog:AlertDialog? = null
 
     val userRepository by lazy {
         Injection.provideUserRepository()
@@ -69,9 +73,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
         //Log.d("ClientAccountActivity",.user.toString())
 
         transfer_money.setOnClickListener{openTransferDialog()}
-
-
-        transfer_money.setOnClickListener { openTransferDialog() }
+        change_account.setOnClickListener{openChangeCompte()}
 
     }
 
@@ -84,8 +86,9 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
         nav_view.getHeaderView(0).user_name_view?.text = user.name
 
         //loadImageTask(navigatorView?.getHeaderView(0)!!.user_photo!!).execute(user.photoPath)
-        id_count_view.text = accountRepository.getSelectedAccount().id.toString()
-        balance_count_view.text = "${accountRepository.getSelectedAccount().balance} DZD"
+       /* id_count_view.text = accountRepository.getSelectedAccount().id
+        balance_count_view.text = "${accountRepository.getSelectedAccount().balance} ${accountRepository.getSelectedAccount().currency}"
+*/
         updateBalance()
 
     }
@@ -167,6 +170,8 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
         transferDialog = dialogBuilder.create().apply { show() }
 
     }
+
+
     fun openChangeCompte()
     {
         val dialogBuilder = AlertDialog.Builder(this)
@@ -174,23 +179,19 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
         val row = inflater.inflate(R.layout.dialog_listview, null, false)
         val lv = row.findViewById<ListView>(R.id.transfer_type_list)
         Log.d("ClientAccountActivity", Injection.provideAccountRepository().availableAccountsType.toString())
-        lv.adapter = TransferListAdapter(Injection.provideAccountRepository().availableAccountsType, this)
-        lv.onItemClickListener = this
+        lv.adapter = CountChangeAdapter(Injection.provideAccountRepository().availableAccountsType, this)
+        lv.setOnItemClickListener{parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
+
+            Injection.provideAccountRepository().selectedAccount = id.toInt()
+            updateBalance()
+            changeAccountDialog!!.dismiss()
+
+        }
         dialogBuilder.setView(row)
         dialogBuilder.setTitle("Quel compte voulez vous choisir?")
-        val dialog = dialogBuilder.create()
-        dialog.show()
-        /*if(position == 0)
-        {
-            val intent = Intent(this,VirementTharwaActivity::class.java)
-            startActivity(intent)
+        changeAccountDialog = dialogBuilder.create()
+        changeAccountDialog!!.show()
 
-        }else if(position == 1)
-        {
-            Toast.makeText(this ,"Pas implémenté",Toast.LENGTH_SHORT).show()
-        }*/
-
-        transferDialog?.dismiss()
     }
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -220,7 +221,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
     fun updateBalance()
     {
 
-        val disposable = UserApiService.create().getAccountInfo(userRepository.accessInfos.token,1)
+        val disposable = UserApiService.create().getAccountInfo(userRepository.accessInfos.token,Injection.provideAccountRepository().selectedAccount)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -228,13 +229,28 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
                             if (response.isSuccessful) {
 
-                                balance_count_view.text = response.body()?.balance.toString() +" "+ response.body()?.currency
+                                val money = response.body()?.balance
+                                val formatter = NumberFormat.getCurrencyInstance()
+                                val moneyString = formatter.format(money).removePrefix("$")
 
+                                balance_count_view.text =  moneyString+" "+ response.body()?.currency
+                                id_count_view.text = response.body()?.id
+                                count_type_view.text = when (response.body()?.type)
+                                                        {
+                                                            1-> "Compte courant"
+                                                            2 -> "Compte epargne"
+                                                            3 -> "Compte Euro"
+                                                            4-> "Compte Dollars"
+                                                            else -> "Erreur"
+                                                        }
+                            }else
+                            {
+                                Log.e("ClientAccoutActivity",response.toString())
                             }
 
                         },
                         { error ->
-
+                            Log.e("ClientAccoutActivity","Error ")
                         }
                 )
     }

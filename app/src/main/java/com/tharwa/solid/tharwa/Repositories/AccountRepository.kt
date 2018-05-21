@@ -8,7 +8,7 @@ class AccountRepository
 
     lateinit var availableAccountsType:Array<Int>
     var cachedAccounts: TreeMap<Int,Account> = TreeMap()
-    private var selectedAccount:Int = 1
+    var selectedAccount:Int = 1
 
 
     fun getSelectedAccount():Account = cachedAccounts[selectedAccount]!!
@@ -17,7 +17,7 @@ class AccountRepository
 
     companion object
     {
-        private var INSTANCE: AccountRepository? = null
+        var INSTANCE: AccountRepository? = null
 
         private val lock = Any()
 

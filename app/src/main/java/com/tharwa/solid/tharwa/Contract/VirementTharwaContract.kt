@@ -1,7 +1,6 @@
 package com.tharwa.solid.tharwa.Contract
 
-import com.tharwa.solid.tharwa.Presenter.VirementTharwaPresenter
-import com.tharwa.solid.tharwa.View.VirementTharwaActivity
+import com.tharwa.solid.tharwa.Presenter.Virement.VirementTharwaPresenter
 import com.tharwa.solid.tharwa.util.BaseActivity
 
 interface VirementTharwaContract

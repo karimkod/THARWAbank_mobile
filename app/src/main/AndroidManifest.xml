@@ -56,7 +56,7 @@
             android:exported="true" />
 
 
-        <activity android:name=".View.VirementTharwaActivity"
+        <activity android:name=".View.Virment.VirementTharwaActivity"
             android:parentActivityName=".View.ClientAcountActivity"
             android:exported="true">
 

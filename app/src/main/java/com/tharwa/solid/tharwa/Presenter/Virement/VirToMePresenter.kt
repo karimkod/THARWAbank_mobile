@@ -14,12 +14,6 @@ class VirToMePresenter(val view:VirToMeContract.View):VirToMeFragment.InterfaceD
 {
 
 
-    var disposable: Disposable? = null
-    private val Service = Config.newService()
-
-   private lateinit var virement: VirToMe
-    private lateinit var token:String
-
 
       fun transfer( token:String,virement: VirToMe)
     {
@@ -29,7 +23,7 @@ class VirToMePresenter(val view:VirToMeContract.View):VirToMeFragment.InterfaceD
 
     fun onCreateVirementSuccess(result: Response<ResponseVirme>)
     {
-        view.hideProgressDialog()
+       view.hideProgressDialog()
         if (result.isSuccessful) {
             view.showResultDialog(result.code(),result.body()!!.balance)
         } else //error 400-500
@@ -47,22 +41,19 @@ class VirToMePresenter(val view:VirToMeContract.View):VirToMeFragment.InterfaceD
 
     fun on_confirmClick(type_acc_sender:Int,type_acc_receiver:Int,montant_virement:Double)
     {
-        initData(type_acc_sender,type_acc_receiver,montant_virement)
+        val virement=VirToMe(type_acc_sender,type_acc_receiver,montant_virement,0)
+        val token=Injection.provideUserRepository().accessInfos.token
+
         transfer(token,virement)
     }
     fun onResultDialogEnded() {
         view.closeDialog()
     }
-    fun initData(type_acc_sender:Int,type_acc_receiver:Int,montant_virement:Double)
-    {
-        virement=VirToMe(type_acc_sender,type_acc_receiver,montant_virement,0)
-        token=Injection.provideUserRepository().accessInfos.token
-    }
 
 
     override fun CountVirMe(item: String): ArrayList<String> {
         val listDisp=listDisp()
-        var list =ArrayList<String>()
+        val list =ArrayList<String>()
         when(item)
         {
             "COURANT"-> {
@@ -83,9 +74,8 @@ class VirToMePresenter(val view:VirToMeContract.View):VirToMeFragment.InterfaceD
 
     fun listDisp():ArrayList<String>
     {
-        var  list=ArrayList<String>()
-       // var countTypr=UserData.user!!.accountTypes
-        var countTypr=Injection.provideAccountRepository().availableAccountsType
+        val list=ArrayList<String>()
+        val countTypr=Injection.provideAccountRepository().availableAccountsType
         for (i in countTypr)
         {
             when(i)

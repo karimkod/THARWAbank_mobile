@@ -83,20 +83,27 @@ interface UserApiService {
     //create the service
     companion object {
 
-        val URL="https://serene-retreat-29274.herokuapp.com/"
+        //val URL="https://serene-retreat-29274.herokuapp.com/"
 
-        //val URL="http://192.168.43.5/"
+        val URL="http://192.168.43.5/"
+
+        var instance:UserApiService? = null
 
         fun create(): UserApiService {
 
-            val retrofit = Retrofit.Builder()
-                    .addCallAdapterFactory(
-                            RxJava2CallAdapterFactory.create())
-                    .addConverterFactory(
-                            GsonConverterFactory.create())
-                    .baseUrl(URL)
-                    .build()
-            return retrofit.create(UserApiService::class.java)
+            if (instance == null)
+            {
+                val retrofit = Retrofit.Builder()
+                        .addCallAdapterFactory(
+                                RxJava2CallAdapterFactory.create())
+                        .addConverterFactory(
+                                GsonConverterFactory.create())
+                        .baseUrl(URL)
+                        .build()
+                instance = retrofit.create(UserApiService::class.java)
+            }
+            return instance!!
+
         }
 
         fun createServiceForImage():UserApiService

@@ -12,8 +12,11 @@ import android.view.LayoutInflater
 import android.view.WindowManager
 import android.widget.*
 import com.tharwa.solid.tharwa.Contract.VirToMeContract
+import com.tharwa.solid.tharwa.FormInterface
+import com.tharwa.solid.tharwa.InvalideInputException
 import com.tharwa.solid.tharwa.Presenter.Virement.VirToMePresenter
 import com.tharwa.solid.tharwa.View.LoadingFragment
+import com.tharwa.solid.tharwa.enumration.InputType
 import com.tharwa.solid.tharwa.util.BaseActivity
 import kotlinx.android.synthetic.main.vrintern_to_me_fragment.*
 
@@ -22,7 +25,7 @@ import kotlinx.android.synthetic.main.vrintern_to_me_fragment.*
  * Created by LE on 23/04/2018.
  */
 
-class VirToMeFragment :DialogFragment (),VirToMeContract.View,BaseActivity<VirToMePresenter>{
+class VirToMeFragment :DialogFragment (),VirToMeContract.View,BaseActivity<VirToMePresenter>,FormInterface{
 
 
     override val presenter: VirToMePresenter by lazy { VirToMePresenter(this) }
@@ -69,8 +72,25 @@ class VirToMeFragment :DialogFragment (),VirToMeContract.View,BaseActivity<VirTo
 
     fun  on_confirmClick()
     {
-       montant_virement=  montant_virme.text.toString().toDouble()
-        presenter.on_confirmClick(type_acc_sender,type_acc_receiver,montant_virement)
+
+
+            clearErrors(montant_virme)
+            val isValid =
+            try {
+                verifyField(montant_virme.editText!!.text.toString(), montant_virme, InputType.MONTANT, true, activity)
+                //verifyField(montant, montant_virement, InputType.MONTANT, true, this)
+                true
+            } catch (e: InvalideInputException)
+            {
+                false
+            }
+
+        if(isValid)
+        {
+            montant_virement=  montant_virme.editText!!.text.toString().toDouble()
+            presenter.on_confirmClick(type_acc_sender,type_acc_receiver,montant_virement)
+        }
+
     }
 
 

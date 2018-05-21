@@ -4,7 +4,7 @@ import com.tharwa.solid.tharwa.Contract.VirementTharwaContract
 import com.tharwa.solid.tharwa.Model.AccesInfo
 import com.tharwa.solid.tharwa.Model.DestinationAccoutInfo
 import com.tharwa.solid.tharwa.Presenter.TakePicturePresenter
-import com.tharwa.solid.tharwa.Presenter.VirementTharwaPresenter
+import com.tharwa.solid.tharwa.Presenter.Virement.VirementTharwaPresenter
 import com.tharwa.solid.tharwa.Repositories.UserRepository
 import okhttp3.ResponseBody
 import org.junit.Assert.*
@@ -12,11 +12,9 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.*
 import org.mockito.Mockito.*
-import org.mockito.internal.matchers.CapturesArguments
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
-import kotlin.text.Typography.times
 
 class VirementTharwaPresenterTest
 {
@@ -33,7 +31,7 @@ class VirementTharwaPresenterTest
     {
         MockitoAnnotations.initMocks(this)
 
-        virementTharwaPresenter =  VirementTharwaPresenter(view,userRepository)
+        virementTharwaPresenter = VirementTharwaPresenter(view, userRepository)
         `when`(userRepository.accessInfos).thenReturn(AccesInfo("mock","mock",500,1))
 
     }
@@ -121,7 +119,7 @@ class VirementTharwaPresenterTest
         `when`(takePicturePresenter.getImage).thenReturn(File("path"))
         `when`(view.destinationAccount).thenReturn("")
         `when`(view.montant).thenReturn("2500")
-        //virementTharwaPresenter.makeVirementWithMotif()
+        //<virementTharwaPresenter.makeVirementWithMotif()
 
     }
 

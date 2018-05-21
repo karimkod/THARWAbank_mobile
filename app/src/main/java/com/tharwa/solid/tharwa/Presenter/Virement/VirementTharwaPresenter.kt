@@ -1,9 +1,10 @@
-package com.tharwa.solid.tharwa.Presenter
+package com.tharwa.solid.tharwa.Presenter.Virement
 
-import android.util.Log
 import com.tharwa.solid.tharwa.Contract.VirementTharwaContract
 import com.tharwa.solid.tharwa.Model.DestinationAccoutInfo
 import com.tharwa.solid.tharwa.Model.VirementTharwa
+import com.tharwa.solid.tharwa.Presenter.MissingPicture
+import com.tharwa.solid.tharwa.Presenter.TakePicturePresenter
 import com.tharwa.solid.tharwa.Remote.UserApiService
 import com.tharwa.solid.tharwa.Repositories.UserRepository
 import com.tharwa.solid.tharwa.enumration.CodeStatus
@@ -16,7 +17,7 @@ import retrofit2.Response
 
 class VirementTharwaPresenter(val mView:VirementTharwaContract.View, val userRepository: UserRepository)
 {
-    var takePicturePresenter:TakePicturePresenter? = null
+    var takePicturePresenter: TakePicturePresenter? = null
     val MAXIMUM_SANS_MOTIF =  200000.0f
 
 

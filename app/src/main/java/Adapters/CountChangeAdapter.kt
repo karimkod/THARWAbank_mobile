@@ -12,30 +12,39 @@ import android.widget.BaseAdapter
  */
 class CountChangeAdapter (val accounts:Array<Int>,val context: Context): BaseAdapter()
 {
-    val countsChange: Array<String> by lazy { createCounts()}
+    val accountsType: ArrayList<String> by lazy { createCounts()}
 
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View
     {
         val infalter = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val row = infalter.inflate(R.layout.virement_type_list_item,parent,false)
-        row.findViewById<TextView>(R.id.type_transfer).text = countsChange[position]
+        val row = infalter.inflate(R.layout.account_list_item,parent,false)
+        row.findViewById<TextView>(R.id.type_account).text = accountsType[position]
         return row
     }
 
-    override fun getItem(position: Int): Any = countsChange[position]
+    override fun getItem(position: Int): Any = accountsType[position]
 
-    override fun getItemId(position: Int): Long = position.toLong()
+    override fun getItemId(position: Int): Long = accounts[position].toLong()
 
-    override fun getCount(): Int = countsChange.size
+    override fun getCount(): Int = accountsType.size
 
-    fun createCounts():Array<String> = when(accounts.size)
+    fun createCounts():ArrayList<String>
     {
-        4-> {
-            arrayOf("Mon compte courant", "Mon compte Epargne", " Changer vers compte USD", "Cahnger vers compte EURO")
+        var list = ArrayList<String>()
+        for (i in accounts)
+        {
+            when (i)
+            {
+                1-> list.add("Compte courant")
+                2-> list.add("Compte epargne")
+                3-> list.add("Compte euro")
+                4-> list.add("Compte dollars")
+                else -> list.add("Erreur")
+
+            }
         }
 
-        1->arrayOf("Error")
-        else -> arrayOf("Error")
+        return list;
     }
 }
