@@ -1,6 +1,7 @@
 package com.tharwa.solid.tharwa.Model
 
 import android.os.Parcelable
+import android.support.annotation.Nullable
 import com.google.gson.annotations.SerializedName
 import org.w3c.dom.Text
 import java.io.File
@@ -145,5 +146,35 @@ data class AccountInfo(
         @SerializedName("type") val type:Int,
         @SerializedName("balance") val balance:Double,
         @SerializedName("status") val status:Int
+
+)
+
+data class TransactionData(
+        @SerializedName("id") val id:Int,
+        @SerializedName("num_acc_sender") val num_acc_sender:Int,
+        @SerializedName("code_bnk_sender") val code_bnk_sender:String,
+        @SerializedName("code_curr_sender") val code_curr_sender:String,
+        @SerializedName("num_acc_receiver") val num_acc_receiver:Int,
+        @SerializedName("code_bnk_receiver") val code_bnk_receiver:String,
+        @SerializedName("code_curr_receiver") val code_curr_receiver:String,
+        @SerializedName("montant_virement") val montant_virement:String,
+        @SerializedName("status") val status:Int,
+        @SerializedName("type") val type:Int,
+        @SerializedName("id_commission") val id_commission:String,
+        @SerializedName("montant_commission") val montant_commission:String,
+        @SerializedName("created_at") val created_at:String
+)
+
+
+data class HistoryResponse(
+
+        @SerializedName("current_page") val current_page:Int,
+        @SerializedName("data") val data:Array<TransactionData>,
+        @SerializedName("from") val from:Int,
+        @SerializedName("next_page_url") val next_page_url:String,
+        @SerializedName("path") val path:String,
+        @SerializedName("per_page") val per_page:Int,
+        @Nullable @SerializedName("prev_page_url") val prev_page_url:Int,
+        @SerializedName("to") val to:Int
 
 )

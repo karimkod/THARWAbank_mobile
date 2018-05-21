@@ -67,21 +67,33 @@
         </android.support.design.widget.AppBarLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout_home"
+            android:id="@+id/historique"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/floatingButtons"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintBottom_toTopOf="@+id/floatingButtons"
 
             >
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_refresh_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle_view_historique"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </android.support.v7.widget.RecyclerView>
+            </android.support.v4.widget.SwipeRefreshLayout>
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Pas de transaction"
-                android:gravity="center|top"
                 android:layout_marginTop="5dp"
-                />
+                android:gravity="center|top"
+                android:text="Pas de transaction" />
+
 
         </LinearLayout>
 

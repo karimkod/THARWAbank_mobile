@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingStart="6dp"
+    android:paddingEnd="6dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginBottom="3dp"
+    android:elevation="5dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="6dp">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:orientation="horizontal">
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/transaction_num_acount"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="VERS: BNA000123DZD"
+                android:gravity="left|center_vertical"
+                android:layout_weight="1"
+                android:textSize="16sp"/>
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/date_transaction"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="16dp"
+                android:gravity="right|center_vertical"
+                android:text="2018-05-07 14:47:32"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight=".2">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".8"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/icon_transaction"
+                        android:src="@mipmap/ic_commission"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="right"
+                    android:layout_weight=".2">
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/transaction_motant"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:text="- 120 000,00 DZD"
+                    android:gravity="right|center_vertical"
+                    android:textSize="20sp"/>
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/transaction_commission"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:textColor="@color/colorAccent"
+                    android:text="-500,00 DZD"
+                    android:gravity="right|center_vertical"
+                    android:textSize="20sp"/>
+                </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView >

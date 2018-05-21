@@ -79,6 +79,13 @@ interface UserApiService {
     @POST("virements_internes_thw")
     fun VirementToTharwa(@Header("Authorization")token:String,@Part image: okhttp3.MultipartBody.Part ,@Part("num_acc_receiver") destination:okhttp3.RequestBody,@Part("montant_virement") montant:okhttp3.RequestBody,@Part("type") type:okhttp3.RequestBody):retrofit2.Call<okhttp3.ResponseBody>
 
+
+    @Headers("Accept:application/json")
+    @GET("account/virements/{id}")
+    fun getHistory(@Header("Authorization")token:String, @Path("id")id:Int, @Query("page") page:Int): Observable<Response<HistoryResponse>>
+
+
+
     //create the service
     companion object {
 

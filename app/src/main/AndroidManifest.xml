@@ -38,7 +38,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
         </activity>
+
         <activity
             android:name=".Controller.LoginActivity"
             android:windowSoftInputMode="adjustUnspecified" />
@@ -49,10 +52,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controller.LoginActivity" />
         </activity>
+
         <activity android:name=".Controller.CodeIntroductionActivity" />
+
         <activity
             android:name=".View.ClientAcountActivity"
-            android:exported="true" />
+            android:exported="true" >
+
+        </activity>
+
+
         <activity android:name=".View.ExchangeRateActivity"></activity>
         <activity android:name=".View.VirementInterneTh" />
 
@@ -60,7 +69,6 @@
         <activity android:name=".View.VirementTharwaActivity"
             android:parentActivityName=".View.ClientAcountActivity"
             android:exported="true">
-
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data

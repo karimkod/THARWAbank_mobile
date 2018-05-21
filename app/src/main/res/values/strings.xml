@@ -35,6 +35,7 @@
     <string name="wilaya_label">Wilaya :</string>
     <string name="commune_label">Commune :</string>
     <string name="proceding">Procédant</string>
+    <string name="err_connx"> Erreure de connexion</string>
 
 
 </resources>

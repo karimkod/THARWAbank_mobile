@@ -57,8 +57,6 @@ class ExchangeRateActivity : AppCompatActivity(), ExchageRateContract.View {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exchange_rate)
-
-
         val toolbar: Toolbar = findViewById(R.id.echangeRateToolbar)
         setSupportActionBar(toolbar)
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
@@ -66,18 +64,15 @@ class ExchangeRateActivity : AppCompatActivity(), ExchageRateContract.View {
         toolbar!!.setNavigationOnClickListener {
             this.finish()
         }
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Taux de changes"
-        recyclerView = findViewById(R.id.recycle_view_exchageRate)
-
-
-
+        recyclerView = findViewById<RecyclerView>(R.id.recycle_view_exchageRate)
 
         getExchangeRate(UserData.user!!.token)
 
-
     }
+
+
 
 
     fun getExchangeRate(token:String){
@@ -98,7 +93,7 @@ class ExchangeRateActivity : AppCompatActivity(), ExchageRateContract.View {
                                 val item2 = ExchangeRateItem(R.drawable.usa,"USDollars", "USA", USDollars)
 
                                 val TurkeyLira:String = exchangeRateBody.body()?.TurkeyLira!!
-                                val item3 = ExchangeRateItem(R.drawable.turque,"TurkeyLira", "Turkey", TurkeyLira)
+                                val item9 = ExchangeRateItem(R.drawable.turque,"TurkeyLira", "Turkey", TurkeyLira)
 
                                 val CanadaDollars:String = exchangeRateBody.body()?.CanadaDollars!!
                                 val item4 = ExchangeRateItem(R.drawable.canada,"CanadaDollars", "Canada", CanadaDollars)
@@ -116,7 +111,7 @@ class ExchangeRateActivity : AppCompatActivity(), ExchageRateContract.View {
                                 val item8 = ExchangeRateItem(R.drawable.tunisie,"TunisiaDinars", "Tunisia", TunisiaDinars)
 
                                 val PoundSterling = exchangeRateBody.body()?.PoundSterling!!
-                                val item9 = ExchangeRateItem(R.drawable.esterling,"PoundSterling", "Europe", PoundSterling)
+                                val item3 = ExchangeRateItem(R.drawable.esterling,"PoundSterling", "Europe", PoundSterling)
 
                                 val EmaratDirham:String = exchangeRateBody.body()?.EmaratDirham!!
                                 val item10 = ExchangeRateItem(R.drawable.emirat,"EmaratDirham", "Emarat", EmaratDirham)
@@ -133,7 +128,6 @@ class ExchangeRateActivity : AppCompatActivity(), ExchageRateContract.View {
                                 exchange_rate_items.add(item10)
 
 
-
                                 list_ex_adapter= ExchangeRateAdapter(this,  exchange_rate_items)
                                 recyclerView!!.adapter = list_ex_adapter
                                 recyclerView!!.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
@@ -143,20 +137,17 @@ class ExchangeRateActivity : AppCompatActivity(), ExchageRateContract.View {
                             } else //error 400-500
                             {
                                 if(exchangeRateBody.code() == 400){
-                                    Toast.makeText(this,"400", Toast.LENGTH_LONG).show()
+
                                     Log.e("error", token +"not success") }
                                 else{
-                                    Toast.makeText(this,"500", Toast.LENGTH_LONG).show()
+
                                     Log.e("error", token +"not success") }
                             }
-                            Log.e("rate", exchangeRateBody.body().toString())
 
                         },
                         { error ->
-                            //other error
-                            Toast.makeText(this,error.message.toString(), Toast.LENGTH_LONG).show()
-                            Log.e("error", error.message.toString())
                             hideProgressDialog()
+                            showDialogMessage( getString(R.string.err_connx),getString(R.string.Verif_int))
                         }
                 )
 
@@ -168,7 +159,6 @@ class ExchangeRateActivity : AppCompatActivity(), ExchageRateContract.View {
     fun showProgressDialog()
     {
         progressbar_exchange_rate.visibility = ProgressBar.VISIBLE
-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
@@ -178,7 +168,7 @@ class ExchangeRateActivity : AppCompatActivity(), ExchageRateContract.View {
     {
         progressbar_exchange_rate.visibility = ProgressBar.INVISIBLE
 
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
     }
 
     fun showDialogMessage(title:String,message:String)
@@ -187,7 +177,7 @@ class ExchangeRateActivity : AppCompatActivity(), ExchageRateContract.View {
         builder.setTitle(title)
         builder.setMessage(message)
         builder.setNeutralButton("Réessayer", DialogInterface.OnClickListener { _, _ ->
-
+            getExchangeRate(UserData.user!!.token)
         })
         builder.create().show()
     }
