@@ -91,12 +91,14 @@ interface UserApiService {
 
 
 
+
+
     //create the service
     companion object {
 
-        val URL="https://serene-retreat-29274.herokuapp.com/"
+        //val URL="https://serene-retreat-29274.herokuapp.com/"
 
-        //val URL="http://192.168.43.5/"
+        const val URL = "http://192.168.43.125/"
 
         var instance:UserApiService? = null
 

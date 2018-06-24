@@ -143,6 +143,7 @@
             android:layout_marginStart="30dp" />
 
         <TextView
+            android:id="@+id/exchange_rate_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/taux_de_change"
@@ -167,6 +168,7 @@
             android:focusable="true" />
 
         <TextView
+            android:id="@+id/transfer_money_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/virement"
@@ -195,6 +197,7 @@
 
 
         <TextView
+            android:id="@+id/change_account_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/changer_compte"

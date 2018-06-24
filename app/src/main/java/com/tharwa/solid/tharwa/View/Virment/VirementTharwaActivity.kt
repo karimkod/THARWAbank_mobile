@@ -94,7 +94,7 @@ class VirementTharwaActivity : AppCompatActivity(),FormInterface,VirementTharwaC
 
         }
 
-        alertBuilder.setPositiveButton("Confirmer",{_,_ -> presenter.makeVirement()})
+        alertBuilder.setPositiveButton("Confirmer") { _, _ -> presenter.makeVirement()}
         alertBuilder.setView(layout)
         alertBuilder.create().show()
     }

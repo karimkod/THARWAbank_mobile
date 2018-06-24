@@ -16,11 +16,10 @@ import com.tharwa.solid.tharwa.R
 class ListTransactionAdapter(private val context: Context, arrayList: ArrayList<Transaction>) : RecyclerView.Adapter<ListTransactionAdapter.ViewHolder>()
 {
     private var arrayList = ArrayList<Transaction>()
-    private val inflater: LayoutInflater
+    private val inflater: LayoutInflater = LayoutInflater.from(context)
 
 
     init {
-        inflater = LayoutInflater.from(context)
         this.arrayList = arrayList
     }
 
@@ -31,11 +30,13 @@ class ListTransactionAdapter(private val context: Context, arrayList: ArrayList<
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        when (arrayList[position].type){
-          0 ->  holder.transaction_icon?.setImageResource(R.mipmap.ic_virement)
-          1 ->  holder.transaction_icon?.setImageResource(R.mipmap.ic_commission)
-          2 ->  holder.transaction_icon?.setImageResource(R.mipmap.ic_virement)
-          3 ->  holder.transaction_icon?.setImageResource(R.mipmap.ic_virement)
+        when (arrayList[position].statuts){
+          0 ->  holder.transaction_icon?.setImageResource(R.drawable.ic_virement_en_attente)
+          1 -> if (arrayList[position].E_S == 2) holder.transaction_icon?.setImageResource(R.drawable.ic_virement_valide)
+          else holder.transaction_icon?.setImageResource(R.drawable.ic_virement_entrant)
+          2 ->   holder.transaction_icon?.setImageResource(R.drawable.ic_virement_bloque)
+
+          //else ->  holder.transaction_icon?.setImageResource(R.drawable.ic_virement_entrant)
         }
 
         if(arrayList[position].E_S == 1) {
@@ -46,7 +47,7 @@ class ListTransactionAdapter(private val context: Context, arrayList: ArrayList<
         }else{
             holder.transaction_date?.text = arrayList[position].date.toString()
             holder.transaction_montant?.text = "- "+ arrayList[position].montant.toString() + " DZD"
-            holder.transaction_acount?.text = "De: "+arrayList[position].acount_number
+            holder.transaction_acount?.text = "Vers: "+arrayList[position].acount_number
             holder.transaction_commission?.text = "- " + arrayList[position].montant_commission.toString() + " DZD"
         }
 
@@ -71,5 +72,12 @@ class ListTransactionAdapter(private val context: Context, arrayList: ArrayList<
             transaction_acount = itemView.findViewById(R.id.transaction_num_acount)
             transaction_commission = itemView.findViewById(R.id.transaction_commission)
         }
+    }
+
+
+    fun addListTransactions(newTransactions:ArrayList<Transaction>)
+    {
+        arrayList = ArrayList(arrayList.plus(newTransactions))
+        notifyDataSetChanged()
     }
 }

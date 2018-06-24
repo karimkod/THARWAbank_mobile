@@ -215,7 +215,7 @@ data class HistoryResponse(
         @SerializedName("next_page_url") val next_page_url:String,
         @SerializedName("path") val path:String,
         @SerializedName("per_page") val per_page:Int,
-        @Nullable @SerializedName("prev_page_url") val prev_page_url:Int,
+        @Nullable @SerializedName("prev_page_url") val prev_page_url:String,
         @SerializedName("to") val to:Int
 
 )

@@ -54,10 +54,10 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
 
 
 
-        sign_up.setOnClickListener({
+        sign_up.setOnClickListener {
             intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
-        })
+        }
         email.setOnClickListener(clickListenr)
         motdepasse.setOnClickListener(clickListenr)
 

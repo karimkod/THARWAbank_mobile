@@ -61,7 +61,11 @@
     <string name="virme_404">Erreur 404: récepteur non trouvé</string>
     <string name="virme_400_2">Erreur 400: Input non valide</string>
     <string name="virme_400">Erreur 400: Balance insufisante</string>
-
+    <string name="account_current">Compte courant</string>
+    <string name="account_epargne">Compte epargne</string>
+    <string name="account_euro">Compte Euro</string>
+    <string name="account_dollars">Compte Dollars</string>
+    <string name="Erreur">Erreur</string>
 
 
 </resources>

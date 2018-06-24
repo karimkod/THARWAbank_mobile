@@ -11,11 +11,9 @@ import android.graphics.Bitmap
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.BottomSheetBehavior
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v4.view.ViewPager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -31,26 +29,31 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
-import com.tharwa.solid.tharwa.Model.TokenResponse
 import com.tharwa.solid.tharwa.Model.Transaction
 import com.tharwa.solid.tharwa.Remote.UserApiService
 import com.tharwa.solid.tharwa.View.Virment.VirToMeFragment
 import com.tharwa.solid.tharwa.Repositories.Injection
+import com.tharwa.solid.tharwa.View.Virment.VirementTharwaActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import java.net.URL
-import java.text.NumberFormat
 
 
 class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener,SwipeRefreshLayout.OnRefreshListener {
 
 
     protected var navigatorView:NavigationView? = null
-    private  var ListTransaction=  ArrayList<Transaction>()
+    private  var listTransactions=  ArrayList<Transaction>()
     private  var recyclerView: RecyclerView? = null
     private  var mAdapter:ListTransactionAdapter? = null
     private  var swipeRefreshLayout:SwipeRefreshLayout? = null
+    private lateinit var bottomSheet:BottomSheetBehavior<*>
+
+
+    private var currentPage = 1
+    private var maxPages = 0
+
 
 
     var transferDialog:AlertDialog? = null
@@ -71,7 +74,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_hamburger)
-            setTitle("THARWA")
+            title = getString(R.string.app_name).toUpperCase()
         }
 /*
         val accountTypes:Array<Int> = arrayOf(0,3)
@@ -82,7 +85,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
                 ,"7199")
 */
 
-        BottomSheetBehavior.from(floatingButtons)
+        bottomSheet =  BottomSheetBehavior.from(floatingButtons)
 
         transfer_money.setOnClickListener{openTransferDialog()}
 
@@ -91,11 +94,25 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
         change_account.setOnClickListener{openChangeCompte()}
 
         recyclerView = findViewById(R.id.recycle_view_historique)
+
+        recyclerView?.addOnScrollListener(object : RecyclerView.OnScrollListener()
+        {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                if (dy > 0) {
+                    hideFloatingButtons()
+                } else if (dy < 0) {
+                    showFloatingButtons()
+                }
+
+
+            }
+        })
+
         swipeRefreshLayout =  findViewById(R.id.swipe_refresh_layout)
         swipeRefreshLayout!!.setOnRefreshListener(this)
-        swipeRefreshLayout!!.post(
-                 { getNewTransaction() }
-        )
+        swipeRefreshLayout!!.post { getNewTransaction() }
     }
 
     override fun onRefresh() {
@@ -103,10 +120,38 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
     }
 
 
-    fun getNewTransaction(){
-        swipeRefreshLayout!!.setRefreshing(true)
+    fun hideFloatingButtons()
+    {
+        val listOfHiddeable = listOf<View>(transfer_money,transfer_money_txt,
+                exchange_rate,exchange_rate_txt, change_account,change_account_txt)
+        bottomSheet.isHideable = true
+        bottomSheet.state = BottomSheetBehavior.STATE_HIDDEN
 
-        swipeRefreshLayout!!.setRefreshing(false)
+
+        for (i in listOfHiddeable)
+            i.visibility = View.INVISIBLE
+
+    }
+
+    fun showFloatingButtons()
+    {
+        val listOfHiddeable = listOf<View>(transfer_money,transfer_money_txt,
+                exchange_rate,exchange_rate_txt, change_account,change_account_txt)
+        bottomSheet.state = BottomSheetBehavior.STATE_EXPANDED
+        bottomSheet.isHideable = false
+
+        for (i in listOfHiddeable)
+            i.visibility = View.VISIBLE
+
+
+
+    }
+
+
+    fun getNewTransaction(){
+        swipeRefreshLayout!!.isRefreshing = true
+
+        swipeRefreshLayout!!.isRefreshing = false
     }
 
     fun  openExchangeRate(){
@@ -210,10 +255,15 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
     }
 
+
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         when (position) {
 
-            0 -> Toast.makeText(this, "Virrerrr", Toast.LENGTH_SHORT).show()
+            0 -> {
+                val intent = Intent(this, VirementTharwaActivity::class.java)
+                startActivity(intent)
+                transferDialog?.dismiss()
+            }
             1 -> {
                 Toast.makeText(this, "Pas implémenté", Toast.LENGTH_SHORT).show()
                 Toast.makeText(this, Injection.provideAccountRepository().availableAccountsType.toString(), Toast.LENGTH_LONG).show()
@@ -234,6 +284,8 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
         }
     }
 
+
+
     fun updateBalance()
     {
 
@@ -246,19 +298,22 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
                             if (response.isSuccessful) {
 
                                 val money = response.body()?.balance
-                                val formatter = NumberFormat.getCurrencyInstance()
-                                val moneyString = formatter.format(money).removePrefix("$")
-
+                                val moneyString = String.format("%,.2f", money)
+                                accountRepository.cachedAccounts[response.body()?.type!!] = response.body()!!
                                 balance_count_view.text =  moneyString+" "+ response.body()?.currency
                                 id_count_view.text = response.body()?.id
+
                                 count_type_view.text = when (response.body()?.type)
                                                         {
-                                                            1-> "Compte courant"
-                                                            2 -> "Compte epargne"
-                                                            3 -> "Compte Euro"
-                                                            4-> "Compte Dollars"
-                                                            else -> "Erreur"
+                                                            1-> getString(R.string.account_current)
+                                                            2 -> getString(R.string.account_epargne)
+                                                            3 -> getString(R.string.account_euro)
+                                                            4-> getString(R.string.account_dollars)
+                                                            else -> getString(R.string.Erreur)
                                                         }
+
+                                updateHistory()
+
                             }else
                             {
                                 Log.e("ClientAccoutActivity",response.toString())
@@ -276,7 +331,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
         val id:Int = (Injection.provideAccountRepository().getSelectedAccount().id.subSequence(3,9)).toString().toInt()
 
-        val disposabl: Disposable = UserApiService.create().getHistory(Injection.provideUserRepository().accessInfos.token,id,1)
+        val disposable: Disposable = UserApiService.create().getHistory(Injection.provideUserRepository().accessInfos.token,id,1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -284,7 +339,12 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
                             if (response.isSuccessful) {
 
+                                listTransactions = ArrayList()
+
                                 val array = response.body()!!.data
+
+                                maxPages = response.body()?.to!!
+
 
                                 for (i in array.indices) {
 
@@ -297,26 +357,29 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
                                         num_acc_sender = "0"+num_acc_sender
                                     }
 
-                                    val acount1:String =  array[i].code_bnk_receiver + num_acc_receiver + array[i]!!.code_curr_receiver
-                                    val acount2:String =  array[i].code_bnk_sender + num_acc_sender + array[i]!!.code_curr_sender
+                                    val receiver:String =  array[i].code_bnk_receiver + num_acc_receiver + array[i]!!.code_curr_receiver
+                                    val sender:String =  array[i].code_bnk_sender + num_acc_sender + array[i]!!.code_curr_sender
                                     var externAccount = " "
                                     var E_S = 0
 
-                                    if(Injection.provideAccountRepository().getSelectedAccount().id == acount1){
-                                        externAccount=acount2
-                                        E_S = 1
+                                    if(Injection.provideAccountRepository().getSelectedAccount().id == receiver){
+                                        externAccount=sender
+                                        E_S = 1 //entrant
 
-                                    }else{externAccount = acount1
-                                        E_S = 2
+                                    }else{
+                                        externAccount = receiver
+                                        E_S = 2 //sortant
                                     }
 
-                                   ListTransaction.add(Transaction(externAccount,array[i].montant_virement,array[i].created_at,array[i].type, array[i].status, array[i].montant_commission,E_S ))
+                                   listTransactions.add(Transaction(externAccount,array[i].montant_virement,array[i].created_at,array[i].type, array[i].status, array[i].montant_commission,E_S ))
                                 }
 
-                                mAdapter =  ListTransactionAdapter(this, ListTransaction)
+                                mAdapter =  ListTransactionAdapter(this, listTransactions)
                                 recyclerView!!.adapter = mAdapter
-                                recyclerView!!.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+                                val linearLayoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+                                recyclerView!!.layoutManager =  linearLayoutManager
 
+                                chargerScoll(recyclerView!!,linearLayoutManager)
 
                                 Toast.makeText(this,"OK", Toast.LENGTH_LONG).show()
                                 Log.e("history", response.body().toString())
@@ -331,8 +394,104 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
                         }
                 )
 
+    }
 
+
+
+    fun loadNextPage()
+    {
+        if(currentPage == maxPages)
+            return
+        currentPage++
+        val id:Int = (Injection.provideAccountRepository().getSelectedAccount().id.subSequence(3,9)).toString().toInt()
+
+        val disposable: Disposable = UserApiService.create().getHistory(Injection.provideUserRepository().accessInfos.token,id,currentPage)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { response ->
+
+                            if (response.isSuccessful) {
+
+                                val array = response.body()!!.data
+
+                                listTransactions = ArrayList()
+
+                                for (i in array.indices) {
+
+                                    var num_acc_receiver:String = array[i].num_acc_receiver.toString()
+                                    var num_acc_sender:String = array[i].num_acc_sender .toString()
+                                    while (num_acc_receiver.length < 6 ){
+                                        num_acc_receiver = "0"+num_acc_receiver
+                                    }
+                                    while (num_acc_sender.length < 6 ){
+                                        num_acc_sender = "0"+num_acc_sender
+                                    }
+
+                                    val receiver:String =  array[i].code_bnk_receiver + num_acc_receiver + array[i]!!.code_curr_receiver
+                                    val sender:String =  array[i].code_bnk_sender + num_acc_sender + array[i]!!.code_curr_sender
+                                    var externAccount = " "
+                                    var E_S = 0
+
+                                    if(Injection.provideAccountRepository().getSelectedAccount().id == receiver){
+                                        externAccount=sender
+                                        E_S = 1 //entrant
+
+                                    }else{
+                                        externAccount = receiver
+                                        E_S = 2 //sortant
+                                    }
+
+                                    listTransactions.add(Transaction(externAccount,array[i].montant_virement,array[i].created_at,array[i].type, array[i].status, array[i].montant_commission,E_S ))
+                                }
+
+                                //mAdapter =  ListTransactionAdapter(this, listTransactions)
+                                //recyclerView!!.adapter = mAdapter
+                                //recyclerView!!.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+
+                                mAdapter?.addListTransactions(listTransactions)
+
+                                Toast.makeText(this,"Added", Toast.LENGTH_LONG).show()
+                                Log.e("history", response.body().toString())
+
+                            }
+
+                        },
+                        { error ->
+
+                            Toast.makeText(this,error.message.toString(), Toast.LENGTH_LONG).show()
+                            Log.e("ClientActivityFailed",error.message.toString() )
+                        }
+                )
 
     }
+
+
+
+
+    fun chargerScoll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager):Boolean{
+        var charger=false
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            var pastVisiblesItems: Int = 0
+            var visibleItemCount: Int = 0
+            var totalItemCount: Int = 0
+
+            override fun onScrolled(recyclerView: RecyclerView?,
+                                    dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                visibleItemCount = layoutManager.childCount
+                totalItemCount = layoutManager.itemCount
+                pastVisiblesItems = layoutManager.findFirstVisibleItemPosition()
+
+                if (visibleItemCount + pastVisiblesItems >= totalItemCount) charger=true
+
+                if(charger)
+                    loadNextPage()
+            }
+        })
+        return  charger
+
+    }
+
 
 }
