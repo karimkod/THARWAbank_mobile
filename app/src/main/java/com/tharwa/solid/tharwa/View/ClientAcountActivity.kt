@@ -54,6 +54,8 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
     private var currentPage = 1
     private var maxPages = 0
 
+    private var isLoading = false
+
 
 
     var transferDialog:AlertDialog? = null
@@ -171,7 +173,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
         //loadImageTask(navigatorView?.getHeaderView(0)!!.user_photo!!).execute(user.photoPath)
 
         updateBalance()
-        updateHistory()
+        //updateHistory()
 
     }
 
@@ -184,17 +186,17 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
-        when (item?.itemId) {
+        return when (item?.itemId) {
             android.R.id.home -> {
                 drawer_layout.openDrawer(GravityCompat.START)
-                return true
+                true
             }
             R.id.actualiser ->
             {
                 updateBalance()
-                return true
+                true
             }
-            else -> return super.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
 
     }
@@ -329,6 +331,9 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
     fun updateHistory(){
 
+        if(isLoading)
+            return
+        isLoading = true
         val id:Int = (Injection.provideAccountRepository().getSelectedAccount().id.subSequence(3,9)).toString().toInt()
 
         val disposable: Disposable = UserApiService.create().getHistory(Injection.provideUserRepository().accessInfos.token,id,1)
@@ -337,6 +342,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
                 .subscribe(
                         { response ->
 
+                            isLoading = false
                             if (response.isSuccessful) {
 
                                 listTransactions = ArrayList()
@@ -389,6 +395,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
                         },
                         { error ->
 
+                            isLoading = false
                             Toast.makeText(this,error.message.toString(), Toast.LENGTH_LONG).show()
                             Log.e("out",error.message.toString() )
                         }
@@ -400,9 +407,11 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
     fun loadNextPage()
     {
-        if(currentPage == maxPages)
+
+        if(currentPage == maxPages || isLoading)
             return
         currentPage++
+        isLoading = true
         val id:Int = (Injection.provideAccountRepository().getSelectedAccount().id.subSequence(3,9)).toString().toInt()
 
         val disposable: Disposable = UserApiService.create().getHistory(Injection.provideUserRepository().accessInfos.token,id,currentPage)
@@ -411,6 +420,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
                 .subscribe(
                         { response ->
 
+                            isLoading = false
                             if (response.isSuccessful) {
 
                                 val array = response.body()!!.data
@@ -458,6 +468,7 @@ class ClientAcountActivity : AppCompatActivity(),AdapterView.OnItemClickListener
 
                         },
                         { error ->
+                            isLoading = false
 
                             Toast.makeText(this,error.message.toString(), Toast.LENGTH_LONG).show()
                             Log.e("ClientActivityFailed",error.message.toString() )

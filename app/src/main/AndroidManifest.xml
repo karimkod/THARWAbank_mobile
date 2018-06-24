@@ -11,7 +11,6 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-
     <!-- Application Tag -->
     <application
         android:allowBackup="true"
@@ -35,11 +34,10 @@
         <activity android:name=".View.LandingPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
         <activity
             android:name=".Controller.LoginActivity"
             android:windowSoftInputMode="adjustUnspecified" />
@@ -50,28 +48,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controller.LoginActivity" />
         </activity>
-
         <activity android:name=".Controller.CodeIntroductionActivity" />
-
         <activity
             android:name=".View.ClientAcountActivity"
-            android:exported="true" >
-
-        </activity>
-
-
-        <activity android:name=".View.ExchangeRateActivity"></activity>
-
-
-        <activity android:name=".View.Virment.VirementTharwaActivity"
-            android:parentActivityName=".View.ClientAcountActivity"
-            android:exported="true">
+            android:exported="true"></activity>
+        <activity android:name=".View.ExchangeRateActivity" />
+        <activity
+            android:name=".View.Virment.VirementTharwaActivity"
+            android:exported="true"
+            android:parentActivityName=".View.ClientAcountActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".View.ClientAcountActivity" />
         </activity>
-
+        <activity android:name=".View.Virment.VirementExternActivity"></activity>
     </application>
+
 </manifest>

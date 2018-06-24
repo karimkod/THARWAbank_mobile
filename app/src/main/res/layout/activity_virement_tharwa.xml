@@ -48,6 +48,7 @@
             android:inputType="number"
             android:nextFocusForward="@id/montant_virement"
             android:drawableLeft="@drawable/left_drawable_thr"
+
             android:drawablePadding="3dp"
             android:maxLength="6"
             android:drawableRight="@drawable/right_drawable_dzd"

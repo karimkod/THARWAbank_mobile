@@ -1,30 +1,28 @@
 package com.tharwa.solid.tharwa.Controller
 
+import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.ProgressBar
-import android.widget.Toast
 import com.tharwa.solid.tharwa.FormInterface
 import com.tharwa.solid.tharwa.InvalideInputException
-
+import com.tharwa.solid.tharwa.Model.AccesInfo
 import com.tharwa.solid.tharwa.Model.UserCode
-import com.tharwa.solid.tharwa.Model.*
+import com.tharwa.solid.tharwa.Model.UserInfo
 import com.tharwa.solid.tharwa.R
 import com.tharwa.solid.tharwa.Remote.UserApiService
+import com.tharwa.solid.tharwa.Repositories.Injection
+import com.tharwa.solid.tharwa.View.ClientAcountActivity
 import com.tharwa.solid.tharwa.enumration.CodeStatus
+import com.tharwa.solid.tharwa.enumration.InputType
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.code_introduction_activity.*
-
-import com.tharwa.solid.tharwa.R.string.*
-import com.tharwa.solid.tharwa.Repositories.Injection
-import com.tharwa.solid.tharwa.View.ClientAcountActivity
-import com.tharwa.solid.tharwa.enumration.InputType
 
 class CodeIntroductionActivity : AppCompatActivity(),FormInterface
     {
@@ -87,13 +85,21 @@ class CodeIntroductionActivity : AppCompatActivity(),FormInterface
 
                                 Injection.apply {
                                     provideUserRepository().apply {
-                                        accessInfos = AccesInfo(body.userId, body.token, body.expiresIn, body.type)
+                                        accessInfos = AccesInfo(body.userId, body.token!!, body.expiresIn!!, body.type)
                                         userInfo = UserInfo(body.name, body.photoPath)
                                     }
                                     provideAccountRepository().apply {
                                         cachedAccounts[1] = body.currentAccount
                                         availableAccountsType = body.accountTypes
                                     }
+                                }
+
+
+                                val sharedPref = this.getSharedPreferences(getString(com.tharwa.solid.tharwa.R.string.shared_pref_name),Context.MODE_PRIVATE)
+                                with (sharedPref.edit()) {
+                                    putString(getString(R.string.token_key), response.body()?.token)
+                                    putString(getString(R.string.refresh_token_key), response.body()?.refreshToken)
+                                    commit()
                                 }
 
                                 startActivity(intent)
@@ -116,7 +122,7 @@ class CodeIntroductionActivity : AppCompatActivity(),FormInterface
                             hideProgressDialog()
 
                             showDialogMessage(this,"Oops", error.message.toString())//"Une erreur c'est produite, veuillez reéssayer plus tard")
-                            Toast.makeText(this@CodeIntroductionActivity,"Hello someone",Toast.LENGTH_LONG).show()
+                            //Toast.makeText(this@CodeIntroductionActivity,"Hello someone",Toast.LENGTH_LONG).show()
 
                         }
                 )

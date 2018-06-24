@@ -35,44 +35,15 @@ data class TokenResponse
     @SerializedName("photo") val photoPath:String,
     @SerializedName("type") val type:Int,
     @SerializedName("accounts_types") val accountTypes:Array<Int>,
-
     @SerializedName("current_account") val currentAccount:Account,
     @SerializedName("user_id") val userId: String,
     @SerializedName("user_type") val user_type: String,
-    @SerializedName("access_token") val token: String,
-    @SerializedName("expires_in") val expiresIn: Int
+    @SerializedName("access_token") val token: String?,
+    @SerializedName("refresh_token") val refreshToken: String?,
+    @SerializedName("expires_in") val expiresIn: Int?
 
-) {
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
 
-        other as TokenResponse
-
-        if (name != other.name) return false
-        if (photoPath != other.photoPath) return false
-        if (type != other.type) return false
-        if (!Arrays.equals(accountTypes, other.accountTypes)) return false
-        if (currentAccount != other.currentAccount) return false
-        if (userId != other.userId) return false
-        if (token != other.token) return false
-        if (expiresIn != other.expiresIn) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = name.hashCode()
-        result = 31 * result + photoPath.hashCode()
-        result = 31 * result + type
-        result = 31 * result + Arrays.hashCode(accountTypes)
-        result = 31 * result + currentAccount.hashCode()
-        result = 31 * result + userId.hashCode()
-        result = 31 * result + token.hashCode()
-        result = 31 * result + expiresIn
-        return result
-    }
-}
+)
 
 //The request to send to the restful API
 data class UserCreate
@@ -135,6 +106,18 @@ data class ExchangeRateResponse
         @SerializedName("EmaratDirham") val EmaratDirham:String
 
 )
+
+data class RefreshResponse(
+        @SerializedName("access_token") val token:String,
+        @SerializedName("refresh_token") val refreshToken: String,
+        @SerializedName("expires_in") val expiresIn: Int
+)
+
+data class RefreshBody
+(
+    @SerializedName("refresh_token") val refreshToken:String
+)
+
 
 data class VirmentInterne
 (

@@ -2,9 +2,9 @@ package com.tharwa.solid.tharwa.View.Virment
 
 
 import android.annotation.SuppressLint
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -48,7 +48,7 @@ class VirementTharwaActivity : AppCompatActivity(),FormInterface,VirementTharwaC
         setSupportActionBar(virement_tharwa_actionbar)
 
         supportActionBar?.apply {
-            setTitle("Virement vers THARWA")
+            title = "Virement vers THARWA"
             setDisplayHomeAsUpEnabled(true)
         }
 

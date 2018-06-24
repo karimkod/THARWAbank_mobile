@@ -36,8 +36,6 @@ android {
     }
 
 
-
-
 }
 
 dependencies {
@@ -88,5 +86,3 @@ dependencies {
     androidTestCompile "com.android.support:design:$rootProject.supportLibraryVersion"
     androidTestCompile "com.android.support.test.espresso.idling:idling-concurrent:$rootProject.espressoVersion"
 }
-
-

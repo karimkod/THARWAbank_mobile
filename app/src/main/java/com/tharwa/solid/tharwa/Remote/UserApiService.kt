@@ -28,6 +28,20 @@ interface UserApiService {
     @POST("login")
     fun login(@Body user: User): Observable<Response<User>>
 
+
+    @Headers("Accept:application/json")
+    @GET("init")
+    fun signInWithToken(@Header("Authorization")token:String): Observable<Response<TokenResponse>>
+
+
+    @Headers("Accept:application/json")
+    @POST("login/refresh")
+    fun refreshToken(@Body refreshBody: RefreshBody): Observable<Response<RefreshResponse>>
+
+
+
+
+
     //send the sencond request of authentification mail,password,nonce
     @Headers("Accept:application/json")
     @POST("login/code")
@@ -46,6 +60,8 @@ interface UserApiService {
     fun postImage(@Part image: okhttp3.MultipartBody.Part
             ,@Part("id_user") userId:okhttp3.RequestBody)
             :retrofit2.Call<okhttp3.ResponseBody>
+
+
 
 
     @PUT("/my_exchange")
@@ -98,7 +114,7 @@ interface UserApiService {
 
         //val URL="https://serene-retreat-29274.herokuapp.com/"
 
-        const val URL = "http://192.168.43.125/"
+        const val URL = "http://192.168.43.5/"
 
         var instance:UserApiService? = null
 
