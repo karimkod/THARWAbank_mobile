@@ -142,10 +142,10 @@ class ExchangeRateActivity : AppCompatActivity(), ExchageRateContract.View {
                             } else //error 400-500
                             {
                                 if(exchangeRateBody.code() == 400){
-                                    Toast.makeText(this,"400", Toast.LENGTH_LONG).show()
+                                    //Toast.makeText(this,"400", Toast.LENGTH_LONG).show()
                                     Log.e("error", token +"not success") }
                                 else{
-                                    Toast.makeText(this,"500", Toast.LENGTH_LONG).show()
+                                    //Toast.makeText(this,"500", Toast.LENGTH_LONG).show()
                                     Log.e("error", token +"not success") }
                             }
                             Log.e("rate", exchangeRateBody.body().toString())

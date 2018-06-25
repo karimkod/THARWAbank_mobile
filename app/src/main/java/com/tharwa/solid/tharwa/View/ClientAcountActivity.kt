@@ -273,7 +273,7 @@ class ClientAcountActivity : AppCompatActivity(), AdapterView.OnItemClickListene
             }
             2 -> {
                 if (Injection.provideAccountRepository().availableAccountsType.size == 1)
-                    Toast.makeText(this, resources.getString(R.string.curr_only), Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this, resources.getString(R.string.curr_only), Toast.LENGTH_SHORT).show()
                 else {
 
                     val dialog = VirToMeFragment()
@@ -397,7 +397,7 @@ class ClientAcountActivity : AppCompatActivity(), AdapterView.OnItemClickListene
                                 mAdapter?.notifyDataSetChanged()
                                 chargerScoll(recyclerView!!, linearLayoutManager)
 
-                                Toast.makeText(this, "OK", Toast.LENGTH_LONG).show()
+                                //Toast.makeText(this, "OK", Toast.LENGTH_LONG).show()
                                 Log.e("history", response.body().toString())
 
                             }
@@ -409,7 +409,7 @@ class ClientAcountActivity : AppCompatActivity(), AdapterView.OnItemClickListene
                                 swipeRefreshLayout!!.isRefreshing = false
 
                             isLoading = false
-                            Toast.makeText(this, error.message.toString(), Toast.LENGTH_LONG).show()
+                            //Toast.makeText(this, error.message.toString(), Toast.LENGTH_LONG).show()
                             Log.e("out", error.message.toString())
                         }
                 )
@@ -472,7 +472,7 @@ class ClientAcountActivity : AppCompatActivity(), AdapterView.OnItemClickListene
 
                                 mAdapter?.addListTransactions(listTransactions)
 
-                                Toast.makeText(this, "Added", Toast.LENGTH_LONG).show()
+                                //Toast.makeText(this, "Added", Toast.LENGTH_LONG).show()
                                 Log.e("history", response.body().toString())
 
                             }
@@ -481,7 +481,7 @@ class ClientAcountActivity : AppCompatActivity(), AdapterView.OnItemClickListene
                         { error ->
                             isLoading = false
 
-                            Toast.makeText(this, error.message.toString(), Toast.LENGTH_LONG).show()
+                            //Toast.makeText(this, error.message.toString(), Toast.LENGTH_LONG).show()
                             Log.e("ClientActivityFailed", error.message.toString())
                         }
                 )

@@ -16,12 +16,13 @@ import com.tharwa.solid.tharwa.View.LandingPage
 class FirebaseMessagingService : com.google.firebase.messaging.FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
-        Log.i("message____","received")
-        showNotification(remoteMessage!!.data["message"]!!)
+        Log.i("message____",remoteMessage?.data.toString())
+
+        remoteMessage!!.data["message"]?:showNotification(remoteMessage!!.data["title"]!!,remoteMessage.data["body"]!!)
     }
 
 
-    private fun showNotification(message: String) {
+    private fun showNotification(title: String,body:String) {
 
         val i = Intent(this, LandingPage::class.java)
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -30,8 +31,8 @@ class FirebaseMessagingService : com.google.firebase.messaging.FirebaseMessaging
 
         val builder = NotificationCompat.Builder(this)
                 .setAutoCancel(true)
-                .setContentTitle("FCM Test")
-                .setContentText(message)
+                .setContentTitle(title)
+                .setContentText(body)
                 .setSmallIcon(R.drawable.logo_withoutcircle)
                 .setContentIntent(pendingIntent)
 
