@@ -78,6 +78,8 @@
     <string name="label_montant_virement">Montant du virement : </string>
     <string name="virement_vers_tharwa">Virement vers THARWA</string>
     <string name="virement_externe">Virement externe</string>
+    <string name="blocked_account_text">Désolé de vous informer que ce compte a été bloqué par nos banquier à cause de :</string>
+    <string name="waiting_account_txt">Votre compte est toujours en phase de validation, merci d\'être compréhensible</string>
 
 
 </resources>

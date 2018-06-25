@@ -220,3 +220,8 @@ data class BanksID
         @SerializedName("id") val bankId: String
 )
 
+data class RegisterFCMData(
+        @SerializedName("token")val fcmToken:String
+
+)
+

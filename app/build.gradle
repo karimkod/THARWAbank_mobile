@@ -61,6 +61,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.2'
 
     // Dependencies for local unit tests
+    implementation 'com.google.firebase:firebase-messaging:11.8.0'
     testCompile "junit:junit:$rootProject.ext.junitVersion"
     testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
     testCompile "org.mockito:mockito-core:$rootProject.ext.mockitoVersion"
@@ -86,3 +87,5 @@ dependencies {
     androidTestCompile "com.android.support:design:$rootProject.supportLibraryVersion"
     androidTestCompile "com.android.support.test.espresso.idling:idling-concurrent:$rootProject.espressoVersion"
 }
+
+apply plugin: 'com.google.gms.google-services'

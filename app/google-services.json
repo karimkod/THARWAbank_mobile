@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "718898752431",
+    "firebase_url": "https://tharwa-8a175.firebaseio.com",
+    "project_id": "tharwa-8a175",
+    "storage_bucket": "tharwa-8a175.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718898752431:android:d91380550bb4f226",
+        "android_client_info": {
+          "package_name": "com.tharwa.solid.tharwa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718898752431-chrk7g110dja2v8oras37viba721vvvh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tharwa.solid.tharwa",
+            "certificate_hash": "7e7f52c12ec7ce25b3b2fc50207bce505c5f39ba"
+          }
+        },
+        {
+          "client_id": "718898752431-h7rnprb19bf8mlheuiok86mdb4bh38ul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2dg1AO_K6DpuTDuw1htNsCilirL5Whug"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718898752431-h7rnprb19bf8mlheuiok86mdb4bh38ul.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

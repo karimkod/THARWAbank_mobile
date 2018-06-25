@@ -30,15 +30,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
+import com.tharwa.solid.tharwa.Model.RegisterFCMData
 import com.tharwa.solid.tharwa.Model.Transaction
 import com.tharwa.solid.tharwa.Remote.UserApiService
 import com.tharwa.solid.tharwa.View.Virment.VirToMeFragment
 import com.tharwa.solid.tharwa.Repositories.Injection
 import com.tharwa.solid.tharwa.View.Virment.VirementExternActivity
 import com.tharwa.solid.tharwa.View.Virment.VirementTharwaActivity
+import com.tharwa.solid.tharwa.util.Config
+import com.tharwa.solid.tharwa.util.getCorrectIntent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import okhttp3.ResponseBody
 import java.net.URL
 
 
@@ -57,6 +61,9 @@ class ClientAcountActivity : AppCompatActivity(), AdapterView.OnItemClickListene
     private var maxPages = 0
 
     private var isLoading = false
+
+    var lastAccountId = 0
+
 
 
     var transferDialog: AlertDialog? = null
@@ -200,7 +207,7 @@ class ClientAcountActivity : AppCompatActivity(), AdapterView.OnItemClickListene
     class loadImageTask(val imageView: ImageView) : AsyncTask<String, Unit, Bitmap>() {
         override fun doInBackground(vararg params: String?): Bitmap {
 
-            val inputStream = URL("${UserApiService.URL}images/customer/${params[0]}").openStream()
+            val inputStream = URL("${Config.URL}images/customer/${params[0]}").openStream()
 
             return BitmapFactory.decodeStream(inputStream)
 
@@ -236,7 +243,9 @@ class ClientAcountActivity : AppCompatActivity(), AdapterView.OnItemClickListene
         lv.adapter = CountChangeAdapter(Injection.provideAccountRepository().availableAccountsType, this)
         lv.setOnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
 
+            lastAccountId =Injection.provideAccountRepository().selectedAccount
             Injection.provideAccountRepository().selectedAccount = id.toInt()
+
             updateBalance()
             changeAccountDialog!!.dismiss()
 
@@ -291,21 +300,29 @@ class ClientAcountActivity : AppCompatActivity(), AdapterView.OnItemClickListene
 
                             if (response.isSuccessful) {
 
-                                val money = response.body()?.balance
-                                val moneyString = String.format("%,.2f", money)
-                                accountRepository.cachedAccounts[response.body()?.type!!] = response.body()!!
-                                balance_count_view.text = moneyString + " " + response.body()?.currency
-                                id_count_view.text = response.body()?.id
+                                val intent = getCorrectIntent(response.body()!!, this@ClientAcountActivity, false)
+                                if (intent != null)
+                                {
+                                    Injection.provideAccountRepository().selectedAccount = lastAccountId
+                                    startActivity(intent)
+                                }else {
+                                    updateHistory()
 
-                                count_type_view.text = when (response.body()?.type) {
-                                    1 -> getString(R.string.account_current)
-                                    2 -> getString(R.string.account_epargne)
-                                    3 -> getString(R.string.account_euro)
-                                    4 -> getString(R.string.account_dollars)
-                                    else -> getString(R.string.Erreur)
+                                    val money = response.body()?.balance
+                                    val moneyString = String.format("%,.2f", money)
+                                    accountRepository.cachedAccounts[response.body()?.type!!] = response.body()!!
+                                    balance_count_view.text = moneyString + " " + response.body()?.currency
+                                    id_count_view.text = response.body()?.id
+
+                                    count_type_view.text = when (response.body()?.type) {
+                                        1 -> getString(R.string.account_current)
+                                        2 -> getString(R.string.account_epargne)
+                                        3 -> getString(R.string.account_euro)
+                                        4 -> getString(R.string.account_dollars)
+                                        else -> getString(R.string.Erreur)
+                                    }
                                 }
 
-                                updateHistory()
 
                             } else {
                                 Log.e("ClientAccoutActivity", response.toString())
@@ -377,7 +394,7 @@ class ClientAcountActivity : AppCompatActivity(), AdapterView.OnItemClickListene
                                 recyclerView!!.adapter = mAdapter
                                 val linearLayoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
                                 recyclerView!!.layoutManager = linearLayoutManager
-
+                                mAdapter?.notifyDataSetChanged()
                                 chargerScoll(recyclerView!!, linearLayoutManager)
 
                                 Toast.makeText(this, "OK", Toast.LENGTH_LONG).show()

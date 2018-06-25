@@ -1,5 +1,6 @@
 package com.tharwa.solid.tharwa.Presenter.Virement
 
+import android.util.Log
 import com.tharwa.solid.tharwa.Contract.VirementExterneContract
 import com.tharwa.solid.tharwa.Model.BanksID
 import com.tharwa.solid.tharwa.Model.VirementExtern
@@ -14,6 +15,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Response
+import kotlin.math.log
 
 class VirementExternePresenter(val mView:VirementExterneContract.View, val userRepository: UserRepository)
 {
@@ -111,6 +113,7 @@ class VirementExternePresenter(val mView:VirementExterneContract.View, val userR
             when (response.code()) {
                 CodeStatus.err_400.status -> {
                     title = "Champs invalide";message = "Un des champs que vous avez saisi est invalide."
+
                 }
                 CodeStatus.err_422.status -> {
                     title = "Montant insuffisant";message = "Votre montant est insuffisant."
@@ -120,6 +123,14 @@ class VirementExternePresenter(val mView:VirementExterneContract.View, val userR
                 }
                 else -> {
                     title = "Oops ${response.code()}";message = "Erreur inattendue, veuillez réessayer plus tard."
+                    Log.d("Erreur Serveur", response.message())
+                    Log.d("Erreur Serveur",response.errorBody().toString())
+                    Log.d("Erreur Serveur",response.body().toString())
+                    Log.d("Erreur Serveur",response.toString())
+                    Log.d("Erreur Serveur",response.raw().toString())
+                    Log.d("Erreur Serveur",response.raw().body().toString())
+
+
                 }
 
             }

@@ -24,7 +24,6 @@ import java.io.File
  */
 class SignUpPresenter (val mView:SignUpContrat.View){
 
-    private val Service = Config.newService()
 
     var picturePresenter: TakePicturePresenter? = null
 

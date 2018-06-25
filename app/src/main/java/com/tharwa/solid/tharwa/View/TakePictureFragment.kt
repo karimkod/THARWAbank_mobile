@@ -103,7 +103,7 @@ class TakePictureFragment : Fragment(), addPictureContract.View {
 
         }else if (requestCode == presenter.REQUEST_IMAGE_GALLERY && resultCode == RESULT_OK)
         {
-            presenter.ImageReceived(getRealPathFromURI(data!!.data))
+            presenter.ImageReceived(getRealPathFromURI(data?.data!! ))
         }
     }
 

@@ -11,6 +11,7 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+
     <!-- Application Tag -->
     <application
         android:allowBackup="true"
@@ -51,7 +52,7 @@
         <activity android:name=".Controller.CodeIntroductionActivity" />
         <activity
             android:name=".View.ClientAcountActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity android:name=".View.ExchangeRateActivity" />
         <activity
             android:name=".View.Virment.VirementTharwaActivity"
@@ -63,9 +64,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".View.ClientAcountActivity" />
         </activity>
-        <activity android:name=".View.Virment.VirementExternActivity"
+        <activity
+            android:name=".View.Virment.VirementExternActivity"
             android:exported="true"
-            android:parentActivityName=".View.ClientAcountActivity"></activity>
+            android:parentActivityName=".View.ClientAcountActivity" />
+
+        <service android:name=".Services.FirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".Services.FirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".View.AccountBlockedActivity" />
+        <activity android:name=".View.AccountWaitingActivity"></activity>
     </application>
 
 </manifest>

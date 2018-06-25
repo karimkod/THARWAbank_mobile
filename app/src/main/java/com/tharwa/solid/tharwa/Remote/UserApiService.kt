@@ -1,5 +1,6 @@
 package com.tharwa.solid.tharwa.Remote
 import com.tharwa.solid.tharwa.Model.*
+import com.tharwa.solid.tharwa.util.Config.URL
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -125,6 +126,11 @@ interface UserApiService {
     ):retrofit2.Call<okhttp3.ResponseBody>
 
 
+    @Headers("Accept:application/json")
+    @POST("fcm/register")
+    fun registerFCM(@Header("Authorization")token:String,@Body fcmData: RegisterFCMData): Observable<Response<ResponseBody>>
+
+
 
 
 
@@ -134,7 +140,6 @@ interface UserApiService {
 
         //val URL="https://serene-retreat-29274.herokuapp.com/"
 
-        const val URL = "http://192.168.43.5/"
 
         var instance:UserApiService? = null
 
@@ -168,5 +173,6 @@ interface UserApiService {
         {
             observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(success,failure)
         }
+
     }
 }

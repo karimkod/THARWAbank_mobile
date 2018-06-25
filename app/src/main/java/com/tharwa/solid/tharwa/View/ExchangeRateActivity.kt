@@ -26,6 +26,7 @@ import com.tharwa.solid.tharwa.FormInterface
 import com.tharwa.solid.tharwa.R
 import com.tharwa.solid.tharwa.Model.ExchangeRateItem
 import com.tharwa.solid.tharwa.Presenter.ExchangeRatePresenter
+import com.tharwa.solid.tharwa.Remote.UserApiService
 import com.tharwa.solid.tharwa.Repositories.Injection
 import com.tharwa.solid.tharwa.util.Config
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -45,7 +46,7 @@ class ExchangeRateActivity : AppCompatActivity(), ExchageRateContract.View {
 
     var exchange_rate_items:ArrayList<ExchangeRateItem> = ArrayList()
 
-    private val Service = Config.newService()
+    private val Service = UserApiService.create()
 
 
 
