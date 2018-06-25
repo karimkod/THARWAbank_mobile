@@ -54,7 +54,7 @@ data class UserCreate
         @SerializedName("phone_number") val Tel: String,
         @SerializedName("name") val name: String,
         @SerializedName("address") val address: String,
-        @SerializedName("function") val function: String,
+        @SerializedName("fonction") val function: String,
         @SerializedName("wilaya") val wilaya: String,
         @SerializedName("commune") val commune: String,
         @SerializedName("type") val type: Int

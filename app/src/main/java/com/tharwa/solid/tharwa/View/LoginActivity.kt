@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TextInputLayout
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.ProgressBar
@@ -120,6 +121,7 @@ class LoginActivity : AppCompatActivity(), CodeReceptionMethodDialog.DialogChoic
 
     fun onLoginFailureResult(error: Throwable) {
         hideProgressDialog()
+        Log.d("LoginActivity",error.message)
         showDialogMessage(this, "Oops", "Veuillez réessayer plus tard".toString())
     }
 

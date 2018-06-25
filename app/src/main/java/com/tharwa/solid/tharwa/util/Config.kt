@@ -6,7 +6,7 @@ import com.tharwa.solid.tharwa.Remote.UserApiService
  */
 object Config
 {
-    const val URL = "http://192.168.43.5/"
+    const val URL = "http://192.168.43.125/"
 
     const val BLOCKED_ACCOUNT_CODE = 3
     const val WAITING_ACCOUNT_CODE = 0

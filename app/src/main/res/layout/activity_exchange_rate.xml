@@ -25,7 +25,7 @@
         android:indeterminate="true"
         android:indeterminateTint="@color/colorAccent"
         android:max="100"
-        android:visibility="invisible"
+        android:visibility="gone"
         />
     <LinearLayout
         android:layout_width="match_parent"

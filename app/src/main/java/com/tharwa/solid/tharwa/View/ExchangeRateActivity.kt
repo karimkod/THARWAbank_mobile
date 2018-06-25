@@ -175,7 +175,7 @@ class ExchangeRateActivity : AppCompatActivity(), ExchageRateContract.View {
 
     fun hideProgressDialog()
     {
-        progressbar_exchange_rate.visibility = ProgressBar.INVISIBLE
+        progressbar_exchange_rate.visibility = ProgressBar.GONE
 
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }

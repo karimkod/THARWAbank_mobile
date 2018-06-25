@@ -92,7 +92,7 @@ class VirementTharwaActivity : AppCompatActivity(),FormInterface,VirementTharwaC
             findViewById<TextView>(R.id.nom_prenom).text = name
             findViewById<TextView>(R.id.wilaya).text = wilaya
             findViewById<TextView>(R.id.commune).text = commune
-            findViewById<TextView>(R.id.montant).text = String.format("%,.2f", montant) + " DZD"
+            findViewById<TextView>(R.id.montant).text = String.format("%,.2f", montant.toFloat()) + " DZD"
 
         }
 

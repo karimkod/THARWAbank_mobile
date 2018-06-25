@@ -145,7 +145,7 @@ class LandingPage : AppCompatActivity() {
         builder.setTitle(title)
         builder.setMessage(message)
 
-        builder.setNeutralButton("Réessayer", null)
+        builder.setPositiveButton("Réessayer"){_,_ ->startApplication() }
         builder.create().show()
     }
 }

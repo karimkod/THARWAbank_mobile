@@ -5,6 +5,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.media.RingtoneManager
 import android.support.v7.app.NotificationCompat
 import android.util.Log
 
@@ -34,6 +35,7 @@ class FirebaseMessagingService : com.google.firebase.messaging.FirebaseMessaging
                 .setContentTitle(title)
                 .setContentText(body)
                 .setSmallIcon(R.drawable.logo_withoutcircle)
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setContentIntent(pendingIntent)
 
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

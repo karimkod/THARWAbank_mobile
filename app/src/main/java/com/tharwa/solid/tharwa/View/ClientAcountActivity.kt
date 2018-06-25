@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_client_acount.*
 import kotlinx.android.synthetic.main.nav_header.view.*
 import android.graphics.BitmapFactory
 import android.support.design.widget.NavigationView
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -43,10 +44,27 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
+import retrofit2.Response
 import java.net.URL
 
 
-class ClientAcountActivity : AppCompatActivity(), AdapterView.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
+class ClientAcountActivity : AppCompatActivity(), AdapterView.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener, NavigationView.OnNavigationItemSelectedListener {
+
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean
+    {
+
+        return when (item.itemId)
+        {
+            R.id.nav_deconnexion ->
+            {
+                logout()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
 
     protected var navigatorView: NavigationView? = null
@@ -94,6 +112,11 @@ class ClientAcountActivity : AppCompatActivity(), AdapterView.OnItemClickListene
                 ,"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjkyNDhhNTU2NDlhMjA4ZDI4MGZmZTQyNTk2MmZhNzIzODJlMGIwYTM4MTYyNDZlNTU2Y2FmM2VjNWViMGRkMzNlOWJkMDNmMGM2M2NiOWEzIn0.eyJhdWQiOiIyIiwianRpIjoiOTI0OGE1NTY0OWEyMDhkMjgwZmZlNDI1OTYyZmE3MjM4MmUwYjBhMzgxNjI0NmU1NTZjYWYzZWM1ZWIwZGQzM2U5YmQwM2YwYzYzY2I5YTMiLCJpYXQiOjE1MjY3NTExMjgsIm5iZiI6MTUyNjc1MTEyOCwiZXhwIjoxNTI2NzU4MzI3LCJzdWIiOiI1Iiwic2NvcGVzIjpbImN1c3RvbWVyIl19.yndwK-GWpmC64-Wpk41IXdCaoA5cMcByBaogh2jH_1ry8nHi_9rd-W6XORx4iT3FirGRaYl6B6u1uZ8UoHl5PEt1VeP1UaD6Ml9i6bKLrk5Z7irKBAYV_KVgSKdM_YpwkNJeETh_6__C7Vgx5YOwxIusHFATQDq1SUORbLisjcWk3YwqvZ8s66TPxM2iFtUVV8GIZmLPpqk03Jc2L1br5EMWbNy-SrBCyxO6Uw8P2UuuxuT0g1zn1C8pTT9bM7V6uE9Mjb_KIzpnUBc4Bo95r3ASIqcl9e71X-bHYF1BswbNxrGBsp-4eXwPJEWTd3NlBJSOQXFQw5kotyNRwOFEtCQc4Z4VnCDB-d91eAAgVbwtD2XcCPnK_5IxWOpJ8KirS18_kztzB701rJGusqGwiHPQAHhcgBfzqC9NQTWLDb6F1Lc7kSvpZn6IFaQojJE4lwHAuBHioVvvvtqLiaZHOU75oByCk_hLQojeUQuW1PFm5IrA3Z3a9qprpvwAXYlOGTrgGwBYDof12goG6ZuUAdYDNloSStbRcFhdHF9JGQuaCDMZBdGdQSec4XEB8yORNVPZviH-QdfUZjaJiLsD2gloG-rb7Fx0-WG2cEeZ0t7OPokByMBcJ3VX6yzwbt2bO9qvbSlVd5PvqWAHL0oSVBjRazU7eSdIhUdLuf6S2IM"
                 ,"7199")
 */
+
+        val mNavigationView =  findViewById<NavigationView>(R.id.nav_view);
+        mNavigationView.setNavigationItemSelectedListener(this);// yo
+
+
 
         bottomSheet = BottomSheetBehavior.from(floatingButtons)
 
@@ -198,8 +221,39 @@ class ClientAcountActivity : AppCompatActivity(), AdapterView.OnItemClickListene
                 updateBalance()
                 true
             }
+
+
             else -> super.onOptionsItemSelected(item)
         }
+
+    }
+
+
+    fun logout()
+    {
+        UserApiService.sendRequest(UserApiService.create().logout(userRepository.accessInfos.token),::onSuccess,::onFail)
+    }
+
+    fun onSuccess(response: Response<ResponseBody>)
+    {
+        if(response.isSuccessful)
+        {
+
+            startActivity(Intent(applicationContext, LandingPage::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)})
+        }else
+        {
+            Toast.makeText(this,"Logout failed from server",Toast.LENGTH_LONG).show()
+            Toast.makeText(this,response.message().toString(),Toast.LENGTH_LONG).show()
+
+        }
+
+    }
+
+    fun onFail(t:Throwable)
+    {
+
+        Toast.makeText(this,t.message,Toast.LENGTH_LONG).show()
 
     }
 

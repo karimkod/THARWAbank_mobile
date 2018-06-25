@@ -55,7 +55,7 @@ interface UserApiService {
 
     @Multipart
     @Headers("Accept:multipart/form-data")
-    @POST("user/photo")
+    @PUT("user/photo")
     fun postImage(@Part image: okhttp3.MultipartBody.Part
             ,@Part("id_user") userId:okhttp3.RequestBody)
             :retrofit2.Call<okhttp3.ResponseBody>
@@ -129,6 +129,13 @@ interface UserApiService {
     @Headers("Accept:application/json")
     @POST("fcm/register")
     fun registerFCM(@Header("Authorization")token:String,@Body fcmData: RegisterFCMData): Observable<Response<ResponseBody>>
+
+
+ @Headers("Accept:application/json")
+ @POST("logout")
+ fun logout(@Header("Authorization")token:String): Observable<Response<ResponseBody>>
+
+
 
 
 

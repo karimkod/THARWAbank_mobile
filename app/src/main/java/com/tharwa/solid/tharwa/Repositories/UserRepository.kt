@@ -9,15 +9,7 @@ class UserRepository
 
     lateinit var userInfo: UserInfo
 
-    fun saveAccesInfoIntoPreferences()
-    {
 
-    }
-
-    fun loadAccesInfoFromPreferences()
-    {
-
-    }
 
 
 

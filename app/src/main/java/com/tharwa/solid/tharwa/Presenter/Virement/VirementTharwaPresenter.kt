@@ -1,5 +1,6 @@
 package com.tharwa.solid.tharwa.Presenter.Virement
 
+import android.util.Log
 import com.tharwa.solid.tharwa.Contract.VirementTharwaContract
 import com.tharwa.solid.tharwa.Model.DestinationAccoutInfo
 import com.tharwa.solid.tharwa.Model.VirementTharwa
@@ -67,10 +68,9 @@ class VirementTharwaPresenter(val mView:VirementTharwaContract.View, val userRep
 
     fun onRequestFailed(error:Throwable)
     {
-
         mView.hideProgressDialog()
         mView.showDialogMessage("Oops..","Erreur, veuillez réessayer plus tard")
-        //Log.e("SignUpPrensenter", error.message.toString())
+        Log.d("ViremenetTharwaPrez",error.message.toString())
     }
 
 
@@ -192,6 +192,7 @@ class VirementTharwaPresenter(val mView:VirementTharwaContract.View, val userRep
                 override fun onFailure(call: retrofit2.Call<ResponseBody>, t: Throwable) {
                     mView.hideProgressDialog()
                     mView.showDialogMessage("Oops..", "Erreur, veuillez réessayer plus tard")
+                    Log.d("ViremenetTharwaPrez",t.message.toString())
                 }
             }
 

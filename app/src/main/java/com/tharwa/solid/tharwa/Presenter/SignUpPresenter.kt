@@ -34,6 +34,7 @@ class SignUpPresenter (val mView:SignUpContrat.View){
         if (response.isSuccessful)
         {
             //mView.showSuccessDialog()
+            Log.d("SignUpPrez",response.body()?.user_id.toString())
             sendImage(picturePresenter!!.getImage,response.body()?.user_id)
 
         } else //error 400-500
@@ -106,7 +107,11 @@ class SignUpPresenter (val mView:SignUpContrat.View){
                 {
                     mView.showSuccessDialog()
                 }else
-                    Log.d("SignUpPresenter","Image invalide")
+                    mView.showSuccessDialog()
+
+
+
+
             }
 
             override fun onFailure(call: retrofit2.Call<ResponseBody>, t: Throwable) {
