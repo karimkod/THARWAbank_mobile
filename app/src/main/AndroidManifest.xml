@@ -63,7 +63,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".View.ClientAcountActivity" />
         </activity>
-        <activity android:name=".View.Virment.VirementExternActivity"></activity>
+        <activity android:name=".View.Virment.VirementExternActivity"
+            android:exported="true"
+            android:parentActivityName=".View.ClientAcountActivity"></activity>
     </application>
 
 </manifest>

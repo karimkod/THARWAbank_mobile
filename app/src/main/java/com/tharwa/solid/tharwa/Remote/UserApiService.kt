@@ -13,9 +13,7 @@ import okhttp3.ResponseBody
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-
-
-
+import java.util.*
 
 
 /**
@@ -98,12 +96,34 @@ interface UserApiService {
     @Multipart
     @Headers("Accept:multipart/form-data")
     @POST("virements_internes_thw")
-    fun VirementToTharwa(@Header("Authorization")token:String,@Part image: okhttp3.MultipartBody.Part ,@Part("num_acc_receiver") destination:okhttp3.RequestBody,@Part("montant_virement") montant:okhttp3.RequestBody,@Part("type") type:okhttp3.RequestBody):retrofit2.Call<okhttp3.ResponseBody>
+    fun virementToTharwaWithMotif(@Header("Authorization")token:String, @Part image: okhttp3.MultipartBody.Part, @Part("num_acc_receiver") destination:okhttp3.RequestBody, @Part("montant_virement") montant:okhttp3.RequestBody, @Part("type") type:okhttp3.RequestBody):retrofit2.Call<okhttp3.ResponseBody>
 
 
     @Headers("Accept:application/json")
     @GET("account/virements/{id}")
     fun getHistory(@Header("Authorization")token:String, @Path("id")id:Int, @Query("page") page:Int): Observable<Response<HistoryResponse>>
+
+     @Headers("Accept:application/json")
+    @GET("banks/id")
+    fun getBanks(@Header("Authorization")token:String): Observable<Response<ArrayList<BanksID>>>
+
+
+    @Headers("Accept:application/json")
+    @POST("virements_externes")
+    fun virementExtern(@Header("Authorization")token:String,@Body virementExtern: VirementExtern): Observable<Response<ResponseBody>>
+
+    @Multipart
+    @Headers("Accept:multipart/form-data")
+    @POST("virements_externes")
+    fun virementExternWithMotif(@Header("Authorization")token:String,
+                                @Part image: okhttp3.MultipartBody.Part,
+                                @Part("num_acc_receiver") numAccount:okhttp3.RequestBody,
+                                @Part("code_bnk_receiver") codeBank:okhttp3.RequestBody,
+                                @Part("code_curr_receiver") codeCurrency:okhttp3.RequestBody,
+                                @Part("name") name:okhttp3.RequestBody,
+                                @Part("amount_virement") montant:okhttp3.RequestBody
+    ):retrofit2.Call<okhttp3.ResponseBody>
+
 
 
 

@@ -8,6 +8,7 @@ import com.tharwa.solid.tharwa.Presenter.TakePicturePresenter
 import com.tharwa.solid.tharwa.Remote.UserApiService
 import com.tharwa.solid.tharwa.Repositories.UserRepository
 import com.tharwa.solid.tharwa.enumration.CodeStatus
+import com.tharwa.solid.tharwa.util.VirementConfig.MAXIMUM_SANS_MOTIF
 
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -18,7 +19,7 @@ import retrofit2.Response
 class VirementTharwaPresenter(val mView:VirementTharwaContract.View, val userRepository: UserRepository)
 {
     var takePicturePresenter: TakePicturePresenter? = null
-    val MAXIMUM_SANS_MOTIF =  200000.0f
+
 
 
     var needMotif = false
@@ -50,10 +51,11 @@ class VirementTharwaPresenter(val mView:VirementTharwaContract.View, val userRep
     {
 
         try {
-            if (needMotif) takePicturePresenter!!.isImageValid()
+
 
             if (mView.isValidInputs())
             {
+                if (needMotif) takePicturePresenter!!.getImage
                 mView.showProgressDialog()
                 getDestinationInfos()
 
@@ -211,7 +213,7 @@ class VirementTharwaPresenter(val mView:VirementTharwaContract.View, val userRep
         val mont= RequestBody.create(okhttp3.MultipartBody.FORM,mView.montant)
         val type= RequestBody.create(okhttp3.MultipartBody.FORM,"0")
 
-        val req = UserApiService.createServiceForImage().VirementToTharwa(userRepository.accessInfos.token,body,dest,mont,type)
+        val req = UserApiService.createServiceForImage().virementToTharwaWithMotif(userRepository.accessInfos.token,body,dest,mont,type)
         req.enqueue(callback)
 
     }

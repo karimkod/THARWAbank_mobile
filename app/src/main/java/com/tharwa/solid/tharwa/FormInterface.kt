@@ -27,7 +27,7 @@ interface FormInterface
             if(context is AppCompatActivity)
             {
                 context.findViewById<ScrollView>(R.id.scroll_view)?.apply {
-                    post({kotlin.run { this.smoothScrollTo(0,input.top) }})
+                    post {kotlin.run { this.smoothScrollTo(0,input.top) }}
                 }
             }
             throw InvalideInputException()

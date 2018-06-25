@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.sign_up_activity.*
 
 
 class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentInteractionListener, AdapterView.OnItemSelectedListener,
-        FormInterface,SignUpContrat.View {
+        FormInterface, SignUpContrat.View {
 
     override val presenter: SignUpPresenter by lazy { SignUpPresenter(this) }
     override val mail get() = email.editText?.text.toString()
@@ -121,14 +121,6 @@ class SignUpActivity : AppCompatActivity(), TakePictureFragment.OnFragmentIntera
 
         val dialog = builder.create()
         dialog.show()
-    }
-
-    override fun showMessage(message: String) {
-        this.showMessage(message)
-    }
-
-    override fun showTag(tag: String, message: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 

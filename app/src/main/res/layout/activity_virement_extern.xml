@@ -4,78 +4,190 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.Virment.VirementExternActivity"
     android:orientation="vertical"
-    >
-
+    tools:context=".View.Virment.VirementExternActivity">
 
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/virement_tharwa_actionbar"
+        android:id="@+id/virement_extern_actionbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:titleTextColor="@color/white"
-        android:theme="@style/actionBarStyle"
         android:layout_marginBottom="10dp"
         android:elevation="4dp"
-        />
+        android:theme="@style/actionBarStyle"
+        app:titleTextColor="@color/white" />
 
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/information_compte"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
-
-    <android.support.v7.widget.LinearLayoutCompat
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        >
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/bank_spinner"
-            android:layout_width="0dp"
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            >
+            android:orientation="vertical">
 
-        </android.support.v7.widget.AppCompatSpinner>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:text="@string/information_compte"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/account_number"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:errorEnabled="true"
-            android:layout_weight="2">
-
-            <android.support.v7.widget.AppCompatEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/num_compte"
-                android:textAlignment="center"
-
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/nom_destinataire"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:gravity="center"
-                />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <Spinner
-            android:id="@+id/curency_spinner"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-        </Spinner>
-
-    </android.support.v7.widget.LinearLayoutCompat>
+                app:errorEnabled="true"
+                >
 
 
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="12"
+                    android:gravity="center"
+                    android:hint="@string/nom_destinataire"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:imeOptions="actionNext"
+                    android:focusable="true"
+                    />
 
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/bank_spinner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                </android.support.v7.widget.AppCompatSpinner>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/account_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:errorEnabled="true"
+                    android:layout_weight="3">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:ems="12"
+                        android:gravity="center"
+                        android:hint="@string/num_compte"
+                        android:inputType="number"
+                        android:textAlignment="center"
+                        android:imeOptions="actionNext"
+
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/currency_spinner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    >
+
+                </android.support.v7.widget.AppCompatSpinner>
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:text="@string/information_montant"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <android.support.design.widget.TextInputLayout
+
+                    android:id="@+id/montant_virement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    app:errorEnabled="true">
+
+                    <android.support.design.widget.TextInputEditText
+
+                        android:id="@+id/montant_virement_editText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="11"
+                        android:gravity="center"
+                        android:hint="@string/montant_virement"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/selected_currency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DZD"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/motif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/motif_virement" />
+
+                <fragment
+                    android:id="@+id/headlines_fragment"
+                    android:name="com.tharwa.solid.tharwa.View.TakePictureFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    tools:layout="@layout/take_picture_fragment" />
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/virer"
+                style="@style/ColoredButtonStyle"
+                android:text="@string/termine" />
+
+        </android.support.v7.widget.LinearLayoutCompat>
+    </ScrollView>
 
 
 </android.support.v7.widget.LinearLayoutCompat>

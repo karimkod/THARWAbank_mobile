@@ -9,6 +9,5 @@ interface BaseActivity<T>
 {
     val presenter:T
 
-     fun showMessage( message:String)
-     fun showTag(tag: String, message:String)
+
 }

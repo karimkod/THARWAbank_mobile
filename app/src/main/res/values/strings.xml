@@ -26,7 +26,7 @@
     <string name="virement">Virement</string>
     <string name="changer_compte">Changer compte</string>
     <string name="compte_destinataire">Numéro du compte destinataire</string>
-    <string name="num_compte">Numéro compte</string>
+    <string name="num_compte">Numéro de compte</string>
     <string name="montant_virement">Montant du virement</string>
     <string name="code_tharwa">THR</string>
     <string name="virer">Virer</string>
@@ -73,6 +73,11 @@
     <string name="refresh_token_key">4DAE21CD964FEAC6CC43F2614D478</string>
     <string name="shared_pref_name">com.solid.tharwa.sharedPref</string>
     <string name="information_compte">Information du compte destinataire</string>
+    <string name="information_montant">Information sur le montant</string>
+    <string name="nom_destinataire">Nom destinataire</string>
+    <string name="label_montant_virement">Montant du virement : </string>
+    <string name="virement_vers_tharwa">Virement vers THARWA</string>
+    <string name="virement_externe">Virement externe</string>
 
 
 </resources>

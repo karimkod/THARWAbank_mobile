@@ -103,4 +103,11 @@
         <item>@array/ghardaia</item>
         <item>@array/relizane</item>
     </array>
+
+
+    <string-array name="currency_array">
+        <item>DZD</item>
+        <item>EUR</item>
+        <item>USD</item>
+    </string-array>
 </resources>

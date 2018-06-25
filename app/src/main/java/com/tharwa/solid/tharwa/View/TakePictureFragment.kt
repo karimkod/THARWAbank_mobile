@@ -184,7 +184,7 @@ class TakePictureFragment : Fragment(), addPictureContract.View {
             if(this is AppCompatActivity)
             {
                 this.findViewById<ScrollView>(R.id.scroll_view)?.apply {
-                    post({kotlin.run { this.smoothScrollTo(0,v!!.top )}})
+                    post {kotlin.run { this.smoothScrollTo(0,v!!.top )}}
                 }
             }
         }

@@ -41,6 +41,8 @@ object InputValidator {
                     return resources.getString(R.string.champInvalide)
             }
 
+
+
             InputType.WILAYA ->
             {
                 if(text == resources.getString(R.string.wilaya))
@@ -49,10 +51,21 @@ object InputValidator {
 
             InputType.ACCOUNTNUMBER ->
             {
-                if(text.length < 6)
+                if(text.length < 6 )
                     return resources.getString(R.string.accountNumberInvalide)
+                else if(!Regex(resources.getString(R.string.number_regex)).matches(text))
+                    return resources.getString(R.string.champInvalide)
 
             }
+
+            InputType.ACCOUNTNUMBEREXTERNE ->
+            {
+                if(!Regex(resources.getString(R.string.number_regex)).matches(text))
+                    return resources.getString(R.string.champInvalide)
+
+            }
+
+
 
             InputType.MONTANT ->
             {

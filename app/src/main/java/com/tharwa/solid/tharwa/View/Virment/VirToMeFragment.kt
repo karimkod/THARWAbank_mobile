@@ -154,15 +154,9 @@ class VirToMeFragment :DialogFragment (),VirToMeContract.View,BaseActivity<VirTo
     {
         dismiss()
     }
-    override fun showMessage(message: String) {
-        Toast.makeText(context,message,Toast.LENGTH_LONG).show()
-
-    }
 
 
-    override fun showTag(tag:String, message: String) {
-        Log.e(tag,message)
-    }
+
     override fun showResultDialog(code:Int,message: String) {
         val builder = AlertDialog.Builder(activity)
         builder.setTitle(resources.getString(R.string.transactoin))

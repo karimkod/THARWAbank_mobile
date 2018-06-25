@@ -22,6 +22,7 @@ import com.tharwa.solid.tharwa.View.LoadingFragment
 import com.tharwa.solid.tharwa.View.TakePictureFragment
 import com.tharwa.solid.tharwa.enumration.InputType
 import kotlinx.android.synthetic.main.activity_virement_tharwa.*
+import org.w3c.dom.Text
 
 
 class VirementTharwaActivity : AppCompatActivity(),FormInterface,VirementTharwaContract.View, TakePictureFragment.OnFragmentInteractionListener
@@ -48,7 +49,7 @@ class VirementTharwaActivity : AppCompatActivity(),FormInterface,VirementTharwaC
         setSupportActionBar(virement_tharwa_actionbar)
 
         supportActionBar?.apply {
-            title = "Virement vers THARWA"
+            title = getString(R.string.virement_vers_tharwa)
             setDisplayHomeAsUpEnabled(true)
         }
 
@@ -79,7 +80,7 @@ class VirementTharwaActivity : AppCompatActivity(),FormInterface,VirementTharwaC
         showDialogMessage(this,title,message)
     }
 
-    @SuppressLint("WrongViewCast")
+
     override fun showConfirmationMethod(name:String, wilaya:String, commune:String)
     {
         val alertBuilder = AlertDialog.Builder(this)
@@ -91,6 +92,7 @@ class VirementTharwaActivity : AppCompatActivity(),FormInterface,VirementTharwaC
             findViewById<TextView>(R.id.nom_prenom).text = name
             findViewById<TextView>(R.id.wilaya).text = wilaya
             findViewById<TextView>(R.id.commune).text = commune
+            findViewById<TextView>(R.id.montant).text = String.format("%,.2f", montant) + " DZD"
 
         }
 
@@ -112,9 +114,6 @@ class VirementTharwaActivity : AppCompatActivity(),FormInterface,VirementTharwaC
         }
     }
 
-    override fun showMessage(message: String) {
-            //ToRemove
-    }
 
 
     override fun showPicturePlace()
@@ -152,8 +151,6 @@ class VirementTharwaActivity : AppCompatActivity(),FormInterface,VirementTharwaC
         alertBuilder.create().show()
     }
 
-    override fun showTag(tag: String, message: String) {
-        Log.e(tag,message)
-    }
+
 
 }

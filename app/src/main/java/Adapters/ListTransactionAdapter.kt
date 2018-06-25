@@ -41,14 +41,14 @@ class ListTransactionAdapter(private val context: Context, arrayList: ArrayList<
 
         if(arrayList[position].E_S == 1) {
             holder.transaction_date?.text = arrayList[position].date.toString()
-            holder.transaction_montant?.text = "+ "+ arrayList[position].montant.toString() + "DZD"
+            holder.transaction_montant?.text = "+ "+ String.format("%,.2f", arrayList[position].montant.toFloat()) + "DZD"
             holder.transaction_acount?.text = "De: "+arrayList[position].acount_number
             holder.transaction_commission?.text = " "
         }else{
             holder.transaction_date?.text = arrayList[position].date.toString()
-            holder.transaction_montant?.text = "- "+ arrayList[position].montant.toString() + " DZD"
+            holder.transaction_montant?.text = "- "+  String.format("%,.2f", arrayList[position].montant.toFloat()) + " DZD"
             holder.transaction_acount?.text = "Vers: "+arrayList[position].acount_number
-            holder.transaction_commission?.text = "- " + arrayList[position].montant_commission.toString() + " DZD"
+            holder.transaction_commission?.text = "- " +  String.format("%,.2f", arrayList[position].montant_commission.toFloat()) + " DZD"
         }
 
     }

@@ -13,4 +13,7 @@
     <string name="Tel_regex">
         ^\+?\(?[0-9]{1,3}\)? ?-?[0-9]{1,3} ?-?[0-9]{3,5} ?-?[0-9]{4}( ?-?[0-9]{3})?
     </string>
+    <string name="number_regex">
+        ^[0-9]+$
+    </string>
 </resources>
